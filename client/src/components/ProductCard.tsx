@@ -15,7 +15,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const tagClass = product.tag ? tagStyles[product.tag] || "bg-surface-container-high" : "";
 
   return (
-    <a href={product.productUrl || KAKAO_URL} target="_blank" rel="noopener noreferrer"
+    <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
       className="group bg-surface-container-lowest border border-surface-container-high transition-all hover:border-primary-container overflow-hidden">
       <div className="aspect-[4/3] bg-surface-container-lowest p-8 flex items-center justify-center relative overflow-hidden">
         <img className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
