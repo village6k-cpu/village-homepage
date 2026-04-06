@@ -1,391 +1,410 @@
 // VILLAGE. — Discount Page (/discount)
-// 할인 계산기: discount.html → React 변환
-// 할인 계산 방식: 곱하기(복리) — 정가 × (1-할인1) × (1-할인2) × ...
+// 대시보드 랜딩페이지 discount.html → React 1:1 변환
+// 카테고리 탭 → 장비 드롭다운 → 기본 할인 칩 → 장기 칩 → 추가 칩 → 결과 카드
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { products, formatPrice, KAKAO_URL } from "@/lib/products";
+import { KAKAO_URL } from "@/lib/products";
+import { Link } from "wouter";
 
-// 장기 대여 할인율 (회차 = 24시간 단위)
-const longTermRates: { label: string; min: number; max: number; rate: number }[] = [
-  { label: "1회차 (당일)", min: 1, max: 1, rate: 0 },
-  { label: "2회차", min: 2, max: 2, rate: 0.10 },
-  { label: "3~5회차", min: 3, max: 5, rate: 0.20 },
-  { label: "6~9회차", min: 6, max: 9, rate: 0.35 },
-  { label: "10~15회차", min: 10, max: 15, rate: 0.40 },
-  { label: "15~19회차", min: 15, max: 19, rate: 0.45 },
-  { label: "20회차~", min: 20, max: 999, rate: 0.50 },
+// 장비 데이터 (대시보드 랜딩페이지와 동일)
+const ED: Record<string, { n: string; p: number }[]> = {
+  '카메라 풀세트': [
+    { n: '픽시스 6K 풀세트 (PL 마운트)', p: 150000 }, { n: '소니 BURANO 풀세트', p: 250000 },
+    { n: '소니 BURANO 베이직 세트', p: 200000 }, { n: '소니 FX9 풀세트', p: 100000 },
+    { n: '소니 FX6 풀세트', p: 130000 }, { n: '소니 FX3 풀세트', p: 90000 },
+    { n: '소니 A7S3 풀세트', p: 80000 }, { n: 'RED 코모도 풀세트', p: 100000 },
+    { n: 'BMPCC 6K Pro 풀세트', p: 60000 }, { n: 'BMPCC 6K 풀세트', p: 50000 },
+  ],
+  '카메라': [
+    { n: '소니 FX3 바디세트', p: 40000 }, { n: '소니 FX3 + 28-135', p: 65000 },
+    { n: '소니 FX3 + 24-70 GM', p: 60000 }, { n: '소니 FX6 바디세트', p: 60000 },
+    { n: '소니 FX6 + 28-135', p: 85000 }, { n: '소니 FX9 바디세트', p: 60000 },
+    { n: '소니 A7S3 바디세트', p: 30000 }, { n: '소니 A7S3 + 24-70 GM', p: 50000 },
+    { n: '캐논 R6 II + RF 100-500', p: 50000 }, { n: '소니 Z-90 캠코더(4K)', p: 40000 },
+    { n: '소니 AX43A 캠코더(4K)', p: 30000 }, { n: '인스타360 X5', p: 30000 },
+    { n: '고프로 히어로11', p: 20000 }, { n: '오즈모 포켓3', p: 20000 },
+  ],
+  '렌즈/필터': [
+    { n: '소니 GM 렌즈 세트', p: 56000 }, { n: '소니 GM 단렌즈 세트(5본)', p: 90000 },
+    { n: '소니 24-70 GM II', p: 25000 }, { n: '소니 70-200 GM II', p: 25000 },
+    { n: '소니 FE 28-135', p: 25000 }, { n: '쿠크 COOKE SP3 세트', p: 110000 },
+    { n: 'DZOFILM CATTA ACE 3세트', p: 80000 }, { n: '시그마 FF Prime 세트', p: 80000 },
+    { n: '삼양 XEEN 세트', p: 50000 }, { n: '삼양 XEEN CF 세트', p: 80000 },
+    { n: '라오와 24mm Probe', p: 30000 }, { n: '캐논 RF 100-500', p: 30000 },
+    { n: '틸타 MB-T12 매트박스', p: 20000 }, { n: 'NiSi PL 필터', p: 7000 },
+  ],
+  '조명': [
+    { n: '난룩스 Evoke 1200B', p: 50000 }, { n: '어퓨쳐 600X 프로 세트', p: 30000 },
+    { n: '어퓨쳐 600C 프로(RGBWW)', p: 40000 }, { n: '어퓨쳐 300X 세트', p: 25000 },
+    { n: '어퓨쳐 노바 P300C', p: 30000 }, { n: '아마란 F22C', p: 35000 },
+    { n: '아마란 F21C', p: 20000 }, { n: '아마란 PT4C 4KIT', p: 60000 },
+    { n: '파보튜브II 30XR 2KIT', p: 35000 }, { n: '파보튜브II 30X 4KIT', p: 60000 },
+    { n: '어퓨쳐 B7C 8KIT', p: 40000 }, { n: '스피드라이트 430EX', p: 15000 },
+  ],
+  '모니터/무선': [
+    { n: '홀리랜드 솔리드컴 C1 PRO 6S', p: 70000 }, { n: '홀리랜드 솔리드컴 C1 PRO 4S', p: 50000 },
+    { n: '무선세트(17인치)', p: 50000 }, { n: 'TVLogic LVM-180A', p: 30000 },
+    { n: '홀리랜드 파이로 S', p: 30000 }, { n: '홀리랜드 파이로 7', p: 20000 },
+    { n: 'DJI SDR Transmission', p: 20000 }, { n: '틸타 뉴클리어스-M', p: 20000 },
+  ],
+  '짐벌/서포트': [
+    { n: '틸타 시네 슬라이더', p: 50000 }, { n: 'MOVMAX RAZOR ARM', p: 40000 },
+    { n: '로닌 RS4 프로', p: 30000 }, { n: '로닌 RS3 프로', p: 30000 },
+    { n: '핫도그 슬라이더', p: 30000 }, { n: '시네 카트', p: 20000 },
+  ],
+  '오디오': [
+    { n: 'JBL 파티박스 320+마이크', p: 30000 }, { n: '인터컴 5세트', p: 30000 },
+    { n: '줌 F6', p: 20000 }, { n: '모토로라 무전기 4세트', p: 20000 },
+    { n: '젠하이져 MKH-416P', p: 15000 }, { n: 'DJI 무선마이크', p: 10000 },
+  ],
+  '기타': [
+    { n: 'KSH17 프롬프터', p: 60000 }, { n: '에코플로우 델타2 맥스', p: 50000 },
+    { n: '아템 미니 익스트림 ISO', p: 30000 }, { n: '촬영용 턴테이블', p: 20000 },
+    { n: 'V마운트 배터리 3개', p: 10000 }, { n: '강풍기', p: 5000 }, { n: 'C스탠드', p: 5000 },
+  ],
+};
+
+const BD = [
+  { n: '학생 30%', r: 0.3 },
+  { n: '개인사업자/프리랜서 20%', r: 0.2 },
+  { n: '없음', r: 0 },
+];
+const LT = [
+  { n: '없음', r: 0 }, { n: '2회차 10%', r: 0.1 }, { n: '3~5회차 20%', r: 0.2 },
+  { n: '6~9회차 35%', r: 0.35 }, { n: '10~15회차 40%', r: 0.4 },
+  { n: '15~19회차 45%', r: 0.45 }, { n: '20회차~ 50%', r: 0.5 },
+];
+const EX = [
+  { n: '3회 쿠폰 5%', r: 0.05 },
+  { n: '10회 쿠폰 10%', r: 0.1 },
+  { n: '소개 리워드 5%', r: 0.05 },
 ];
 
-function getLongTermRate(days: number): number {
-  for (const r of longTermRates) {
-    if (days >= r.min && days <= r.max) return r.rate;
-  }
-  return 0.50; // 20+
-}
-
-function getLongTermLabel(days: number): string {
-  for (const r of longTermRates) {
-    if (days >= r.min && days <= r.max) return r.label;
-  }
-  return "20회차~";
-}
-
 export default function Discount() {
-  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
-  const [manualPrice, setManualPrice] = useState(50000);
-  const [days, setDays] = useState(1);
+  const [selCat, setSelCat] = useState<string | null>(null);
+  const [selEq, setSelEq] = useState<number | null>(null);
+  const [selBase, setSelBase] = useState<number | null>(null);
+  const [selLt, setSelLt] = useState<number | null>(null);
+  const [selEx, setSelEx] = useState<Set<number>>(new Set());
 
-  const selectedProduct = selectedProductId !== null ? products.find(p => p.id === selectedProductId) : null;
-  const basePrice = selectedProduct ? selectedProduct.priceDay : manualPrice;
-  const [isStudent, setIsStudent] = useState(false);
-  const [isBusiness, setIsBusiness] = useState(false);
-  const [hasCoupon3, setHasCoupon3] = useState(false);
-  const [hasCoupon10, setHasCoupon10] = useState(false);
-  const [hasReferral, setHasReferral] = useState(false);
+  const toggleEx = (i: number) => {
+    const next = new Set(selEx);
+    if (next.has(i)) next.delete(i); else next.add(i);
+    setSelEx(next);
+  };
 
-  // 기본 할인 (택1)
-  const baseDiscount = isStudent ? 0.30 : isBusiness ? 0.20 : 0;
-  const baseDiscountLabel = isStudent ? "학생 30%" : isBusiness ? "개인사업자/프리랜서 20%" : "없음";
-
-  // 장기 할인
-  const longTermRate = getLongTermRate(days);
-  const longTermLabel = getLongTermLabel(days);
-
-  // 쿠폰
-  const couponRate = hasCoupon10 ? 0.10 : hasCoupon3 ? 0.05 : 0;
-  const couponLabel = hasCoupon10 ? "10회 쿠폰 10%" : hasCoupon3 ? "3회 쿠폰 5%" : "없음";
-
-  // 소개 리워드
-  const referralRate = hasReferral ? 0.05 : 0;
-
-  // 계산 (곱하기/복리)
-  const result = useMemo(() => {
-    let price = basePrice;
-    const appliedDiscounts: { name: string; rate: number; before: number; after: number }[] = [];
-
-    if (baseDiscount > 0) {
-      const before = price;
-      price = price * (1 - baseDiscount);
-      appliedDiscounts.push({ name: baseDiscountLabel, rate: baseDiscount, before, after: price });
-    }
-
-    if (longTermRate > 0) {
-      const before = price;
-      price = price * (1 - longTermRate);
-      appliedDiscounts.push({ name: `장기 ${longTermLabel} ${(longTermRate * 100).toFixed(0)}%`, rate: longTermRate, before, after: price });
-    }
-
-    if (couponRate > 0) {
-      const before = price;
-      price = price * (1 - couponRate);
-      appliedDiscounts.push({ name: `쿠폰 ${couponLabel}`, rate: couponRate, before, after: price });
-    }
-
-    if (referralRate > 0) {
-      const before = price;
-      price = price * (1 - referralRate);
-      appliedDiscounts.push({ name: "소개 리워드 5%", rate: referralRate, before, after: price });
-    }
-
-    const perDay = Math.round(price);
-    const total = perDay * days;
-    const totalDiscount = basePrice > 0 ? Math.round((1 - perDay / basePrice) * 100) : 0;
-
-    return { perDay, total, totalDiscount, appliedDiscounts };
-  }, [basePrice, days, baseDiscount, longTermRate, couponRate, referralRate, baseDiscountLabel, longTermLabel, couponLabel]);
+  // 계산
+  const eq = selCat && selEq !== null ? ED[selCat][selEq] : null;
+  let finalPrice = eq ? eq.p : 0;
+  const names: string[] = [];
+  if (eq) {
+    if (selBase !== null && BD[selBase].r > 0) { finalPrice *= (1 - BD[selBase].r); names.push(BD[selBase].n); }
+    if (selLt !== null && LT[selLt].r > 0) { finalPrice *= (1 - LT[selLt].r); names.push(LT[selLt].n); }
+    selEx.forEach(i => { finalPrice *= (1 - EX[i].r); names.push(EX[i].n); });
+    finalPrice = Math.round(finalPrice);
+  }
+  const savings = eq ? eq.p - finalPrice : 0;
+  const pct = eq && eq.p > 0 ? ((1 - finalPrice / eq.p) * 100).toFixed(1) : "0";
 
   return (
-    <div className="min-h-screen" style={{ background: "#F9F9F9" }}>
+    <div className="bg-background font-body text-on-surface">
       <Header />
-      <div style={{ height: "80px" }} />
+      <main className="pt-20">
 
-      <main className="max-w-4xl mx-auto px-4 py-16">
-        {/* Page header */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-black tracking-tight mb-3" style={{ fontFamily: "'Work Sans', sans-serif" }}>
-            할인 계산기
-          </h1>
-          <div className="w-20 h-1.5 mb-4" style={{ background: "#D4A017" }} />
-          <p className="text-sm" style={{ color: "#4F4634" }}>
-            모든 할인은 <strong>중복 적용</strong>됩니다. 정가 × (1-할인1) × (1-할인2) × ... 방식으로 계산됩니다.
-          </p>
+        {/* Hero */}
+        <div className="py-12 text-center" style={{ borderBottom: "1px solid #E8E8E8" }}>
+          <div className="text-xs tracking-[5px] font-medium" style={{ color: "#D4A017" }}>CAMERA VILLAGE</div>
+          <div className="text-3xl font-black mt-3 tracking-tight leading-tight font-headline">
+            빌리지 할인이<br /><span style={{ color: "#D4A017" }}>더 커졌습니다</span>
+          </div>
+          <div className="text-sm mt-2" style={{ color: "#817662" }}>전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
+          <div className="flex flex-wrap gap-2 justify-center mt-4">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-orange-300 bg-orange-50 text-orange-500">학생 30%</span>
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-orange-300 bg-orange-50 text-orange-500">사업자 20%</span>
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-blue-300 bg-blue-50 text-blue-500">3/10 쿠폰</span>
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-emerald-300 bg-emerald-50 text-emerald-500">소개 리워드</span>
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-purple-300 bg-purple-50 text-purple-500">히든 할인</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left: Input */}
-          <div className="space-y-6">
-            {/* 장비 선택 */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                장비 선택
-              </label>
-              <select
-                value={selectedProductId ?? ""}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  if (val === "") {
-                    setSelectedProductId(null);
-                  } else {
-                    setSelectedProductId(Number(val));
-                  }
-                }}
-                className="w-full text-sm font-medium outline-none bg-zinc-50 px-4 py-3 rounded-sm mb-3"
-                style={{ border: "1px solid #E8E8E8" }}
-              >
-                <option value="">직접 입력</option>
-                {products.filter(p => p.priceDay > 0).map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name} — {formatPrice(p.priceDay)}
-                  </option>
-                ))}
-              </select>
+        {/* 01 기본 할인 */}
+        <Section num="01" numColor="text-orange-500" title="기본 할인" sub="학생 또는 사업자, 택1">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="학생" value="30%" color="#D4A017" note="학생증 제시" />
+            <StatCard label="개인사업자 / 프리랜서" value="20%" color="#D4A017" note="사업자등록증 또는 증빙" />
+          </div>
+          <InfoBox items={["전 장비 적용 (시네마 장비 포함)", "장기·쿠폰·소개 할인과 중복 가능"]} />
+        </Section>
 
-              {selectedProduct ? (
-                <div className="flex items-center justify-between bg-surface-container-low px-4 py-3 rounded-sm">
-                  <span className="text-sm font-medium">{selectedProduct.name}</span>
-                  <span className="text-2xl font-black" style={{ fontFamily: "'Work Sans', sans-serif", color: "#D4A017" }}>
-                    {formatPrice(selectedProduct.priceDay)}
-                  </span>
-                </div>
-              ) : (
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 mt-2" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                    1일 렌탈 정가 (원)
-                  </label>
-                  <input
-                    type="number"
-                    value={manualPrice}
-                    onChange={(e) => setManualPrice(Number(e.target.value))}
-                    className="w-full text-2xl font-black outline-none bg-zinc-50 px-4 py-3 rounded-sm"
-                    style={{ border: "1px solid #E8E8E8", fontFamily: "'Work Sans', sans-serif" }}
-                    min={0}
-                    step={5000}
-                  />
-                </div>
-              )}
-            </div>
+        {/* 02 장기 */}
+        <Section num="02" numColor="text-orange-500" title="장기 대여 할인" sub="기본 할인과 중복 적용">
+          <table className="w-full text-sm">
+            <tbody>
+              {[["2회차", "10%"], ["3~5회차", "20%"], ["6~9회차", "35%"], ["10~15회차", "40%"], ["15~19회차", "45%"], ["20회차~", "50%"]].map(([label, rate]) => (
+                <tr key={label} style={{ borderBottom: "1px solid #E8E8E8" }}>
+                  <td className="py-2.5 px-3" style={{ color: "#817662" }}>{label}</td>
+                  <td className="py-2.5 px-3 text-right font-bold font-headline" style={{ color: "#D4A017" }}>{rate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Section>
 
-            {/* 대여 기간 */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                대여 기간 (회차 = 24시간 단위)
-              </label>
-              <div className="flex items-center gap-4">
-                <input
-                  type="range"
-                  min={1}
-                  max={30}
-                  value={days}
-                  onChange={(e) => setDays(Number(e.target.value))}
-                  className="flex-1 accent-amber-600"
-                />
-                <span className="text-2xl font-black w-16 text-right" style={{ fontFamily: "'Work Sans', sans-serif" }}>
-                  {days}
-                </span>
-              </div>
-              <p className="text-xs mt-2" style={{ color: "#71717A" }}>
-                장기 할인: {longTermLabel} → <strong>{(longTermRate * 100).toFixed(0)}%</strong>
-              </p>
-            </div>
+        {/* 03 쿠폰 */}
+        <Section num="03" numColor="text-blue-500" title="3/10 쿠폰" sub="이용할수록 추가 할인 자동 발급">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="3회 이용" value="5%" color="#3B82F6" note="쿠폰 자동 발급" />
+            <StatCard label="10회 이용" value="10%" color="#3B82F6" note="쿠폰 자동 발급" />
+          </div>
+          <AccentBox color="blue" title="기본 할인과 중복 적용" desc="유효기간 2개월 · 학생/사업자/장기 할인 위에 추가로 적용" />
+        </Section>
 
-            {/* 기본 할인 (택1) */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                기본 할인 (택1)
-              </label>
-              <div className="space-y-3">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="baseDiscount"
-                    checked={!isStudent && !isBusiness}
-                    onChange={() => { setIsStudent(false); setIsBusiness(false); }}
-                    className="accent-amber-600"
-                  />
-                  <span className="text-sm">해당 없음</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="baseDiscount"
-                    checked={isStudent}
-                    onChange={() => { setIsStudent(true); setIsBusiness(false); }}
-                    className="accent-amber-600"
-                  />
-                  <span className="text-sm">학생 <strong>30%</strong> (학생증 제시)</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="baseDiscount"
-                    checked={isBusiness}
-                    onChange={() => { setIsStudent(false); setIsBusiness(true); }}
-                    className="accent-amber-600"
-                  />
-                  <span className="text-sm">개인사업자/프리랜서 <strong>20%</strong></span>
-                </label>
-              </div>
-            </div>
+        {/* 04 소개 */}
+        <Section num="04" numColor="text-emerald-500" title="소개 리워드" sub="소개하면 둘 다 할인">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="소개한 사람" value="+5%" color="#22C55E" />
+            <StatCard label="소개받은 사람" value="+5%" color="#22C55E" />
+          </div>
+          <AccentBox color="green" title="기본 할인과 중복 적용" desc="횟수 제한 없음 · 예약 시 소개자 이름만 알려주세요" />
+        </Section>
 
-            {/* 추가 할인 */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <label className="block text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                추가 할인 (중복 가능)
-              </label>
-              <div className="space-y-3">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={hasCoupon3} onChange={(e) => { setHasCoupon3(e.target.checked); if (e.target.checked) setHasCoupon10(false); }} className="accent-amber-600" />
-                  <span className="text-sm">3회 이용 쿠폰 <strong>5%</strong> (유효기간 2개월)</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={hasCoupon10} onChange={(e) => { setHasCoupon10(e.target.checked); if (e.target.checked) setHasCoupon3(false); }} className="accent-amber-600" />
-                  <span className="text-sm">10회 이용 쿠폰 <strong>10%</strong> (유효기간 2개월)</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="checkbox" checked={hasReferral} onChange={(e) => setHasReferral(e.target.checked)} className="accent-amber-600" />
-                  <span className="text-sm">소개 리워드 <strong>+5%</strong> (소개한/받은 사람 모두)</span>
-                </label>
-              </div>
-            </div>
+        {/* 05 히든 할인 */}
+        <Section num="05 — BONUS" numColor="text-purple-500" title="히든 할인" sub="위 할인이 전부가 아닙니다">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="단골 고객" value="추가 할인" color="#A855F7" note="이용 내역에 따라" small />
+            <StatCard label="제휴업체" value="별도 협의" color="#A855F7" note="정기 이용 시" small />
+          </div>
+          <AccentBox color="purple" title="별도 문의" desc="카카오톡으로 문의하시면 상황에 맞게 안내드려요" />
+        </Section>
+
+        {/* 예시 */}
+        <Section num="EXAMPLE" numColor="text-orange-500" title="할인은 중복됩니다" sub="학생 + 장기 + 쿠폰 + 소개, 전부 동시 적용">
+          <CalcExample
+            label="FX3 · 학생 + 10회 쿠폰"
+            original={50000}
+            tags={[{ n: "학생 30%", c: "orange" }, { n: "10회 쿠폰", c: "blue" }]}
+            result={31500} pct="-37%"
+          />
+          <CalcExample
+            label="FX3 · 학생 + 6~9회차 장기 + 소개"
+            original={50000}
+            tags={[{ n: "학생", c: "orange" }, { n: "장기 35%", c: "orange" }, { n: "소개 5%", c: "green" }]}
+            result={21613} pct="-56.8%"
+          />
+        </Section>
+
+        {/* === 할인 계산기 === */}
+        <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderTop: "1px solid #E8E8E8" }}>
+          <div className="text-xs tracking-[3px] font-medium text-orange-500 mb-2">CALCULATOR</div>
+          <div className="text-2xl font-black mb-1 font-headline">내 할인 직접 계산</div>
+          <div className="text-sm mb-5" style={{ color: "#817662" }}>장비 선택 → 할인 적용 → 최종 가격 확인</div>
+
+          {/* 카테고리 탭 */}
+          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장비 카테고리</div>
+          <div className="flex gap-1.5 overflow-x-auto pb-1 mb-4" style={{ scrollbarWidth: "none" }}>
+            {Object.keys(ED).map((c) => (
+              <button key={c} onClick={() => { setSelCat(c); setSelEq(null); }}
+                className={`px-3.5 py-2 rounded-lg text-xs whitespace-nowrap transition-all font-medium ${
+                  selCat === c
+                    ? "bg-primary-container text-on-primary font-semibold"
+                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                }`}>
+                {c}
+              </button>
+            ))}
           </div>
 
-          {/* Right: Result */}
-          <div className="space-y-6">
-            {/* 계산 결과 */}
-            <div className="p-8 bg-white rounded-sm" style={{ border: "2px solid #D4A017" }}>
-              <h3 className="text-xs font-bold uppercase tracking-widest mb-6" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                계산 결과
-              </h3>
-
-              {/* 할인 전 */}
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm" style={{ color: "#71717A" }}>1일 정가</span>
-                <span className="text-sm line-through" style={{ color: "#A1A1AA" }}>{basePrice.toLocaleString()}원</span>
-              </div>
-
-              {/* 적용된 할인 목록 */}
-              {result.appliedDiscounts.map((d, i) => (
-                <div key={i} className="flex justify-between items-center py-2" style={{ borderTop: "1px solid #F3F3F3" }}>
-                  <span className="text-xs" style={{ color: "#4F4634" }}>{d.name}</span>
-                  <span className="text-xs font-bold" style={{ color: "#93000A" }}>-{(d.rate * 100).toFixed(0)}%</span>
-                </div>
-              ))}
-
-              {/* 결과 */}
-              <div className="mt-6 pt-6" style={{ borderTop: "2px solid #1A1C1C" }}>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-bold">할인된 1일 가격</span>
-                  <span className="text-3xl font-black" style={{ color: "#D4A017", fontFamily: "'Work Sans', sans-serif" }}>
-                    {result.perDay.toLocaleString()}원
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm font-bold">{days}일 총 예상 금액</span>
-                  <span className="text-xl font-black" style={{ fontFamily: "'Work Sans', sans-serif" }}>
-                    {result.total.toLocaleString()}원
-                  </span>
-                </div>
-                <div className="text-center py-3 rounded-sm" style={{ background: "#FFDAD6" }}>
-                  <span className="text-sm font-black" style={{ color: "#93000A" }}>
-                    총 {result.totalDiscount}% 할인!
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* 계산 수식 */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <h4 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                계산 수식
-              </h4>
-              <div className="text-sm font-mono p-4 rounded-sm overflow-x-auto" style={{ background: "#F3F3F3", color: "#4F4634" }}>
-                {basePrice.toLocaleString()}원
-                {result.appliedDiscounts.map((d, i) => (
-                  <span key={i}> × {(1 - d.rate).toFixed(2)}</span>
-                ))}
-                {" = "}
-                <strong style={{ color: "#D4A017" }}>{result.perDay.toLocaleString()}원</strong>
-              </div>
-            </div>
-
-            {/* 히든 할인 안내 */}
-            <div className="p-6 rounded-sm" style={{ background: "#F3F3F3", borderLeft: "4px solid #8B5CF6" }}>
-              <h4 className="font-bold text-sm mb-2">히든 할인</h4>
-              <p className="text-xs" style={{ color: "#4F4634" }}>
-                단골 고객 및 제휴업체 대상 추가 할인은 <strong>별도 문의</strong>해 주세요.
-              </p>
-            </div>
-
-            {/* CTA */}
-            <a
-              href={KAKAO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-5 font-black text-lg rounded-sm shadow-lg hover:opacity-90 active:scale-95 transition-all"
-              style={{ background: "#FAE100", color: "#201C00", fontFamily: "'Work Sans', sans-serif" }}
+          {/* 장비 선택 */}
+          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장비 선택</div>
+          <div className="relative mb-4">
+            <select
+              value={selEq ?? ""}
+              onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
+              className="w-full py-3 px-3.5 pr-9 bg-surface-container-low border border-surface-container-high rounded-lg text-sm appearance-none focus:outline-none focus:border-primary-container"
             >
-              <span className="material-symbols-outlined" style={{ fontSize: "22px", fontVariationSettings: "'FILL' 1" }}>chat_bubble</span>
-              카카오톡 '카메라빌리지'로 예약
-            </a>
+              {!selCat ? (
+                <option value="">카테고리를 먼저 선택하세요</option>
+              ) : (
+                <>
+                  <option value="">장비를 선택하세요</option>
+                  {ED[selCat].map((e, i) => (
+                    <option key={i} value={i}>{e.n}  ·  ₩{e.p.toLocaleString()}/일</option>
+                  ))}
+                </>
+              )}
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style={{ color: "#817662" }}>▼</div>
+          </div>
 
-            {/* 포함 서비스 */}
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <h4 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                기본 포함 (무료)
-              </h4>
-              <ul className="text-sm space-y-2" style={{ color: "#4F4634" }}>
-                <li>✓ 배터리 3~4개 + SD카드 2~3장 (₩35,000 상당)</li>
-                <li>✓ 보증금 없음</li>
-                <li>✓ 선결제 없음</li>
-              </ul>
-            </div>
+          {/* 기본 할인 (택1) */}
+          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>기본 할인 (택1)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {BD.map((d, i) => (
+              <button key={i} onClick={() => setSelBase(selBase === i ? null : i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selBase === i
+                    ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
+                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                }`}>
+                {d.n}
+              </button>
+            ))}
+          </div>
+
+          {/* 장기 대여 (택1) */}
+          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장기 대여 (택1)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {LT.map((d, i) => (
+              <button key={i} onClick={() => setSelLt(selLt === i ? null : i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selLt === i
+                    ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
+                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                }`}>
+                {d.n}
+              </button>
+            ))}
+          </div>
+
+          {/* 추가 할인 (중복 가능) */}
+          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>추가 할인 (중복 가능)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {EX.map((d, i) => (
+              <button key={i} onClick={() => toggleEx(i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selEx.has(i)
+                    ? "bg-orange-50 border border-orange-400 text-orange-500 font-medium"
+                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                }`}>
+                {d.n}
+              </button>
+            ))}
+          </div>
+
+          {/* 결과 카드 */}
+          <div className="relative rounded-xl p-5 text-center mt-4 overflow-hidden min-h-[80px]"
+            style={{ background: "linear-gradient(145deg, #FFFBF0, #F9F9F9)", border: "1px solid #E8E0C8" }}>
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #D4A017, transparent)" }} />
+            {eq ? (
+              <>
+                <div className="text-xs mb-1" style={{ color: "#817662" }}>{eq.n}</div>
+                {savings > 0 ? (
+                  <>
+                    <div className="text-sm line-through font-headline" style={{ color: "#A1A1AA" }}>₩{eq.p.toLocaleString()}</div>
+                    <div className="text-4xl font-black font-headline tracking-tight my-1" style={{ color: "#D4A017" }}>₩{finalPrice.toLocaleString()}</div>
+                    <div className="inline-block px-2.5 py-0.5 rounded-full text-sm font-bold font-headline" style={{ background: "rgba(34,197,94,0.1)", color: "#22C55E" }}>-{pct}%</div>
+                    <div className="mt-2.5 pt-2.5 text-xs" style={{ borderTop: "1px solid #E8E8E8", color: "#817662" }}>
+                      <strong style={{ color: "#22C55E" }}>₩{savings.toLocaleString()}</strong> 절약
+                      {names.length > 0 && <><br />{names.join(" + ")}</>}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-4xl font-black font-headline tracking-tight my-1">₩{eq.p.toLocaleString()}</div>
+                    <div className="text-xs" style={{ color: "#817662" }}>정가 (할인을 선택해보세요)</div>
+                  </>
+                )}
+              </>
+            ) : (
+              <div className="py-4 text-sm" style={{ color: "#A1A1AA" }}>장비와 할인을 선택해보세요</div>
+            )}
           </div>
         </div>
 
-        {/* 할인 정책 상세 */}
-        <div className="mt-16">
-          <h2 className="text-2xl font-black mb-8" style={{ fontFamily: "'Work Sans', sans-serif" }}>할인 정책 상세</h2>
-
-          {/* 장기 대여 표 */}
-          <div className="p-6 bg-white rounded-sm mb-6" style={{ border: "1px solid #E8E8E8" }}>
-            <h3 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-              장기 대여 할인 (회차 = 24시간 단위)
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {longTermRates.slice(1).map((r) => (
-                <div key={r.label} className="p-4 rounded-sm text-center" style={{ background: "#F3F3F3" }}>
-                  <p className="text-xs mb-1" style={{ color: "#71717A" }}>{r.label}</p>
-                  <p className="text-xl font-black" style={{ color: "#D4A017", fontFamily: "'Work Sans', sans-serif" }}>
-                    {(r.rate * 100).toFixed(0)}%
-                  </p>
-                </div>
-              ))}
+        {/* Perks */}
+        <div className="mx-6 mb-6 p-4 rounded-xl max-w-xl" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)" }}>
+          <div className="text-sm font-semibold mb-2" style={{ color: "#22C55E" }}>기본 포함 (무료)</div>
+          {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
+            <div key={item} className="flex items-center gap-2 text-xs py-0.5" style={{ color: "#817662" }}>
+              <span style={{ color: "#22C55E" }}>✓</span> {item}
             </div>
-          </div>
-
-          {/* 쿠폰 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#3B82F6", fontFamily: "'Inter', sans-serif" }}>쿠폰</h3>
-              <ul className="text-sm space-y-2" style={{ color: "#4F4634" }}>
-                <li>3회 이용 → <strong>5% 쿠폰</strong> 자동 발급 (유효기간 2개월)</li>
-                <li>10회 이용 → <strong>10% 쿠폰</strong> 자동 발급 (유효기간 2개월)</li>
-              </ul>
-            </div>
-            <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
-              <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#10B981", fontFamily: "'Inter', sans-serif" }}>소개 리워드</h3>
-              <ul className="text-sm space-y-2" style={{ color: "#4F4634" }}>
-                <li>소개한 사람 <strong>+5%</strong></li>
-                <li>소개받은 사람 <strong>+5%</strong></li>
-              </ul>
-            </div>
-          </div>
+          ))}
         </div>
+
+        {/* CTA */}
+        <div className="px-6 mb-8 max-w-xl mx-auto">
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            className="block w-full py-3.5 bg-secondary-container text-on-secondary-fixed font-bold text-center rounded-xl text-base hover:opacity-90 active:scale-[0.98] transition-all">
+            카카오톡 '카메라빌리지'로 예약
+          </a>
+        </div>
+
       </main>
-
       <Footer />
+    </div>
+  );
+}
+
+// --- Sub Components ---
+
+function Section({ num, numColor, title, sub, children }: { num: string; numColor: string; title: string; sub: string; children: React.ReactNode }) {
+  return (
+    <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderBottom: "1px solid #E8E8E8" }}>
+      <div className={`text-xs tracking-[3px] font-medium mb-2 ${numColor}`}>{num}</div>
+      <div className="text-2xl font-black mb-1 font-headline">{title}</div>
+      <div className="text-sm mb-5" style={{ color: "#817662" }}>{sub}</div>
+      {children}
+    </div>
+  );
+}
+
+function StatCard({ label, value, color, note, small }: { label: string; value: string; color: string; note?: string; small?: boolean }) {
+  return (
+    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4 text-center">
+      <div className="text-xs mb-1" style={{ color: "#817662" }}>{label}</div>
+      <div className={`font-black font-headline ${small ? "text-xl" : "text-3xl"}`} style={{ color, letterSpacing: "-1px" }}>{value}</div>
+      {note && <div className="text-[11px] mt-1" style={{ color: "#A1A1AA" }}>{note}</div>}
+    </div>
+  );
+}
+
+function InfoBox({ items }: { items: string[] }) {
+  return (
+    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4">
+      {items.map((item) => (
+        <div key={item} className="flex items-center gap-2 text-sm py-1.5" style={{ color: "#817662" }}>
+          <span style={{ color: "#22C55E" }}>✓</span> {item}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AccentBox({ color, title, desc }: { color: string; title: string; desc: string }) {
+  const styles: Record<string, { bg: string; border: string; text: string }> = {
+    blue: { bg: "rgba(59,130,246,0.06)", border: "rgba(59,130,246,0.15)", text: "#3B82F6" },
+    green: { bg: "rgba(34,197,94,0.06)", border: "rgba(34,197,94,0.15)", text: "#22C55E" },
+    purple: { bg: "rgba(168,85,247,0.06)", border: "rgba(168,85,247,0.15)", text: "#A855F7" },
+  };
+  const s = styles[color] || styles.blue;
+  return (
+    <div className="rounded-lg p-3.5 text-sm" style={{ background: s.bg, border: `1px solid ${s.border}`, color: s.text }}>
+      <div className="font-bold text-sm mb-1">{title}</div>
+      <div className="text-xs" style={{ color: "#817662" }}>{desc}</div>
+    </div>
+  );
+}
+
+function CalcExample({ label, original, tags, result, pct }: { label: string; original: number; tags: { n: string; c: string }[]; result: number; pct: string }) {
+  const tagBg: Record<string, string> = { orange: "rgba(212,160,23,0.12)", blue: "rgba(59,130,246,0.1)", green: "rgba(34,197,94,0.1)" };
+  const tagText: Record<string, string> = { orange: "#D4A017", blue: "#3B82F6", green: "#22C55E" };
+  return (
+    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4 mb-2.5">
+      <div className="text-xs mb-2" style={{ color: "#817662" }}>{label}</div>
+      <div className="flex items-center gap-1.5 flex-wrap text-sm">
+        <span className="line-through font-headline" style={{ color: "#A1A1AA" }}>₩{original.toLocaleString()}</span>
+        {tags.map((t, i) => (
+          <span key={i}>
+            <span style={{ color: "#A1A1AA" }}> × </span>
+            <span className="px-2 py-0.5 rounded text-xs" style={{ background: tagBg[t.c], color: tagText[t.c] }}>{t.n}</span>
+          </span>
+        ))}
+      </div>
+      <div className="text-2xl font-black font-headline mt-2" style={{ color: "#D4A017" }}>
+        ₩{result.toLocaleString()} <span className="text-sm font-bold" style={{ color: "#22C55E" }}>{pct}</span>
+      </div>
     </div>
   );
 }
