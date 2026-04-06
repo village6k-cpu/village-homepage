@@ -76,7 +76,7 @@ export const products: Product[] = [
   id: 8,
   name: "DJI 무선마이크 (1TX + 2RX 구성)",
   priceDay: 10000,
-  category: "모니터/무선",
+  category: "오디오",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1751341322964_1000.png",
   productUrl: "https://village6k.co.kr/product/446c2fd6-c74b-446d-811a-68bbee101a58"
   },
@@ -904,7 +904,7 @@ export const products: Product[] = [
   id: 104,
   name: "어퓨쳐 F10 프레넬 렌즈+반도어(600용)",
   priceDay: 10000,
-  category: "렌즈",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658995303670_1000.png",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58"
   },
@@ -938,7 +938,7 @@ export const products: Product[] = [
   id: 108,
   name: "어퓨쳐 2X 프레넬 렌즈(300용)",
   priceDay: 5000,
-  category: "렌즈",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687341940415_1000.png",
   productUrl: "https://village6k.co.kr/product/b9ea2468-ce5e-4b9a-b5f5-56848e5b3aa6"
   },
@@ -1375,7 +1375,7 @@ export const products: Product[] = [
   name: "소니 A7S3 바디 세트 + FE 28-135 렌즈",
   priceDay: 70000,
   originalPrice: 90000,
-  category: "렌즈",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658991096810_1000.png",
   productUrl: "https://village6k.co.kr/product/cleansingbar-calendula-30",
   tag: "SALE"
@@ -1385,7 +1385,7 @@ export const products: Product[] = [
   name: "소니 A7S3 바디 세트 + 24-70 GM 렌즈",
   priceDay: 65000,
   originalPrice: 85000,
-  category: "렌즈",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658991403554_1000.png",
   productUrl: "https://village6k.co.kr/product/cleansingbar-calendula-30-31",
   tag: "SALE"
@@ -1395,7 +1395,7 @@ export const products: Product[] = [
   name: "소니 FX3 바디 세트 + FE 28-135 렌즈",
   priceDay: 80000,
   originalPrice: 100000,
-  category: "렌즈",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658991122620_1000.png",
   productUrl: "https://village6k.co.kr/product/cleansingbar-calendula-32-33-34",
   tag: "SALE"
@@ -1405,7 +1405,7 @@ export const products: Product[] = [
   name: "소니 FX3 바디 세트 + 24-70 GM 렌즈",
   priceDay: 75000,
   originalPrice: 95000,
-  category: "렌즈",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658991423316_1000.png",
   productUrl: "https://village6k.co.kr/product/cleansingbar-calendula-32-33",
   tag: "SALE"
