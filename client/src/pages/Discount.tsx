@@ -5,7 +5,7 @@
 import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { KAKAO_URL } from "@/lib/products";
+import { products, formatPrice, KAKAO_URL } from "@/lib/products";
 
 // 장기 대여 할인율 (회차 = 24시간 단위)
 const longTermRates: { label: string; min: number; max: number; rate: number }[] = [
@@ -33,8 +33,12 @@ function getLongTermLabel(days: number): string {
 }
 
 export default function Discount() {
-  const [basePrice, setBasePrice] = useState(50000);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+  const [manualPrice, setManualPrice] = useState(50000);
   const [days, setDays] = useState(1);
+
+  const selectedProduct = selectedProductId !== null ? products.find(p => p.id === selectedProductId) : null;
+  const basePrice = selectedProduct ? selectedProduct.priceDay : manualPrice;
   const [isStudent, setIsStudent] = useState(false);
   const [isBusiness, setIsBusiness] = useState(false);
   const [hasCoupon3, setHasCoupon3] = useState(false);
@@ -112,20 +116,55 @@ export default function Discount() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left: Input */}
           <div className="space-y-6">
-            {/* 장비 가격 */}
+            {/* 장비 선택 */}
             <div className="p-6 bg-white rounded-sm" style={{ border: "1px solid #E8E8E8" }}>
               <label className="block text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
-                1일 렌탈 정가 (원)
+                장비 선택
               </label>
-              <input
-                type="number"
-                value={basePrice}
-                onChange={(e) => setBasePrice(Number(e.target.value))}
-                className="w-full text-2xl font-black outline-none bg-zinc-50 px-4 py-3 rounded-sm"
-                style={{ border: "1px solid #E8E8E8", fontFamily: "'Work Sans', sans-serif" }}
-                min={0}
-                step={5000}
-              />
+              <select
+                value={selectedProductId ?? ""}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val === "") {
+                    setSelectedProductId(null);
+                  } else {
+                    setSelectedProductId(Number(val));
+                  }
+                }}
+                className="w-full text-sm font-medium outline-none bg-zinc-50 px-4 py-3 rounded-sm mb-3"
+                style={{ border: "1px solid #E8E8E8" }}
+              >
+                <option value="">직접 입력</option>
+                {products.filter(p => p.priceDay > 0).map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} — {formatPrice(p.priceDay)}
+                  </option>
+                ))}
+              </select>
+
+              {selectedProduct ? (
+                <div className="flex items-center justify-between bg-surface-container-low px-4 py-3 rounded-sm">
+                  <span className="text-sm font-medium">{selectedProduct.name}</span>
+                  <span className="text-2xl font-black" style={{ fontFamily: "'Work Sans', sans-serif", color: "#D4A017" }}>
+                    {formatPrice(selectedProduct.priceDay)}
+                  </span>
+                </div>
+              ) : (
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2 mt-2" style={{ color: "#795900", fontFamily: "'Inter', sans-serif" }}>
+                    1일 렌탈 정가 (원)
+                  </label>
+                  <input
+                    type="number"
+                    value={manualPrice}
+                    onChange={(e) => setManualPrice(Number(e.target.value))}
+                    className="w-full text-2xl font-black outline-none bg-zinc-50 px-4 py-3 rounded-sm"
+                    style={{ border: "1px solid #E8E8E8", fontFamily: "'Work Sans', sans-serif" }}
+                    min={0}
+                    step={5000}
+                  />
+                </div>
+              )}
             </div>
 
             {/* 대여 기간 */}
