@@ -4,22 +4,6 @@ import { KAKAO_URL } from "@/lib/products";
 
 const slides = [
   {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQTuawf16Fto8MJrwGAmbcLt8I6joURexQd8-0rAW1bwQT08BhP8rhtt77zAEPkuCPVSbBZhQEvv8BwJMABUpNYVc1Y3DjGojP7nZw_YwYFy-Lq-5WPXv3r0YedDMm7ruXICuqEn1srVQrxZa7ecOM1yD3XrDnc5MSK9C-hUYtfgeAgkfSi3ezfEKka_GxLTXUPCQILlmZ3XoJrsmFvpA-aJgowrNozVLnAzhVYAR-uWu6HSw8nsFO8hnEcUyjVQTTbuzLSrvU4gY",
-    title: "당신의 영상에\n최고의 장비를",
-    subtitle: "학생 30% · 사업자 20% · 장기 최대 50%",
-    cta: "클릭하여 대여 신청",
-    link: KAKAO_URL,
-    external: true,
-  },
-  {
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcX5m5KCGVrpd1XAhYx8cV8lWFhrVACRWWi7YsZYL32ikBGMaemXFvcK7-ual0gQi9j7EuSmNwFE0Vno4COKerP5PysaAROhOfEGsOB1ErGVQktkuhWlNjeI1s9sfdcyWT9oRpYIzMqGqIlY2N6iSa3gt4lOKGgOpe8wxqGAl3on3sktC8-sOq0iy-8tlc59ngSbykgs_i8t3IVK6pQX6cRxbtDlBHjfBOBpAUhylxuLL-CGp0TD0R0GKc8vryucckvzScv_y50qA",
-    title: "DZOFILM · 삼양 XEEN\n시네마 렌즈 세트",
-    subtitle: "전문 영상 제작을 위한 프리미엄 렌즈",
-    cta: "장비 목록 보기",
-    link: "#products",
-    external: false,
-  },
-  {
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDVVML3NwhK6eLbxteBl9QnQCMb4iMZx67HMpO6322w5dAKgfOHhLqax15p1MV6aL8osKk9T_ijaSy856lpi_WTZqBzTmhWlzPcmWaYwLcRT8pAzwfxHJ2yS2iEod1JN9PwNGcmXSRkYj793AbZIsSxyJdNULyBhWTdwlPUL26Tq3ZZojWfm6arXHR16vyMz4po-Pa_YsSxA-v4A5wxOSVrV4oNFDYWKUYp67Rl394qyXCL0x5EwMKihj5VjPaKxT9IB5hR3hGUWSc",
     title: "할인은 전부\n중복 적용됩니다",
     subtitle: null, // badges instead
@@ -34,6 +18,22 @@ const slides = [
     bottomNote: "배터리 + SD카드 무료 포함 · 보증금 없음 · 선결제 없음",
     cta: "내 할인 계산해보기",
     link: "/discount",
+    external: false,
+  },
+  {
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQTuawf16Fto8MJrwGAmbcLt8I6joURexQd8-0rAW1bwQT08BhP8rhtt77zAEPkuCPVSbBZhQEvv8BwJMABUpNYVc1Y3DjGojP7nZw_YwYFy-Lq-5WPXv3r0YedDMm7ruXICuqEn1srVQrxZa7ecOM1yD3XrDnc5MSK9C-hUYtfgeAgkfSi3ezfEKka_GxLTXUPCQILlmZ3XoJrsmFvpA-aJgowrNozVLnAzhVYAR-uWu6HSw8nsFO8hnEcUyjVQTTbuzLSrvU4gY",
+    title: "당신의 영상에\n최고의 장비를",
+    subtitle: "학생 30% · 사업자 20% · 장기 최대 50%",
+    cta: "클릭하여 대여 신청",
+    link: KAKAO_URL,
+    external: true,
+  },
+  {
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcX5m5KCGVrpd1XAhYx8cV8lWFhrVACRWWi7YsZYL32ikBGMaemXFvcK7-ual0gQi9j7EuSmNwFE0Vno4COKerP5PysaAROhOfEGsOB1ErGVQktkuhWlNjeI1s9sfdcyWT9oRpYIzMqGqIlY2N6iSa3gt4lOKGgOpe8wxqGAl3on3sktC8-sOq0iy-8tlc59ngSbykgs_i8t3IVK6pQX6cRxbtDlBHjfBOBpAUhylxuLL-CGp0TD0R0GKc8vryucckvzScv_y50qA",
+    title: "DZOFILM · 삼양 XEEN\n시네마 렌즈 세트",
+    subtitle: "전문 영상 제작을 위한 프리미엄 렌즈",
+    cta: "장비 목록 보기",
+    link: "#products",
     external: false,
   },
 ];
