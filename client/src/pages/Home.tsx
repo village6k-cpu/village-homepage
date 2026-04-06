@@ -1,7 +1,6 @@
 // Stitch code.html 구조 그대로 — React 변환
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
-import DiscountHighlight from "@/components/DiscountHighlight";
 import FeatureBanner from "@/components/FeatureBanner";
 import ProductSection from "@/components/ProductSection";
 import ReelsSection from "@/components/ReelsSection";
@@ -15,7 +14,6 @@ export default function Home() {
       <main className="pt-20">
         <HeroBanner />
         <ProductSection />
-        <DiscountHighlight />
         <FeatureBanner />
         <ReelsSection />
         <LocationSection />
