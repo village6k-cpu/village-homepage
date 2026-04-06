@@ -314,7 +314,7 @@ export default function Discount() {
         </div>
 
         {/* Perks */}
-        <div className="mx-6 mb-6 p-4 rounded-xl max-w-xl" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)" }}>
+        <div className="px-6 mb-6 p-4 rounded-xl max-w-xl mx-auto" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)" }}>
           <div className="text-sm font-semibold mb-2" style={{ color: "#22C55E" }}>기본 포함 (무료)</div>
           {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
             <div key={item} className="flex items-center gap-2 text-xs py-0.5" style={{ color: "#817662" }}>
