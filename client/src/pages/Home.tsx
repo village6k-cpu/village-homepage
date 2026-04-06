@@ -14,9 +14,9 @@ export default function Home() {
       <Header />
       <main className="pt-20">
         <HeroBanner />
+        <ProductSection />
         <DiscountHighlight />
         <FeatureBanner />
-        <ProductSection />
         <ReelsSection />
         <LocationSection />
       </main>
