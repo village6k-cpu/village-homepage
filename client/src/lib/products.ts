@@ -219,7 +219,7 @@ export const products: Product[] = [
   name: "캐논 RF 100-500",
   priceDay: 30000,
   originalPrice: 40000,
-  category: "기타",
+  category: "렌즈",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1733384783979_1000.png",
   productUrl: "https://village6k.co.kr/product/aba28917-efa1-42dd-a5f6-ba167bd8e4af",
   tag: "SALE"
@@ -228,7 +228,7 @@ export const products: Product[] = [
   id: 25,
   name: "PDMOVIE LIVE AIR 3 Smart LiDAR",
   priceDay: 20000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1719319893378_1000.png",
   productUrl: "https://village6k.co.kr/product/001f62cf-ab32-461f-87c0-4df130b444fc-71-179-183"
   },
@@ -256,7 +256,7 @@ export const products: Product[] = [
   id: 28,
   name: "틸타 뉴클리어스 Nano II",
   priceDay: 20000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1719320060036_1000.png",
   productUrl: "https://village6k.co.kr/product/001f62cf-ab32-461f-87c0-4df130b444fc-71-179"
   },
@@ -524,7 +524,7 @@ export const products: Product[] = [
   id: 60,
   name: "캐논 100-400mm II(백사투)",
   priceDay: 30000,
-  category: "기타",
+  category: "렌즈",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687341694950_1000.png",
   productUrl: "https://village6k.co.kr/product/e3163842-65d7-430d-b03b-4c3448503e30"
   },
@@ -533,7 +533,7 @@ export const products: Product[] = [
   name: "오막포+백사투",
   priceDay: 40000,
   originalPrice: 70000,
-  category: "기타",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1690292580959_1000.png",
   productUrl: "https://village6k.co.kr/product/7b4f7ced-a1ae-43a5-a8b7-06dada4a5cf6-135-137",
   tag: "SALE"
@@ -542,7 +542,7 @@ export const products: Product[] = [
   id: 62,
   name: "탑 클램프",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687427092618_1000.png",
   productUrl: "https://village6k.co.kr/product/cc50fac6-90f1-468a-b840-c9d9518ef696"
   },
@@ -602,7 +602,7 @@ export const products: Product[] = [
   id: 69,
   name: "소니 100-400 GM",
   priceDay: 30000,
-  category: "기타",
+  category: "렌즈",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659859932657_1000.png",
   productUrl: "https://village6k.co.kr/product/shampoobar-blackbean-41-96-126"
   },
@@ -912,7 +912,7 @@ export const products: Product[] = [
   id: 105,
   name: "소니 UWP-D21",
   priceDay: 10000,
-  category: "기타",
+  category: "오디오",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659171967078_1000.png",
   productUrl: "https://village6k.co.kr/product/laundrybar-oatmeal"
   },
@@ -1034,7 +1034,7 @@ export const products: Product[] = [
   id: 120,
   name: "줌 F6",
   priceDay: 20000,
-  category: "기타",
+  category: "오디오",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659172023459_1000.png",
   productUrl: "https://village6k.co.kr/product/laundrybar-mugwort-79-80"
   },
@@ -1042,7 +1042,7 @@ export const products: Product[] = [
   id: 121,
   name: "줌 H8(핸디 레코더)",
   priceDay: 20000,
-  category: "기타",
+  category: "오디오",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1663089295648_1000.png",
   productUrl: "https://village6k.co.kr/product/laundrybar-mugwort-79-80-97"
   },
@@ -1066,7 +1066,7 @@ export const products: Product[] = [
   id: 124,
   name: "숄더리그",
   priceDay: 10000,
-  category: "기타",
+  category: "짐벌/그립/달리",
   image: "",
   productUrl: "https://village6k.co.kr/product/paperlaundry-eucalyptus-75-76-77"
   },
@@ -1109,7 +1109,7 @@ export const products: Product[] = [
   name: "테라덱 볼트 1000XT (1:2 가능)",
   priceDay: 30000,
   originalPrice: 40000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659171714721_1000.png",
   productUrl: "https://village6k.co.kr/product/dishbar-oatmeal",
   tag: "SALE"
@@ -1119,7 +1119,7 @@ export const products: Product[] = [
   name: "테라덱 볼트 500LT",
   priceDay: 25000,
   originalPrice: 30000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659171733111_1000.png",
   productUrl: "https://village6k.co.kr/product/dishbar-oatmeal-65",
   tag: "SALE"
@@ -1153,7 +1153,7 @@ export const products: Product[] = [
   name: "스몰HD INDIE7 (케이지 세팅)",
   priceDay: 25000,
   originalPrice: 25000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659171757887_1000.png",
   productUrl: "https://village6k.co.kr/product/001f62cf-ab32-461f-87c0-4df130b444fc",
   tag: "SALE"
@@ -1180,7 +1180,7 @@ export const products: Product[] = [
   id: 137,
   name: "틸타 뉴클리어스-M",
   priceDay: 20000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659171805088_1000.png",
   productUrl: "https://village6k.co.kr/product/001f62cf-ab32-461f-87c0-4df130b444fc-71"
   },
@@ -1188,7 +1188,7 @@ export const products: Product[] = [
   id: 138,
   name: "시네로이드 CFL-800 세트",
   priceDay: 20000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1658995996849_1000.png",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59"
   },
@@ -1236,7 +1236,7 @@ export const products: Product[] = [
   id: 144,
   name: "C-BOOM (AVENGER D600)",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659487696145_1000.png",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59-60-93"
   },
@@ -1244,7 +1244,7 @@ export const products: Product[] = [
   id: 145,
   name: "C스탠드(그립암, 그립헤드 포함)",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1672317203776_1000.png",
   productUrl: "https://village6k.co.kr/product/9f85661b-2361-4f33-8305-d3fc5d236324"
   },
@@ -1252,7 +1252,7 @@ export const products: Product[] = [
   id: 146,
   name: "콤보 스탠드",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687341959970_1000.png",
   productUrl: "https://village6k.co.kr/product/9f85661b-2361-4f33-8305-d3fc5d236324-131"
   },
@@ -1260,7 +1260,7 @@ export const products: Product[] = [
   id: 147,
   name: "스크림 세트(고보)",
   priceDay: 10000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659004060283_1000.png",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59-60"
   },
@@ -1268,7 +1268,7 @@ export const products: Product[] = [
   id: 148,
   name: "석자/넉자 플로피",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59-60-61-62"
   },
@@ -1434,7 +1434,7 @@ export const products: Product[] = [
   id: 167,
   name: "오즈모 포켓3",
   priceDay: 20000,
-  category: "기타",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1733384389515_1000.png",
   productUrl: "https://village6k.co.kr/product/7b8a3cc0-fda7-428f-968f-e6c135b5201e"
   },
@@ -1453,7 +1453,7 @@ export const products: Product[] = [
   name: "캐논 5D MARK IV(오막포)",
   priceDay: 30000,
   originalPrice: 40000,
-  category: "기타",
+  category: "카메라",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687342019585_1000.png",
   productUrl: "https://village6k.co.kr/product/7b4f7ced-a1ae-43a5-a8b7-06dada4a5cf6-135",
   tag: "SALE"
@@ -1470,7 +1470,7 @@ export const products: Product[] = [
   id: 171,
   name: "석자/넉자 디퓨젼, 그리드",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59-60-61"
   },
@@ -1478,7 +1478,7 @@ export const products: Product[] = [
   id: 172,
   name: "반사판",
   priceDay: 5000,
-  category: "기타",
+  category: "조명",
   image: "",
   productUrl: "https://village6k.co.kr/product/toothbrush-53-54-55-56-57-58-59-60-61-62-63"
   },
@@ -1494,7 +1494,7 @@ export const products: Product[] = [
   id: 174,
   name: "매슬리니",
   priceDay: 3000,
-  category: "기타",
+  category: "조명",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1687448302316_1000.png",
   productUrl: "https://village6k.co.kr/product/21e9b7ce-e2e8-4984-a8cb-cb9b755fabc5"
   },
@@ -1542,7 +1542,7 @@ export const products: Product[] = [
   id: 180,
   name: "틸타 뉴클리어스-N",
   priceDay: 10000,
-  category: "기타",
+  category: "모니터/무선",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659172556211_1000.png",
   productUrl: "https://village6k.co.kr/product/001f62cf-ab32-461f-87c0-4df130b444fc-71-72"
   },
@@ -1576,7 +1576,7 @@ export const products: Product[] = [
   id: 184,
   name: "오디오 테크니카 ATH-M50X",
   priceDay: 10000,
-  category: "기타",
+  category: "오디오",
   image: "https://contents.sixshop.com/thumbnails/uploadedFiles/218807/product/image_1659172062633_1000.png",
   productUrl: "https://village6k.co.kr/product/laundrybar-mugwort-79-80-81-82"
   },
