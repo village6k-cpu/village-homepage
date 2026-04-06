@@ -32,7 +32,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-[870px] w-full overflow-hidden bg-black">
+    <section className="relative h-[480px] md:h-[560px] w-full overflow-hidden bg-black">
       <div className="absolute inset-0">
         <img className="w-full h-full object-cover opacity-80" src={slide.image} alt=""
           style={{ opacity: fading ? 0 : 0.8, transition: "opacity 0.3s ease" }} />
