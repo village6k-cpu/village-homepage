@@ -8,8 +8,17 @@ export default function Header() {
   const [equipOpen, setEquipOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const doSearch = (q: string) => {
+    if (q.trim()) {
+      setLocation(`/search?q=${encodeURIComponent(q.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery("");
+      setMobileOpen(false);
+    }
+  };
 
   const searchResults = searchQuery.trim().length > 0
     ? products.filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 8)
@@ -102,20 +111,21 @@ export default function Header() {
                 <span className="material-symbols-outlined" style={{ fontSize: "20px" }}>search</span>
               </button>
               {searchOpen && (
-                <input id="headerSearch" type="text" placeholder="장비 검색..."
+                <input id="headerSearch" type="text" placeholder="장비 검색 후 Enter..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") doSearch(searchQuery); }}
                   className="flex-1 text-sm outline-none bg-transparent font-body"
                   autoFocus />
               )}
             </div>
             {/* Search results dropdown */}
-            {searchOpen && searchResults.length > 0 && (
+            {searchOpen && searchQuery.trim().length > 0 && searchResults.length > 0 && (
               <div className="absolute top-full right-0 mt-2 w-[360px] bg-white rounded-lg shadow-xl border border-surface-container-high py-2 max-h-[400px] overflow-y-auto">
                 {searchResults.map((p) => (
-                  <a key={p.id} href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-colors"
-                    onClick={() => { setSearchOpen(false); setSearchQuery(""); }}>
+                  <button key={p.id}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-surface-container-low transition-colors w-full text-left"
+                    onClick={() => doSearch(p.name)}>
                     <div className="w-12 h-12 rounded bg-surface-container-low flex-shrink-0 overflow-hidden">
                       {p.image && <img src={p.image} alt="" className="w-full h-full object-contain" />}
                     </div>
@@ -127,8 +137,12 @@ export default function Header() {
                       <div className="text-xs text-zinc-400 line-through">{formatPrice(p.priceDay)}</div>
                       <div className="text-sm font-black text-primary-container">{formatPrice(Math.round(p.priceDay * 0.7))}</div>
                     </div>
-                  </a>
+                  </button>
                 ))}
+                <button onClick={() => doSearch(searchQuery)}
+                  className="w-full text-center py-3 text-sm font-bold text-primary border-t border-surface-container-high mt-1 hover:bg-surface-container-low transition-colors">
+                  "{searchQuery}" 전체 결과 보기 →
+                </button>
               </div>
             )}
             {searchOpen && searchQuery.trim().length > 0 && searchResults.length === 0 && (
@@ -161,22 +175,27 @@ export default function Header() {
           <div className="relative mb-3">
             <div className="flex items-center gap-2 bg-surface-container-low border border-outline-variant rounded-sm px-3 py-2.5">
               <span className="material-symbols-outlined text-zinc-400" style={{ fontSize: "18px" }}>search</span>
-              <input type="text" placeholder="장비 검색..." value={searchQuery}
+              <input type="text" placeholder="장비 검색 후 Enter..." value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") doSearch(searchQuery); }}
                 className="flex-1 text-sm outline-none bg-transparent font-body" />
             </div>
             {searchQuery.trim().length > 0 && searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-outline-variant rounded-sm shadow-lg z-50 max-h-[300px] overflow-y-auto">
                 {searchResults.map((p) => (
-                  <a key={p.id} href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-surface-container-low transition-colors"
-                    onClick={() => { setMobileOpen(false); setSearchQuery(""); }}>
+                  <button key={p.id}
+                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-surface-container-low transition-colors w-full text-left"
+                    onClick={() => doSearch(p.name)}>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs font-medium truncate">{p.name}</div>
                     </div>
                     <span className="text-xs font-black text-primary-container">{formatPrice(Math.round(p.priceDay * 0.7))}</span>
-                  </a>
+                  </button>
                 ))}
+                <button onClick={() => doSearch(searchQuery)}
+                  className="w-full text-center py-2.5 text-xs font-bold text-primary border-t border-outline-variant hover:bg-surface-container-low">
+                  전체 결과 보기 →
+                </button>
               </div>
             )}
           </div>

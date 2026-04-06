@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Discount from "./pages/Discount";
 import Guide from "./pages/Guide";
 import Category from "./pages/Category";
+import Search from "./pages/Search";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/discount" component={Discount} />
       <Route path="/guide" component={Guide} />
       <Route path="/equipment/:category" component={Category} />
+      <Route path="/search" component={Search} />
       <Route component={NotFound} />
     </Switch>
   );
