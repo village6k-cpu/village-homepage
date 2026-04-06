@@ -1,5 +1,6 @@
 // Stitch code.html Section 4: Equipment Showcase — 그대로
 import { useState } from "react";
+import { Link } from "wouter";
 import { products, categories, Product } from "@/lib/products";
 import ProductCard from "./ProductCard";
 
@@ -18,14 +19,19 @@ export default function ProductSection() {
           </div>
           <div className="flex flex-wrap gap-2 font-label text-sm">
             {tabs.map((tab) => (
-              <button key={tab} onClick={() => setActive(tab)}
-                className={`px-6 py-2 rounded-full transition-colors ${
-                  active === tab
-                    ? "bg-on-surface text-white font-bold"
-                    : "border border-outline-variant hover:border-primary"
-                }`}>
-                {tab}
-              </button>
+              tab === "전체" ? (
+                <button key={tab} onClick={() => setActive(tab)}
+                  className={`px-6 py-2 rounded-full transition-colors ${
+                    active === tab ? "bg-on-surface text-white font-bold" : "border border-outline-variant hover:border-primary"
+                  }`}>
+                  {tab}
+                </button>
+              ) : (
+                <Link key={tab} href={`/equipment/${encodeURIComponent(tab)}`}
+                  className="px-6 py-2 rounded-full transition-colors border border-outline-variant hover:border-primary">
+                  {tab}
+                </Link>
+              )
             ))}
           </div>
         </div>
