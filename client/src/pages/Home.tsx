@@ -13,8 +13,8 @@ export default function Home() {
       <Header />
       <main className="pt-20">
         <HeroBanner />
-        <FeatureBanner />
         <ProductSection />
+        <FeatureBanner />
         <ReelsSection />
         <LocationSection />
       </main>
