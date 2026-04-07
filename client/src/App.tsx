@@ -9,11 +9,13 @@ import Discount from "./pages/Discount";
 import Guide from "./pages/Guide";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
+import ProductDetail from "./pages/ProductDetail";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/product/:id" component={ProductDetail} />
       <Route path="/discount" component={Discount} />
       <Route path="/guide" component={Guide} />
       <Route path="/equipment/:category" component={Category} />

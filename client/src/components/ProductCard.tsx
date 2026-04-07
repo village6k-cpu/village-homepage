@@ -1,5 +1,7 @@
 // VILLAGE — Product Card (플랫 디자인, 코랄 accent)
-import { Product, formatPrice, KAKAO_URL } from "@/lib/products";
+import { Link } from "wouter";
+import { Product, formatPrice } from "@/lib/products";
+import { productComponents } from "@/lib/productComponents";
 
 const tagStyles: Record<string, string> = {
   SALE: "bg-accent text-white",
@@ -13,9 +15,10 @@ const DEFAULT_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 export default function ProductCard({ product }: { product: Product }) {
   const img = product.image && product.image.length > 0 ? product.image : DEFAULT_IMG;
   const tagClass = product.tag ? tagStyles[product.tag] || "bg-bg-primary text-text-secondary" : "";
+  const hasComponents = !!productComponents[product.id];
 
   return (
-    <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+    <Link href={`/product/${product.id}`}
       className="group bg-bg-card rounded-2xl overflow-hidden transition-transform hover:-translate-y-1">
       <div className="aspect-[4/3] bg-bg-card p-8 flex items-center justify-center relative overflow-hidden">
         <img className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
@@ -23,6 +26,12 @@ export default function ProductCard({ product }: { product: Product }) {
         {product.tag && (
           <div className={`absolute top-4 left-4 px-3 py-1 text-[10px] font-medium rounded-md ${tagClass}`}>
             {product.tag}
+          </div>
+        )}
+        {hasComponents && (
+          <div className="absolute top-4 right-4 px-2 py-1 text-[10px] font-medium rounded-md bg-tag-dark text-white flex items-center gap-1">
+            <span className="material-symbols-outlined !text-xs">inventory_2</span>
+            세트
           </div>
         )}
       </div>
@@ -43,10 +52,10 @@ export default function ProductCard({ product }: { product: Product }) {
             </div>
           )}
           <div className="w-10 h-10 flex items-center justify-center bg-bg-primary hover:bg-accent hover:text-white transition-colors rounded-lg text-text-muted">
-            <span className="material-symbols-outlined !text-lg">add</span>
+            <span className="material-symbols-outlined !text-lg">arrow_forward</span>
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
