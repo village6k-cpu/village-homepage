@@ -49,6 +49,7 @@ export default function Header() {
   const isEquipmentPage = location.startsWith("/equipment");
 
   return (
+    <>
     <nav className="fixed top-0 w-full z-50 bg-[#F5F3EF]/90 backdrop-blur-md h-20 px-8 border-b border-divider">
       <div className="flex justify-between items-center h-full max-w-[1920px] mx-auto">
         {/* Logo — VILLAGE. (bold + coral dot) */}
@@ -221,5 +222,15 @@ export default function Header() {
         </div>
       )}
     </nav>
+
+    {/* 모바일 플로팅 카카오톡 버튼 */}
+    <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+      className="md:hidden fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full bg-[#FAE100] flex items-center justify-center shadow-lg hover:bg-[#E6D000] transition-colors active:scale-95"
+      aria-label="카카오톡 대여 신청">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="#3C1E1E">
+        <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
+      </svg>
+    </a>
+    </>
   );
 }
