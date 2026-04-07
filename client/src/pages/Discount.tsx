@@ -323,11 +323,14 @@ export default function Discount() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA — 카카오톡 예약 */}
         <div className="px-6 mb-8 max-w-xl mx-auto">
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-            className="block w-full py-3.5 bg-accent text-white font-bold text-center rounded-xl text-base hover:opacity-90 active:scale-[0.98] transition-all">
-            카카오톡 '카메라빌리지'로 예약
+            className="flex items-center justify-center gap-2.5 w-full py-4 bg-[#FAE100] text-[#3C1E1E] font-bold text-center rounded-xl text-base hover:bg-[#E6D000] active:scale-[0.98] transition-all">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#3C1E1E">
+              <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
+            </svg>
+            카카오톡으로 예약하기
           </a>
         </div>
 
