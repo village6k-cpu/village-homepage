@@ -114,16 +114,13 @@ export default function ProductDetail() {
               </div>
 
               {/* CTA */}
-              <div className="flex gap-3">
-                <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 bg-accent text-white px-6 py-4 font-medium text-base rounded-xl hover:bg-accent-dark transition-colors text-center">
-                  카카오톡으로 예약하기
-                </a>
-                <a href={product.productUrl} target="_blank" rel="noopener noreferrer"
-                  className="px-6 py-4 border border-divider text-text-secondary font-medium text-base rounded-xl hover:border-text-primary transition-colors text-center">
-                  상세 보기
-                </a>
-              </div>
+              <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 w-full bg-[#FAE100] text-[#3C1E1E] px-6 py-4 font-bold text-base rounded-xl hover:bg-[#E6D000] active:scale-[0.98] transition-all">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#3C1E1E">
+                  <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
+                </svg>
+                카카오톡으로 예약하기
+              </a>
             </div>
           </div>
         </div>
