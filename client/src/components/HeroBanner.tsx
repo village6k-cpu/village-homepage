@@ -166,7 +166,7 @@ export default function HeroBanner() {
 
         {/* 1번 슬라이드: 좌우 2단 */}
         {isSolid ? (
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start w-full">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center w-full">
             {/* 왼쪽: 카피 + 태그 + CTA */}
             <div className="flex-1">
               <h1 className="text-white mb-5 leading-tight whitespace-pre-line text-3xl md:text-5xl"
