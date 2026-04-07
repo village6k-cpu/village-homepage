@@ -136,7 +136,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative min-h-[480px] md:h-[560px] w-full overflow-hidden"
+    <section className="relative h-[480px] md:h-[560px] w-full overflow-hidden"
       style={{ background: isSolid ? "#2A2A2A" : "#000" }}>
 
       {/* 배경 이미지 (이미지 슬라이드만) */}
@@ -161,7 +161,7 @@ export default function HeroBanner() {
       )}
 
       {/* 콘텐츠 */}
-      <div className="relative h-full flex items-center max-w-7xl mx-auto px-8 md:px-20"
+      <div className="relative h-full flex items-center max-w-7xl mx-auto px-6 md:px-20"
         style={{ opacity: fading ? 0 : 1, transition: "opacity 0.3s ease", zIndex: 4 }}>
 
         {/* 1번 슬라이드: 좌우 2단 */}
@@ -169,22 +169,22 @@ export default function HeroBanner() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center w-full">
             {/* 왼쪽: 카피 + 태그 + CTA */}
             <div className="flex-1">
-              <h1 className="text-white mb-5 leading-tight whitespace-pre-line text-3xl md:text-5xl"
+              <h1 className="text-white mb-4 leading-tight whitespace-pre-line text-2xl md:text-5xl"
                 style={{ fontFamily: "'Impact', 'Arial Black', sans-serif", fontWeight: 400 }}>
                 {slide.title}
               </h1>
 
-              <div className="mb-6">
-                <div className="flex flex-wrap gap-2 mb-3">
+              <div className="mb-4 md:mb-6">
+                <div className="flex flex-wrap gap-1.5 md:gap-2 mb-2 md:mb-3">
                   {slide.badges.map((b: any) => (
                     <span key={b.label}
                       style={{
                         border: "1px solid rgba(255, 255, 255, 0.2)",
                         color: "rgba(255, 255, 255, 0.7)",
                         background: "none",
-                        padding: "5px 12px",
+                        padding: "4px 10px",
                         borderRadius: "4px",
-                        fontSize: "12px",
+                        fontSize: "11px",
                         fontWeight: 500,
                       }}>
                       {b.label}
@@ -192,17 +192,17 @@ export default function HeroBanner() {
                   ))}
                 </div>
                 {slide.notice && (
-                  <p className="mb-3" style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
+                  <p className="mb-2" style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)" }}>
                     {slide.notice}
                   </p>
                 )}
                 {slide.bottomNote && (
-                  <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)" }}>{slide.bottomNote}</p>
+                  <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>{slide.bottomNote}</p>
                 )}
               </div>
 
               <a href={slide.link} onClick={handleClick}
-                className="bg-accent text-white px-8 py-4 font-medium text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center gap-3">
+                className="bg-accent text-white px-6 py-3 md:px-8 md:py-4 font-medium text-sm md:text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center gap-3">
                 {slide.cta}
               </a>
             </div>
@@ -215,21 +215,21 @@ export default function HeroBanner() {
         ) : (
           /* 2번, 3번 슬라이드: 기존 좌정렬 */
           <div className="flex flex-col justify-center">
-            <h1 className="font-bold text-2xl md:text-6xl text-white mb-3 md:mb-5 leading-tight whitespace-pre-line">
+            <h1 className="font-bold text-2xl md:text-6xl text-white mb-2 md:mb-5 leading-tight whitespace-pre-line">
               {slide.title}
             </h1>
-            <p className="font-medium text-sm md:text-xl text-zinc-300 mb-6 md:mb-8">
+            <p className="font-medium text-sm md:text-xl text-zinc-300 mb-5 md:mb-8">
               {slide.subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+            <div className="flex gap-3 md:gap-4">
               <a href={slide.link} target={slide.external ? "_blank" : undefined}
                 rel={slide.external ? "noopener noreferrer" : undefined} onClick={handleClick}
-                className="bg-accent text-white px-6 py-3 md:px-8 md:py-4 font-medium text-sm md:text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center justify-center gap-3">
+                className="bg-accent text-white px-5 py-2.5 md:px-8 md:py-4 font-medium text-xs md:text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center gap-2">
                 {slide.cta}
               </a>
               {slide.external && (
                 <a href="#products" onClick={(e) => { e.preventDefault(); document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="border border-white/50 text-white px-6 py-3 md:px-8 md:py-4 font-medium text-sm md:text-base rounded-lg hover:bg-white/10 transition-colors text-center">
+                  className="border border-white/50 text-white px-5 py-2.5 md:px-8 md:py-4 font-medium text-xs md:text-base rounded-lg hover:bg-white/10 transition-colors">
                   장비 목록 보기
                 </a>
               )}
