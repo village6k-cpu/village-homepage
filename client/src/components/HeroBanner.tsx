@@ -136,7 +136,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-[480px] md:h-[560px] w-full overflow-hidden"
+    <section className="relative min-h-[480px] md:h-[560px] w-full overflow-hidden"
       style={{ background: isSolid ? "#2A2A2A" : "#000" }}>
 
       {/* 배경 이미지 (이미지 슬라이드만) */}
@@ -207,29 +207,29 @@ export default function HeroBanner() {
               </a>
             </div>
 
-            {/* 오른쪽: 할인 시뮬레이션 카드 */}
-            <div className="w-full md:w-[280px] flex-shrink-0">
+            {/* 오른쪽: 할인 시뮬레이션 카드 (모바일 숨김) */}
+            <div className="hidden md:block md:w-[280px] flex-shrink-0">
               <DiscountCalcCard />
             </div>
           </div>
         ) : (
           /* 2번, 3번 슬라이드: 기존 좌정렬 */
           <div className="flex flex-col justify-center">
-            <h1 className="font-bold text-4xl md:text-6xl text-white mb-5 leading-tight whitespace-pre-line">
+            <h1 className="font-bold text-2xl md:text-6xl text-white mb-3 md:mb-5 leading-tight whitespace-pre-line">
               {slide.title}
             </h1>
-            <p className="font-medium text-lg md:text-xl text-zinc-300 mb-8">
+            <p className="font-medium text-sm md:text-xl text-zinc-300 mb-6 md:mb-8">
               {slide.subtitle}
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <a href={slide.link} target={slide.external ? "_blank" : undefined}
                 rel={slide.external ? "noopener noreferrer" : undefined} onClick={handleClick}
-                className="bg-accent text-white px-8 py-4 font-medium text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center gap-3">
+                className="bg-accent text-white px-6 py-3 md:px-8 md:py-4 font-medium text-sm md:text-base rounded-lg hover:bg-accent-dark transition-colors inline-flex items-center justify-center gap-3">
                 {slide.cta}
               </a>
               {slide.external && (
                 <a href="#products" onClick={(e) => { e.preventDefault(); document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="border border-white/50 text-white px-8 py-4 font-medium text-base rounded-lg hover:bg-white/10 transition-colors">
+                  className="border border-white/50 text-white px-6 py-3 md:px-8 md:py-4 font-medium text-sm md:text-base rounded-lg hover:bg-white/10 transition-colors text-center">
                   장비 목록 보기
                 </a>
               )}

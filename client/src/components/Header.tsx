@@ -87,7 +87,7 @@ export default function Header() {
 
           <Link href="/discount"
             className={location === "/discount" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
-            가격표
+            할인계산기
           </Link>
           <Link href="/guide"
             className={location === "/guide" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
