@@ -154,11 +154,9 @@ export default function HeroBanner() {
         </div>
       )}
 
-      {/* 하단 페이드아웃 (이미지 슬라이드만) */}
-      {!isSolid && (
-        <div className="absolute bottom-0 left-0 right-0 h-[60px] pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(245, 243, 239, 0.3))", zIndex: 3 }} />
-      )}
+      {/* 하단 페이드아웃 */}
+      <div className="absolute bottom-0 left-0 right-0 h-[60px] pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(245, 243, 239, 0.3))", zIndex: 3 }} />
 
       {/* 콘텐츠 */}
       <div className="relative h-full flex items-center max-w-7xl mx-auto px-6 md:px-20"
