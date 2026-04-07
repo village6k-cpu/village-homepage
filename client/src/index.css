@@ -72,6 +72,8 @@
     background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
   }
   .text-shadow-sm { text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 
   /* Scroll reveal animation */
   .reveal {
