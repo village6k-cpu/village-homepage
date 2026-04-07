@@ -1,4 +1,4 @@
-// Stitch code.html Section 5: Equipment Guide (Reels) — 이미지+구조 그대로
+// VILLAGE — Equipment Guide Section
 import { Link } from "wouter";
 
 const reels = [
@@ -12,32 +12,32 @@ const reels = [
 
 export default function ReelsSection() {
   return (
-    <section className="py-24 bg-surface-container">
+    <section className="py-24 bg-bg-primary">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex justify-between items-end mb-16">
           <div>
-            <h2 className="text-3xl font-headline font-black tracking-tight mb-2 uppercase">Village Guide</h2>
-            <p className="text-on-surface-variant font-medium">전문가가 알려주는 장비 가이드</p>
+            <h2 className="text-3xl font-bold text-text-primary mb-3">장비 가이드</h2>
+            <div className="accent-line" />
           </div>
-          <Link href="/guide" className="text-primary font-black uppercase text-xs tracking-widest border-b-2 border-primary pb-1">
-            View All
+          <Link href="/guide" className="text-accent font-medium text-sm hover:underline">
+            전체 보기
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reels.map((reel, i) => (
             <div key={i} className="group cursor-pointer">
-              <div className="aspect-[9/16] relative overflow-hidden rounded shadow-xl mb-4">
-                <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              <div className="aspect-[9/16] relative overflow-hidden rounded-2xl mb-4">
+                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   src={reel.image} alt={reel.title} loading="lazy" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                    <span className="material-symbols-outlined !text-4xl text-white" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <span className="material-symbols-outlined !text-3xl text-white" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                   </div>
                 </div>
               </div>
-              <h4 className="font-black text-xl mb-1">{reel.title}</h4>
-              <p className="text-on-surface-variant text-sm">{reel.desc}</p>
+              <h4 className="font-bold text-lg mb-1 text-text-primary">{reel.title}</h4>
+              <p className="text-text-muted text-sm">{reel.desc}</p>
             </div>
           ))}
         </div>

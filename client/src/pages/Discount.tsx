@@ -109,23 +109,23 @@ export default function Discount() {
   const pct = eq && eq.p > 0 ? ((1 - finalPrice / eq.p) * 100).toFixed(1) : "0";
 
   return (
-    <div className="bg-background font-body text-on-surface">
+    <div className="bg-bg-primary text-text-primary">
       <Header />
       <main className="pt-20">
 
         {/* Hero */}
-        <div className="py-12 text-center" style={{ borderBottom: "1px solid #E8E8E8" }}>
-          <div className="text-xs tracking-[5px] font-medium" style={{ color: "#D4A017" }}>CAMERA VILLAGE</div>
-          <div className="text-3xl font-black mt-3 tracking-tight leading-tight font-headline">
-            빌리지 할인이<br /><span style={{ color: "#D4A017" }}>더 커졌습니다</span>
+        <div className="py-12 text-center border-b border-divider">
+          <div className="text-xs tracking-[5px] font-medium text-accent">CAMERA VILLAGE</div>
+          <div className="text-3xl font-bold mt-3 tracking-tight leading-tight">
+            빌리지 할인이<br /><span className="text-accent">더 커졌습니다</span>
           </div>
-          <div className="text-sm mt-2" style={{ color: "#817662" }}>전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
+          <div className="text-sm mt-2 text-text-muted">전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
           <div className="flex flex-wrap gap-2 justify-center mt-4">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-orange-300 bg-orange-50 text-orange-500">학생 30%</span>
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-orange-300 bg-orange-50 text-orange-500">사업자 20%</span>
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-blue-300 bg-blue-50 text-blue-500">3/10 쿠폰</span>
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-emerald-300 bg-emerald-50 text-emerald-500">소개 리워드</span>
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-purple-300 bg-purple-50 text-purple-500">히든 할인</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">학생 30%</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">사업자 20%</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#85B7EB60] bg-[#85B7EB15] text-[#85B7EB]">3/10 쿠폰</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-emerald-300 bg-emerald-50 text-emerald-500">소개 리워드</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-purple-300 bg-purple-50 text-purple-500">히든 할인</span>
           </div>
         </div>
 
@@ -143,9 +143,9 @@ export default function Discount() {
           <table className="w-full text-sm">
             <tbody>
               {[["2회차", "10%"], ["3~5회차", "20%"], ["6~9회차", "35%"], ["10~15회차", "40%"], ["15~19회차", "45%"], ["20회차~", "50%"]].map(([label, rate]) => (
-                <tr key={label} style={{ borderBottom: "1px solid #E8E8E8" }}>
-                  <td className="py-2.5 px-3" style={{ color: "#817662" }}>{label}</td>
-                  <td className="py-2.5 px-3 text-right font-bold font-headline" style={{ color: "#D4A017" }}>{rate}</td>
+                <tr key={label} style={{ borderBottom: "1px solid #DEDBD5" }}>
+                  <td className="py-2.5 px-3" style={{ color: "#999999" }}>{label}</td>
+                  <td className="py-2.5 px-3 text-right font-bold font-headline" style={{ color: "#E8593C" }}>{rate}</td>
                 </tr>
               ))}
             </tbody>
@@ -196,20 +196,20 @@ export default function Discount() {
         </Section>
 
         {/* === 할인 계산기 === */}
-        <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderTop: "1px solid #E8E8E8" }}>
+        <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderTop: "1px solid #DEDBD5" }}>
           <div className="text-xs tracking-[3px] font-medium text-orange-500 mb-2">CALCULATOR</div>
-          <div className="text-2xl font-black mb-1 font-headline">내 할인 직접 계산</div>
-          <div className="text-sm mb-5" style={{ color: "#817662" }}>장비 선택 → 할인 적용 → 최종 가격 확인</div>
+          <div className="text-2xl font-bold mb-1 font-headline">내 할인 직접 계산</div>
+          <div className="text-sm mb-5" style={{ color: "#999999" }}>장비 선택 → 할인 적용 → 최종 가격 확인</div>
 
           {/* 카테고리 탭 */}
-          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장비 카테고리</div>
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장비 카테고리</div>
           <div className="flex gap-1.5 overflow-x-auto pb-1 mb-4" style={{ scrollbarWidth: "none" }}>
             {Object.keys(ED).map((c) => (
               <button key={c} onClick={() => { setSelCat(c); setSelEq(null); }}
                 className={`px-3.5 py-2 rounded-lg text-xs whitespace-nowrap transition-all font-medium ${
                   selCat === c
-                    ? "bg-primary-container text-on-primary font-semibold"
-                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                    ? "bg-accent text-white font-semibold"
+                    : "bg-bg-primary border border-divider text-text-muted"
                 }`}>
                 {c}
               </button>
@@ -217,12 +217,12 @@ export default function Discount() {
           </div>
 
           {/* 장비 선택 */}
-          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장비 선택</div>
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장비 선택</div>
           <div className="relative mb-4">
             <select
               value={selEq ?? ""}
               onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
-              className="w-full py-3 px-3.5 pr-9 bg-surface-container-low border border-surface-container-high rounded-lg text-sm appearance-none focus:outline-none focus:border-primary-container"
+              className="w-full py-3 px-3.5 pr-9 bg-bg-primary border border-divider rounded-lg text-sm appearance-none focus:outline-none focus:border-accent"
             >
               {!selCat ? (
                 <option value="">카테고리를 먼저 선택하세요</option>
@@ -235,18 +235,18 @@ export default function Discount() {
                 </>
               )}
             </select>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style={{ color: "#817662" }}>▼</div>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style={{ color: "#999999" }}>▼</div>
           </div>
 
           {/* 기본 할인 (택1) */}
-          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>기본 할인 (택1)</div>
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>기본 할인 (택1)</div>
           <div className="flex flex-wrap gap-1.5 mb-4">
             {BD.map((d, i) => (
               <button key={i} onClick={() => setSelBase(selBase === i ? null : i)}
                 className={`px-3 py-2 rounded-lg text-xs transition-all ${
                   selBase === i
                     ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
-                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                    : "bg-bg-primary border border-divider text-text-muted"
                 }`}>
                 {d.n}
               </button>
@@ -254,14 +254,14 @@ export default function Discount() {
           </div>
 
           {/* 장기 대여 (택1) */}
-          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>장기 대여 (택1)</div>
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장기 대여 (택1)</div>
           <div className="flex flex-wrap gap-1.5 mb-4">
             {LT.map((d, i) => (
               <button key={i} onClick={() => setSelLt(selLt === i ? null : i)}
                 className={`px-3 py-2 rounded-lg text-xs transition-all ${
                   selLt === i
                     ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
-                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                    : "bg-bg-primary border border-divider text-text-muted"
                 }`}>
                 {d.n}
               </button>
@@ -269,14 +269,14 @@ export default function Discount() {
           </div>
 
           {/* 추가 할인 (중복 가능) */}
-          <div className="text-xs mb-1.5" style={{ color: "#817662" }}>추가 할인 (중복 가능)</div>
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>추가 할인 (중복 가능)</div>
           <div className="flex flex-wrap gap-1.5 mb-4">
             {EX.map((d, i) => (
               <button key={i} onClick={() => toggleEx(i)}
                 className={`px-3 py-2 rounded-lg text-xs transition-all ${
                   selEx.has(i)
                     ? "bg-orange-50 border border-orange-400 text-orange-500 font-medium"
-                    : "bg-surface-container-low border border-surface-container-high text-on-surface-variant"
+                    : "bg-bg-primary border border-divider text-text-muted"
                 }`}>
                 {d.n}
               </button>
@@ -285,25 +285,25 @@ export default function Discount() {
 
           {/* 결과 카드 */}
           <div className="relative rounded-xl p-5 text-center mt-4 overflow-hidden min-h-[80px]"
-            style={{ background: "linear-gradient(145deg, #FFFBF0, #F9F9F9)", border: "1px solid #E8E0C8" }}>
+            style={{ background: "linear-gradient(145deg, #FFF8F6, #F9F9F9)", border: "1px solid #DEDBD5" }}>
             <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: "linear-gradient(90deg, transparent, #D4A017, transparent)" }} />
             {eq ? (
               <>
-                <div className="text-xs mb-1" style={{ color: "#817662" }}>{eq.n}</div>
+                <div className="text-xs mb-1" style={{ color: "#999999" }}>{eq.n}</div>
                 {savings > 0 ? (
                   <>
                     <div className="text-sm line-through font-headline" style={{ color: "#A1A1AA" }}>₩{eq.p.toLocaleString()}</div>
-                    <div className="text-4xl font-black font-headline tracking-tight my-1" style={{ color: "#D4A017" }}>₩{finalPrice.toLocaleString()}</div>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1" style={{ color: "#E8593C" }}>₩{finalPrice.toLocaleString()}</div>
                     <div className="inline-block px-2.5 py-0.5 rounded-full text-sm font-bold font-headline" style={{ background: "rgba(34,197,94,0.1)", color: "#22C55E" }}>-{pct}%</div>
-                    <div className="mt-2.5 pt-2.5 text-xs" style={{ borderTop: "1px solid #E8E8E8", color: "#817662" }}>
+                    <div className="mt-2.5 pt-2.5 text-xs" style={{ borderTop: "1px solid #DEDBD5", color: "#817662" }}>
                       <strong style={{ color: "#22C55E" }}>₩{savings.toLocaleString()}</strong> 절약
                       {names.length > 0 && <><br />{names.join(" + ")}</>}
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="text-4xl font-black font-headline tracking-tight my-1">₩{eq.p.toLocaleString()}</div>
-                    <div className="text-xs" style={{ color: "#817662" }}>정가 (할인을 선택해보세요)</div>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1">₩{eq.p.toLocaleString()}</div>
+                    <div className="text-xs" style={{ color: "#999999" }}>정가 (할인을 선택해보세요)</div>
                   </>
                 )}
               </>
@@ -317,7 +317,7 @@ export default function Discount() {
         <div className="px-6 mb-6 p-4 rounded-xl max-w-xl mx-auto" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)" }}>
           <div className="text-sm font-semibold mb-2" style={{ color: "#22C55E" }}>기본 포함 (무료)</div>
           {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-xs py-0.5" style={{ color: "#817662" }}>
+            <div key={item} className="flex items-center gap-2 text-xs py-0.5" style={{ color: "#999999" }}>
               <span style={{ color: "#22C55E" }}>✓</span> {item}
             </div>
           ))}
@@ -326,7 +326,7 @@ export default function Discount() {
         {/* CTA */}
         <div className="px-6 mb-8 max-w-xl mx-auto">
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-            className="block w-full py-3.5 bg-secondary-container text-on-secondary-fixed font-bold text-center rounded-xl text-base hover:opacity-90 active:scale-[0.98] transition-all">
+            className="block w-full py-3.5 bg-accent text-white font-bold text-center rounded-xl text-base hover:opacity-90 active:scale-[0.98] transition-all">
             카카오톡 '카메라빌리지'로 예약
           </a>
         </div>
@@ -341,10 +341,10 @@ export default function Discount() {
 
 function Section({ num, numColor, title, sub, children }: { num: string; numColor: string; title: string; sub: string; children: React.ReactNode }) {
   return (
-    <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderBottom: "1px solid #E8E8E8" }}>
+    <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderBottom: "1px solid #DEDBD5" }}>
       <div className={`text-xs tracking-[3px] font-medium mb-2 ${numColor}`}>{num}</div>
-      <div className="text-2xl font-black mb-1 font-headline">{title}</div>
-      <div className="text-sm mb-5" style={{ color: "#817662" }}>{sub}</div>
+      <div className="text-2xl font-bold mb-1 font-headline">{title}</div>
+      <div className="text-sm mb-5" style={{ color: "#999999" }}>{sub}</div>
       {children}
     </div>
   );
@@ -352,9 +352,9 @@ function Section({ num, numColor, title, sub, children }: { num: string; numColo
 
 function StatCard({ label, value, color, note, small }: { label: string; value: string; color: string; note?: string; small?: boolean }) {
   return (
-    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4 text-center">
-      <div className="text-xs mb-1" style={{ color: "#817662" }}>{label}</div>
-      <div className={`font-black font-headline ${small ? "text-xl" : "text-3xl"}`} style={{ color, letterSpacing: "-1px" }}>{value}</div>
+    <div className="bg-bg-primary border border-divider rounded-xl p-4 text-center">
+      <div className="text-xs mb-1" style={{ color: "#999999" }}>{label}</div>
+      <div className={`font-bold font-headline ${small ? "text-xl" : "text-3xl"}`} style={{ color, letterSpacing: "-1px" }}>{value}</div>
       {note && <div className="text-[11px] mt-1" style={{ color: "#A1A1AA" }}>{note}</div>}
     </div>
   );
@@ -362,9 +362,9 @@ function StatCard({ label, value, color, note, small }: { label: string; value: 
 
 function InfoBox({ items }: { items: string[] }) {
   return (
-    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4">
+    <div className="bg-bg-primary border border-divider rounded-xl p-4">
       {items.map((item) => (
-        <div key={item} className="flex items-center gap-2 text-sm py-1.5" style={{ color: "#817662" }}>
+        <div key={item} className="flex items-center gap-2 text-sm py-1.5" style={{ color: "#999999" }}>
           <span style={{ color: "#22C55E" }}>✓</span> {item}
         </div>
       ))}
@@ -382,17 +382,17 @@ function AccentBox({ color, title, desc }: { color: string; title: string; desc:
   return (
     <div className="rounded-lg p-3.5 text-sm" style={{ background: s.bg, border: `1px solid ${s.border}`, color: s.text }}>
       <div className="font-bold text-sm mb-1">{title}</div>
-      <div className="text-xs" style={{ color: "#817662" }}>{desc}</div>
+      <div className="text-xs" style={{ color: "#999999" }}>{desc}</div>
     </div>
   );
 }
 
 function CalcExample({ label, original, tags, result, pct }: { label: string; original: number; tags: { n: string; c: string }[]; result: number; pct: string }) {
-  const tagBg: Record<string, string> = { orange: "rgba(212,160,23,0.12)", blue: "rgba(59,130,246,0.1)", green: "rgba(34,197,94,0.1)" };
-  const tagText: Record<string, string> = { orange: "#D4A017", blue: "#3B82F6", green: "#22C55E" };
+  const tagBg: Record<string, string> = { orange: "rgba(232,89,60,0.12)", blue: "rgba(59,130,246,0.1)", green: "rgba(34,197,94,0.1)" };
+  const tagText: Record<string, string> = { orange: "#E8593C", blue: "#3B82F6", green: "#22C55E" };
   return (
-    <div className="bg-surface-container-low border border-surface-container-high rounded-xl p-4 mb-2.5">
-      <div className="text-xs mb-2" style={{ color: "#817662" }}>{label}</div>
+    <div className="bg-bg-primary border border-divider rounded-xl p-4 mb-2.5">
+      <div className="text-xs mb-2" style={{ color: "#999999" }}>{label}</div>
       <div className="flex items-center gap-1.5 flex-wrap text-sm">
         <span className="line-through font-headline" style={{ color: "#A1A1AA" }}>₩{original.toLocaleString()}</span>
         {tags.map((t, i) => (
@@ -402,7 +402,7 @@ function CalcExample({ label, original, tags, result, pct }: { label: string; or
           </span>
         ))}
       </div>
-      <div className="text-2xl font-black font-headline mt-2" style={{ color: "#D4A017" }}>
+      <div className="text-2xl font-bold font-headline mt-2" style={{ color: "#E8593C" }}>
         ₩{result.toLocaleString()} <span className="text-sm font-bold" style={{ color: "#22C55E" }}>{pct}</span>
       </div>
     </div>

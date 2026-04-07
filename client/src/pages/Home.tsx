@@ -1,4 +1,4 @@
-// Stitch code.html 구조 그대로 — React 변환
+// VILLAGE Homepage
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import FeatureBanner from "@/components/FeatureBanner";
@@ -9,12 +9,12 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-background font-body text-on-surface">
+    <div className="bg-bg-primary text-text-primary">
       <Header />
       <main className="pt-20">
         <HeroBanner />
-        <ProductSection />
         <FeatureBanner />
+        <ProductSection />
         <ReelsSection />
         <LocationSection />
       </main>

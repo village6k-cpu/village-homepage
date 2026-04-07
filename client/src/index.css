@@ -3,54 +3,42 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Stitch Design System — code.html 토큰 100% 그대로 */
+/* VILLAGE Design System */
 @theme inline {
-  --color-on-primary-container: #503a00;
-  --color-on-secondary: #ffffff;
-  --color-surface-container: #eeeeee;
-  --color-primary-fixed: #ffdfa0;
-  --color-on-tertiary-fixed-variant: #474646;
-  --color-surface-container-low: #f3f3f3;
-  --color-outline: #817662;
-  --color-surface-container-highest: #e2e2e2;
-  --color-on-error-container: #93000a;
-  --color-primary-fixed-dim: #f6be39;
-  --color-surface-variant: #e2e2e2;
-  --color-secondary-fixed-dim: #dec800;
-  --color-secondary-fixed: #fde400;
-  --color-surface-container-lowest: #ffffff;
-  --color-background: #f9f9f9;
-  --color-on-secondary-container: #6f6300;
-  --color-on-tertiary: #ffffff;
-  --color-outline-variant: #d3c5ae;
-  --color-tertiary-fixed: #e5e2e1;
-  --color-secondary-container: #fae100;
-  --color-on-primary: #ffffff;
+  /* Core Colors */
+  --color-bg-primary: #F5F3EF;
+  --color-bg-card: #FFFFFF;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-accent: #E8593C;
+  --color-accent-dark: #D04A2E;
+  --color-divider: #DEDBD5;
+  --color-tag-dark: #1A1A1A;
+  --color-tag-blue: #85B7EB;
+  --color-footer-bg: #1A1A1A;
+
+  /* Legacy tokens mapped */
+  --color-background: #F5F3EF;
+  --color-on-surface: #1A1A1A;
+  --color-surface: #F5F3EF;
+  --color-surface-container: #EEEEEE;
+  --color-surface-container-low: #F5F3EF;
+  --color-surface-container-high: #DEDBD5;
+  --color-surface-container-highest: #E2E2E2;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-on-surface-variant: #666666;
+  --color-outline-variant: #DEDBD5;
+  --color-primary: #E8593C;
+  --color-primary-container: #E8593C;
+  --color-on-primary: #FFFFFF;
+  --color-on-primary-container: #FFFFFF;
+  --color-secondary-container: #E8593C;
+  --color-on-secondary-fixed: #FFFFFF;
   --color-error: #ba1a1a;
-  --color-surface-container-high: #e8e8e8;
-  --color-on-surface-variant: #4f4634;
-  --color-on-primary-fixed-variant: #5c4300;
-  --color-on-tertiary-fixed: #1c1b1b;
-  --color-inverse-primary: #f6be39;
-  --color-on-secondary-fixed-variant: #504700;
   --color-error-container: #ffdad6;
-  --color-primary-container: #d4a017;
-  --color-tertiary: #5f5e5e;
-  --color-inverse-on-surface: #f1f1f1;
-  --color-on-secondary-fixed: #201c00;
-  --color-on-tertiary-container: #3e3d3d;
-  --color-surface-bright: #f9f9f9;
-  --color-on-primary-fixed: #261a00;
-  --color-tertiary-fixed-dim: #c8c6c5;
-  --color-on-error: #ffffff;
-  --color-surface-tint: #795900;
-  --color-on-background: #1a1c1c;
-  --color-secondary: #6a5f00;
-  --color-surface: #f9f9f9;
-  --color-primary: #795900;
-  --color-inverse-surface: #2f3131;
-  --color-surface-dim: #dadada;
-  --color-on-surface: #1a1c1c;
+  --color-on-error-container: #93000a;
+  --color-outline: #DEDBD5;
 
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
@@ -59,24 +47,40 @@
 }
 
 @layer base {
-  * { @apply border-outline-variant; }
+  * { @apply border-divider; }
   body {
-    @apply bg-background text-on-surface;
-    font-family: 'Inter', sans-serif;
+    @apply bg-bg-primary text-text-primary;
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif;
   }
   button:not(:disabled), a[href] { @apply cursor-pointer; }
 }
 
 @layer components {
-  .font-headline { font-family: 'Work Sans', sans-serif; }
-  .font-body { font-family: 'Inter', sans-serif; }
-  .font-label { font-family: 'Inter', sans-serif; }
+  .font-headline { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; }
+  .font-body { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; }
+  .font-label { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; }
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     vertical-align: middle;
+  }
+  .accent-line {
+    height: 3px;
+    background: #E8593C;
+    width: 120px;
   }
   .hero-gradient {
     background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
   }
   .text-shadow-sm { text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+
+  /* Scroll reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
