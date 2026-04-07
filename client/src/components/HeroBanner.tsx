@@ -23,7 +23,7 @@ const slides = [
   {
     type: "image" as const,
     image: "https://77snszqv.media.zestyio.com/FX3--ILME-FX3-_Low_Angle_R-Large-1920.jpg",
-    title: "FX3 뮤비 세트\n단, 10만원",
+    title: "FX3 M/V 세트\n단, 10만원",
     subtitle: "학생 30% · 사업자 20% · 장기 최대 50%",
     cta: "카카오톡으로 예약하기",
     link: KAKAO_URL,
