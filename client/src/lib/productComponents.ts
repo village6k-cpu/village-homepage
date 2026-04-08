@@ -130,6 +130,9 @@ export const productComponents: Record<number, Component[]> = {
   35: [
     { name: "배터리*12 / 충전기", qty: 1, note: "오디오" },
   ],
+  36: [
+    { name: "CooKe SP3(25/32/50/75/100)", qty: 1 },
+  ],
   39: [
     { name: "배터리*8 / 충전기", qty: 1, note: "오디오" },
   ],
