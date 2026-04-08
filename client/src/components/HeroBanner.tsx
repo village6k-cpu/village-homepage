@@ -22,7 +22,7 @@ const slides = [
   },
   {
     type: "solid" as const,
-    title: "풀세트 업그레이드",
+    title: "풀세트 구성 업그레이드",
     subtitle: "무선 송수신기 포함, 가격은 동일",
     badges: [
       { label: "FX3 풀세트" },
