@@ -207,7 +207,7 @@ export default function Header() {
           </div>
 
           <Link href="/discount" onClick={() => setMobileOpen(false)}
-            className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">가격표</Link>
+            className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">할인계산기</Link>
           <Link href="/guide" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">사용가이드</Link>
           <button onClick={() => handleNavClick("/#location")}
