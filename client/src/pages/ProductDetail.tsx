@@ -104,7 +104,7 @@ export default function ProductDetail() {
               {/* 풀세트 무선 송수신기 포함 배지 */}
               {isFullSet && (
                 <div className="flex items-center gap-2 px-4 py-3 mb-4 rounded-xl bg-emerald-50 border border-emerald-200">
-                  <span className="material-symbols-outlined text-emerald-500 !text-lg">wifi</span>
+                  <span className="material-symbols-outlined text-emerald-500 !text-lg">sensors</span>
                   <span className="text-sm font-semibold text-emerald-600">무선 송수신기 포함</span>
                   <span className="text-xs text-emerald-500 ml-auto">추가 비용 없음</span>
                 </div>

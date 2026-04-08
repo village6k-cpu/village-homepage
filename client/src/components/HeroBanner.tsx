@@ -21,6 +21,24 @@ const slides = [
     external: false,
   },
   {
+    type: "solid" as const,
+    title: "풀세트 업그레이드",
+    subtitle: "무선 송수신기 포함, 가격은 동일",
+    badges: [
+      { label: "FX3 풀세트" },
+      { label: "FX6 풀세트" },
+      { label: "FX9 풀세트" },
+      { label: "A7S3 풀세트" },
+      { label: "BURANO 풀세트" },
+      { label: "RED 코모도 풀세트" },
+    ],
+    notice: "",
+    bottomNote: "별도 요청 없이 모든 풀세트에 기본 포함됩니다",
+    cta: "풀세트 장비 보기",
+    link: "/equipment/카메라 풀세트",
+    external: false,
+  },
+  {
     type: "image" as const,
     image: "https://77snszqv.media.zestyio.com/FX3--ILME-FX3-_Low_Angle_R-Large-1920.jpg",
     title: "FX3 M/V 세트\n단, 10만원",
@@ -37,24 +55,6 @@ const slides = [
     subtitle: "하이엔드 시네마 카메라, 부담 없는 가격으로.",
     cta: "장비 목록 보기",
     link: "#products",
-    external: false,
-  },
-  {
-    type: "solid" as const,
-    title: "풀세트 업그레이드",
-    subtitle: "무선 송수신기 포함, 가격은 동일",
-    badges: [
-      { label: "FX3 풀세트" },
-      { label: "FX6 풀세트" },
-      { label: "FX9 풀세트" },
-      { label: "A7S3 풀세트" },
-      { label: "BURANO 풀세트" },
-      { label: "RED 코모도 풀세트" },
-    ],
-    notice: "",
-    bottomNote: "별도 요청 없이 모든 풀세트에 기본 포함됩니다",
-    cta: "풀세트 장비 보기",
-    link: "/equipment/카메라 풀세트",
     external: false,
   },
 ];
@@ -155,7 +155,7 @@ function UpgradeCard() {
         border: "1px solid rgba(34, 197, 94, 0.25)",
         marginBottom: "12px",
       }}>
-        <span className="material-symbols-outlined" style={{ fontSize: "40px", color: "#22C55E" }}>wifi</span>
+        <span className="material-symbols-outlined" style={{ fontSize: "40px", color: "#22C55E" }}>sensors</span>
         <p style={{ fontSize: "14px", fontWeight: 700, color: "#22C55E", textAlign: "center" }}>
           무선 송수신기
         </p>
@@ -201,8 +201,8 @@ export default function HeroBanner() {
   const slide = slides[current] as any;
   const isSolid = slide.type === "solid";
   const isDiscountSlide = current === 0;
-  const isUpgradeSlide = current === 3;
-  const isBurano = current === 2;
+  const isUpgradeSlide = current === 1;
+  const isBurano = current === 3;
 
   const handleClick = (e: React.MouseEvent) => {
     if (!slide.external && slide.link.startsWith("#")) {
