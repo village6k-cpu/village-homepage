@@ -39,6 +39,24 @@ const slides = [
     link: "#products",
     external: false,
   },
+  {
+    type: "solid" as const,
+    title: "풀세트 업그레이드",
+    subtitle: "무선 송수신기 포함, 가격은 동일",
+    badges: [
+      { label: "FX3 풀세트" },
+      { label: "FX6 풀세트" },
+      { label: "FX9 풀세트" },
+      { label: "A7S3 풀세트" },
+      { label: "BURANO 풀세트" },
+      { label: "RED 코모도 풀세트" },
+    ],
+    notice: "",
+    bottomNote: "별도 요청 없이 모든 풀세트에 기본 포함됩니다",
+    cta: "풀세트 장비 보기",
+    link: "/equipment/카메라 풀세트",
+    external: false,
+  },
 ];
 
 /* 할인 시뮬레이션 카드 */
@@ -112,6 +130,62 @@ function DiscountCalcCard() {
   );
 }
 
+/* 풀세트 업그레이드 카드 */
+function UpgradeCard() {
+  return (
+    <div style={{
+      background: "rgba(255, 255, 255, 0.06)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
+      borderRadius: "12px",
+      padding: "20px",
+      width: "100%",
+    }}>
+      <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>
+        풀세트 업그레이드 내역
+      </p>
+
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "12px",
+        padding: "20px 14px",
+        borderRadius: "8px",
+        background: "rgba(34, 197, 94, 0.1)",
+        border: "1px solid rgba(34, 197, 94, 0.25)",
+        marginBottom: "12px",
+      }}>
+        <span className="material-symbols-outlined" style={{ fontSize: "40px", color: "#22C55E" }}>wifi</span>
+        <p style={{ fontSize: "14px", fontWeight: 700, color: "#22C55E", textAlign: "center" }}>
+          무선 송수신기
+        </p>
+        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", textAlign: "center" }}>
+          기본 포함
+        </p>
+      </div>
+
+      <div style={{
+        padding: "14px",
+        background: "rgba(255, 255, 255, 0.04)",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        borderRadius: "8px",
+        textAlign: "center",
+      }}>
+        <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", marginBottom: "4px" }}>추가 비용</p>
+        <p style={{
+          fontFamily: "'Impact', 'Arial Black', sans-serif",
+          fontSize: "32px",
+          color: "#22C55E",
+          lineHeight: 1.2,
+        }}>₩0</p>
+        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginTop: "4px" }}>
+          가격 변동 없음
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function HeroBanner() {
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
@@ -126,6 +200,8 @@ export default function HeroBanner() {
 
   const slide = slides[current] as any;
   const isSolid = slide.type === "solid";
+  const isDiscountSlide = current === 0;
+  const isUpgradeSlide = current === 3;
   const isBurano = current === 2;
 
   const handleClick = (e: React.MouseEvent) => {
@@ -167,10 +243,15 @@ export default function HeroBanner() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center w-full">
             {/* 왼쪽: 카피 + 태그 + CTA */}
             <div className="flex-1">
-              <h1 className="text-white mb-4 leading-tight whitespace-pre-line text-2xl md:text-5xl"
+              <h1 className="text-white mb-2 leading-tight whitespace-pre-line text-2xl md:text-5xl"
                 style={{ fontFamily: "'Impact', 'Arial Black', sans-serif", fontWeight: 400 }}>
                 {slide.title}
               </h1>
+              {slide.subtitle && (
+                <p className="text-sm md:text-lg mb-3 md:mb-4" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {slide.subtitle}
+                </p>
+              )}
 
               <div className="mb-4 md:mb-6">
                 <div className="flex flex-wrap gap-1.5 md:gap-2 mb-2 md:mb-3">
@@ -205,9 +286,9 @@ export default function HeroBanner() {
               </a>
             </div>
 
-            {/* 오른쪽: 할인 시뮬레이션 카드 (모바일 숨김) */}
+            {/* 오른쪽: 카드 (모바일 숨김) */}
             <div className="hidden md:block md:w-[280px] flex-shrink-0">
-              <DiscountCalcCard />
+              {isDiscountSlide ? <DiscountCalcCard /> : <UpgradeCard />}
             </div>
           </div>
         ) : (

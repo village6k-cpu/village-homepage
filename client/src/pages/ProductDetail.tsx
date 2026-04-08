@@ -39,6 +39,10 @@ export default function ProductDetail() {
   const discountPrice = Math.round(product.priceDay * 0.7);
   const tagClass = product.tag ? tagStyles[product.tag] || "" : "";
 
+  // 풀세트 상품 (무선 송수신기 포함)
+  const FULLSET_IDS = [13, 84, 112, 170, 179, 182];
+  const isFullSet = FULLSET_IDS.includes(id);
+
   // Find related products in same category (exclude self)
   const related = products
     .filter((p: Product) => p.category === product.category && p.id !== id)
@@ -97,12 +101,27 @@ export default function ProductDetail() {
                 )}
               </div>
 
+              {/* 풀세트 무선 송수신기 포함 배지 */}
+              {isFullSet && (
+                <div className="flex items-center gap-2 px-4 py-3 mb-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                  <span className="material-symbols-outlined text-emerald-500 !text-lg">wifi</span>
+                  <span className="text-sm font-semibold text-emerald-600">무선 송수신기 포함</span>
+                  <span className="text-xs text-emerald-500 ml-auto">추가 비용 없음</span>
+                </div>
+              )}
+
               {/* 혜택 안내 */}
               <div className="bg-white rounded-xl p-4 mb-6 space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-accent">✓</span>
                   <span className="text-text-secondary">배터리 + SD카드 무료 포함</span>
                 </div>
+                {isFullSet && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-accent">✓</span>
+                    <span className="text-text-secondary font-medium">무선 송수신기 포함 (가격 동일)</span>
+                  </div>
+                )}
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-accent">✓</span>
                   <span className="text-text-secondary">보증금 없음 · 선결제 없음</span>
