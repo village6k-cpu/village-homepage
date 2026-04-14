@@ -1452,7 +1452,7 @@ export const products: Product[] = [
   id: 169,
   name: "캐논 5D MARK IV(오막포)",
   priceDay: 30000,
-  originalPrice: 40000,
+  originalPrice: 50000,
   category: "카메라",
   image: "/images/products/169.png",
   productUrl: "https://village6k.co.kr/product/7b4f7ced-a1ae-43a5-a8b7-06dada4a5cf6-135",

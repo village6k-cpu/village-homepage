@@ -4,11 +4,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
-import { Link } from "wouter";
+import { Link, useSearch } from "wouter";
 
 export default function Search() {
-  const params = new URLSearchParams(window.location.search);
-  const query = params.get("q") || "";
+  const searchString = useSearch();
+  const query = new URLSearchParams(searchString).get("q") || "";
 
   const results = useMemo(() => {
     if (!query.trim()) return [];
