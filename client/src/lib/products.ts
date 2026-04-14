@@ -531,7 +531,7 @@ export const products: Product[] = [
   {
   id: 61,
   name: "오막포+백사투",
-  priceDay: 40000,
+  priceDay: 50000,
   originalPrice: 70000,
   category: "카메라",
   image: "/images/products/061.png",
