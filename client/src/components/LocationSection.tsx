@@ -32,6 +32,7 @@ export default function LocationSection() {
             </div>
           </div>
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => (window as any).naverConv?.()}
             className="w-full md:w-auto inline-block px-10 py-4 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors text-center">
             카카오톡으로 예약하기
           </a>

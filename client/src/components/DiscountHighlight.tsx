@@ -49,6 +49,7 @@ export default function DiscountHighlight() {
               내 할인 직접 계산해보기 →
             </Link>
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+              onClick={() => (window as any).naverConv?.()}
               className="px-8 py-4 bg-secondary-container text-on-secondary-fixed font-black rounded-sm flex items-center justify-center gap-2">
               카카오톡 '카메라빌리지'로 예약
             </a>

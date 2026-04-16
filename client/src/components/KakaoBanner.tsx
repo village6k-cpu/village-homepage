@@ -36,6 +36,7 @@ export default function KakaoBanner() {
             href={KAKAO_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => (window as any).naverConv?.()}
             className="flex-shrink-0 flex items-center gap-2 font-bold transition-all"
             style={{
               background: "#FEE500",

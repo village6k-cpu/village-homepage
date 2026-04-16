@@ -152,6 +152,7 @@ export default function Header() {
           </div>
 
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => (window as any).naverConv?.()}
             className="hidden sm:inline-block bg-[#FAE100] text-[#3C1E1E] px-6 py-2.5 font-bold text-sm rounded-lg hover:bg-[#E6D000] transition-colors">
             카카오톡 대여 신청
           </a>
@@ -215,6 +216,7 @@ export default function Header() {
 
           <div className="pt-3 mt-2 border-t border-divider">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+              onClick={() => (window as any).naverConv?.()}
               className="block text-center bg-[#FAE100] text-[#3C1E1E] font-bold text-sm py-3 rounded-lg hover:bg-[#E6D000] transition-colors">
               카카오톡 대여 신청
             </a>
@@ -225,6 +227,7 @@ export default function Header() {
 
     {/* 모바일 플로팅 카카오톡 버튼 */}
     <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+      onClick={() => (window as any).naverConv?.()}
       className="md:hidden fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full bg-[#FAE100] flex items-center justify-center shadow-lg hover:bg-[#E6D000] transition-colors active:scale-95"
       aria-label="카카오톡 대여 신청">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="#3C1E1E">

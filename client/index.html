@@ -19,7 +19,7 @@
     <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
     <script type="text/javascript">
       if (!wcs_add) var wcs_add = {};
-      wcs_add["wa"] = "1306dbd210301c0";
+      wcs_add["wa"] = "s_3a5e7e3fdb41";
       if (window.wcs) {
         wcs_do();
       }
@@ -28,5 +28,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="text/javascript">
+      function naverConv() {
+        var _conv = {};
+        _conv.type = "lead";
+        _conv.value = "1";
+        if (window.wcs) {
+          wcs.trans(_conv);
+        }
+      }
+    </script>
   </body>
 </html>

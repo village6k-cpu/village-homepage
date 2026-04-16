@@ -15,7 +15,7 @@ export default function Footer() {
             카메라빌리지는 크리에이터들의 창작 활동을 지원합니다.
           </p>
           <div className="flex gap-4">
-            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-accent transition-colors">
+            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" onClick={() => (window as any).naverConv?.()} className="text-text-muted hover:text-accent transition-colors">
               <span className="material-symbols-outlined">chat_bubble</span>
             </a>
             <a href="https://www.instagram.com/village.6k/" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-accent transition-colors">

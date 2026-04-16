@@ -209,6 +209,7 @@ export default function HeroBanner() {
       e.preventDefault();
       document.getElementById(slide.link.slice(1))?.scrollIntoView({ behavior: "smooth" });
     }
+    if (slide.external) (window as any).naverConv?.();
   };
 
   return (
