@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://village6k.co.kr/sitemap.xml
