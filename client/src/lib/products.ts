@@ -1557,7 +1557,7 @@ export const products: Product[] = [
   {
   id: 182,
   name: "소니 FX9 풀세트",
-  priceDay: 100000,
+  priceDay: 130000,
   originalPrice: 150000,
   category: "카메라 풀세트",
   image: "/images/products/182.png",
