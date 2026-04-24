@@ -68,7 +68,7 @@ export default function NoticePopup() {
               너그러운 양해 부탁드립니다.
             </p>
             <p className="text-xs text-text-muted pt-1">
-              — 카메라빌리지 드림
+              — VILLAGE<span className="text-accent">.</span> 드림
             </p>
           </div>
         </div>
