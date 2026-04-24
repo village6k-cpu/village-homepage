@@ -16,6 +16,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://village6k.co.kr/location</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://village6k.co.kr/search</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

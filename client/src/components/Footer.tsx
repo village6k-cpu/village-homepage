@@ -32,7 +32,7 @@ export default function Footer() {
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="#">이용약관</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="#">개인정보처리방침</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/guide">렌탈가이드</a>
-            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/#location">오시는길</a>
+            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/location">오시는길</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/discount">할인혜택</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="#">공지사항</a>
           </div>

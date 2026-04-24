@@ -4,7 +4,6 @@ import HeroBanner from "@/components/HeroBanner";
 import FeatureBanner from "@/components/FeatureBanner";
 import ProductSection from "@/components/ProductSection";
 import ReelsSection from "@/components/ReelsSection";
-import LocationSection from "@/components/LocationSection";
 import Footer from "@/components/Footer";
 import NoticePopup from "@/components/NoticePopup";
 
@@ -17,7 +16,6 @@ export default function Home() {
         <ProductSection />
         <FeatureBanner />
         <ReelsSection />
-        <LocationSection />
       </main>
       <Footer />
       <NoticePopup />

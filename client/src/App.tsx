@@ -11,6 +11,7 @@ import Guide from "./pages/Guide";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
+import Location from "./pages/Location";
 
 /* 페이지 전환 시 스크롤 최상단으로 이동 */
 function ScrollToTop() {
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/guide" component={Guide} />
         <Route path="/equipment/:category" component={Category} />
         <Route path="/search" component={Search} />
+        <Route path="/location" component={Location} />
         <Route component={NotFound} />
       </Switch>
     </>
