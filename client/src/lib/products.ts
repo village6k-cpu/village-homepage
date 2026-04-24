@@ -433,7 +433,7 @@ export const products: Product[] = [
   {
   id: 49,
   name: "NiSi True-Color PL 필터 (4x5.65)",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/049.png",
   productUrl: "https://village6k.co.kr/product/9909863f-8f6e-42cb-ae00-d886ded17c23"
@@ -1341,7 +1341,7 @@ export const products: Product[] = [
   {
   id: 157,
   name: "NiSi PL 필터 (4x5.65)",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/157.png",
   productUrl: "https://village6k.co.kr/product/286793c7-6d23-4e2a-8290-64eba4659547"
@@ -1349,7 +1349,7 @@ export const products: Product[] = [
   {
   id: 158,
   name: "티펜 Black Pro-Mist 필터 (4x5.65 or 67-82mm)",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/158.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944-48-49"
@@ -1357,7 +1357,7 @@ export const products: Product[] = [
   {
   id: 159,
   name: "슈나이더 Hollywood Black Magic 필터 (4x5.65 or 67-82mm)",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/159.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944-48-49-50"
@@ -1365,7 +1365,7 @@ export const products: Product[] = [
   {
   id: 160,
   name: "H&Y REVORING (3-1000 ND + CPL 필터)",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/160.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944"
@@ -1485,7 +1485,7 @@ export const products: Product[] = [
   {
   id: 173,
   name: "IR ND 필터",
-  priceDay: 7000,
+  priceDay: 10000,
   category: "렌즈",
   image: "/images/products/173.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944-48"
