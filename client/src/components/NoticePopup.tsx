@@ -60,7 +60,10 @@ export default function NoticePopup() {
             원가 상승·파손 이슈로 필터 대여 가격을{" "}
             <span className="text-text-muted line-through">7,000원</span>
             {" → "}
-            <span className="font-semibold text-accent">10,000원</span>으로 조정합니다. 양해 부탁드립니다.
+            <span className="font-semibold text-accent">10,000원</span>으로 조정합니다.
+          </p>
+          <p className="text-xs text-text-secondary leading-relaxed mb-2">
+            보다 안정적인 컨디션과 퀄리티 유지를 위한 조치이니, 너그러운 양해 부탁드립니다.
           </p>
           <p className="text-[11px] text-text-muted">
             — <span className="font-black tracking-tight text-text-primary">VILLAGE<span className="text-accent">.</span></span> 드림
