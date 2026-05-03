@@ -323,8 +323,8 @@ export const products: Product[] = [
   {
   id: 36,
   name: "쿠크 COOKE SP3 렌즈 세트",
-  priceDay: 150000,
-  originalPrice: 150000,
+  priceDay: 200000,
+  originalPrice: 200000,
   category: "렌즈",
   image: "/images/products/036.png",
   productUrl: "https://village6k.co.kr/product/17387a76-a587-4420-b319-a6d898470470",
