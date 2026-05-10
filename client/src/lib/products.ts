@@ -235,7 +235,7 @@ export const products: Product[] = [
   {
   id: 26,
   name: "로닌 RS4 프로",
-  priceDay: 30000,
+  priceDay: 35000,
   originalPrice: 35000,
   category: "짐벌/그립/달리",
   image: "/images/products/026.png",
