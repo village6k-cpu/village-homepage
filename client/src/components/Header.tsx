@@ -3,13 +3,31 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { products, categories, formatPrice, KAKAO_URL } from "@/lib/products";
 
+const FAQ_SEEN_KEY = "village_faq_seen_v1";
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useLocation();
+  const [showFaqDot, setShowFaqDot] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  // FAQ 펄스 알림 — 한번도 안 본 방문자에게만 표시
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem(FAQ_SEEN_KEY)) setShowFaqDot(true);
+    } catch {}
+  }, []);
+
+  // /faq 진입하면 알림 끄기 + localStorage 저장
+  useEffect(() => {
+    if (location === "/faq") {
+      try { localStorage.setItem(FAQ_SEEN_KEY, "1"); } catch {}
+      setShowFaqDot(false);
+    }
+  }, [location]);
 
   const doSearch = (q: string) => {
     if (q.trim()) {
@@ -99,8 +117,14 @@ export default function Header() {
             오시는길
           </Link>
           <Link href="/faq"
-            className={location === "/faq" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
+            className={`relative ${location === "/faq" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}`}>
             자주묻는질문
+            {showFaqDot && (
+              <span className="absolute -top-0.5 -right-2.5 flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+            )}
           </Link>
         </div>
 
@@ -218,7 +242,15 @@ export default function Header() {
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
           <Link href="/faq" onClick={() => setMobileOpen(false)}
-            className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">자주묻는질문</Link>
+            className="flex items-center gap-2 text-sm py-3 font-medium text-text-secondary hover:text-text-primary">
+            자주묻는질문
+            {showFaqDot && (
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+            )}
+          </Link>
 
           <div className="pt-3 mt-2 border-t border-divider">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
