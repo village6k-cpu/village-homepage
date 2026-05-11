@@ -81,41 +81,23 @@ export default function Faq() {
     <div className="bg-bg-primary text-text-primary min-h-screen">
       <Header />
       <main className="pt-20">
-        {/* Hero */}
-        <div className="max-w-3xl mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-5">
+        {/* Hero + 안내 */}
+        <div className="max-w-3xl mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-8">
           <p className="text-xs uppercase tracking-widest text-text-muted mb-2">FAQ</p>
-          <h1 className="text-3xl md:text-4xl font-bold">자주 묻는 질문</h1>
-        </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-7 md:mb-8">자주 묻는 질문</h1>
 
-        {/* 안내 배너 — 검색 우선 + 문의 순서 */}
-        <div className="max-w-3xl mx-auto px-6 md:px-12 pb-5">
-          <div className="rounded-2xl border border-divider overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #FFF8F6 0%, #FCF4F1 100%)" }}>
-            <div className="border-l-4 border-accent p-5 md:p-6">
-              <p className="text-base md:text-lg font-bold text-text-primary mb-2 leading-snug">
-                찾으시는 답, 거의 다 여기 있습니다.
-              </p>
-              <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-4">
-                먼저 검색해보세요. 안 나오면 <strong className="text-text-primary">카카오톡</strong>으로 주세요 —
-                답변이 가장 빠릅니다. <strong className="text-text-primary">전화</strong>는 카톡 답이 늦을 때 주시면 돼요.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-                  onClick={() => (window as any).naverConv?.()}
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FAE100] text-[#3C1E1E] font-bold text-sm rounded-lg hover:bg-[#E6D000] active:scale-[0.98] transition-all">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#3C1E1E">
-                    <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
-                  </svg>
-                  카카오톡 문의
-                </a>
-                <a href="tel:0507-1487-3114"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-divider text-text-secondary font-medium text-sm rounded-lg hover:border-accent hover:text-accent transition-colors">
-                  <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>call</span>
-                  0507-1487-3114
-                </a>
-              </div>
-            </div>
-          </div>
+          <p className="text-xl md:text-2xl font-bold text-text-primary leading-snug mb-2">
+            찾으시는 답, 거의 다 여기 있습니다.
+          </p>
+          <p className="text-sm md:text-base text-text-secondary leading-relaxed">
+            검색해보시고, 안 나오면 카카오톡으로 주세요. 답변이 가장 빠릅니다.
+            <br className="hidden sm:block" />
+            전화는 카톡 답이 늦을 때 주시면 돼요 —{" "}
+            <a href="tel:0507-1487-3114" className="text-text-primary font-medium underline-offset-2 hover:underline">
+              0507-1487-3114
+            </a>
+            .
+          </p>
         </div>
 
         {/* 검색 */}
