@@ -84,10 +84,7 @@ export default function Faq() {
         {/* Hero */}
         <div className="max-w-3xl mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-5">
           <p className="text-xs uppercase tracking-widest text-text-muted mb-2">FAQ</p>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">자주 묻는 질문</h1>
-          <p className="text-text-secondary text-sm md:text-base">
-            카카오톡으로 문의주시기 전에 여기서 먼저 확인해보세요.
-          </p>
+          <h1 className="text-3xl md:text-4xl font-bold">자주 묻는 질문</h1>
         </div>
 
         {/* 안내 배너 — 검색 우선 + 문의 순서 */}
@@ -95,21 +92,14 @@ export default function Faq() {
           <div className="rounded-2xl border border-divider overflow-hidden"
             style={{ background: "linear-gradient(135deg, #FFF8F6 0%, #FCF4F1 100%)" }}>
             <div className="border-l-4 border-accent p-5 md:p-6">
-              <div className="flex items-start gap-3 mb-4">
-                <span className="material-symbols-outlined text-accent flex-shrink-0 mt-0.5" style={{ fontSize: "24px" }}>
-                  lightbulb
-                </span>
-                <div>
-                  <p className="text-base md:text-lg font-bold text-text-primary mb-1.5 leading-snug">
-                    대부분의 답은 이 페이지 안에 있습니다.
-                  </p>
-                  <p className="text-xs md:text-sm text-text-secondary leading-relaxed">
-                    먼저 아래에서 <strong className="text-text-primary">검색</strong>으로 찾아보세요. 그래도 해결되지 않을 때만{" "}
-                    <strong className="text-text-primary">카카오톡 → 전화</strong> 순서로 연락 부탁드립니다. 가장 빠르게 답변받으실 수 있어요.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2 sm:ml-[36px]">
+              <p className="text-base md:text-lg font-bold text-text-primary mb-2 leading-snug">
+                찾으시는 답, 거의 다 여기 있습니다.
+              </p>
+              <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-4">
+                먼저 검색해보세요. 안 나오면 <strong className="text-text-primary">카카오톡</strong>으로 주세요 —
+                답변이 가장 빠릅니다. <strong className="text-text-primary">전화</strong>는 카톡 답이 늦을 때 주시면 돼요.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
                   onClick={() => (window as any).naverConv?.()}
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FAE100] text-[#3C1E1E] font-bold text-sm rounded-lg hover:bg-[#E6D000] active:scale-[0.98] transition-all">
