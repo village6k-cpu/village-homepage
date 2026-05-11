@@ -98,6 +98,10 @@ export default function Header() {
             className={location === "/location" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
             오시는길
           </Link>
+          <Link href="/faq"
+            className={location === "/faq" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
+            자주묻는질문
+          </Link>
         </div>
 
         {/* Right side: search + CTA */}
@@ -213,6 +217,8 @@ export default function Header() {
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">사용가이드</Link>
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
+          <Link href="/faq" onClick={() => setMobileOpen(false)}
+            className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">자주묻는질문</Link>
 
           <div className="pt-3 mt-2 border-t border-divider">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"

@@ -12,6 +12,7 @@ import Category from "./pages/Category";
 import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
 import Location from "./pages/Location";
+import Faq from "./pages/Faq";
 
 /* 페이지 전환 시 스크롤 최상단으로 이동 */
 function ScrollToTop() {
@@ -34,6 +35,7 @@ function Router() {
         <Route path="/equipment/:category" component={Category} />
         <Route path="/search" component={Search} />
         <Route path="/location" component={Location} />
+        <Route path="/faq" component={Faq} />
         <Route component={NotFound} />
       </Switch>
     </>
