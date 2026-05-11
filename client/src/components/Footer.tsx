@@ -41,8 +41,26 @@ export default function Footer() {
           <h5 className="text-text-muted font-medium text-xs uppercase tracking-widest mb-6">Contact</h5>
           <p className="text-text-muted text-xs mb-2">KakaoTalk: 카메라빌리지</p>
           <p className="text-text-muted text-xs mb-2">Tel: 0507-1487-3114</p>
-          <p className="text-text-muted text-xs mb-6">Instagram: @village.6k</p>
-          <p className="text-xs text-zinc-600 leading-relaxed">&copy; VILLAGE. All Rights Reserved.</p>
+          <p className="text-text-muted text-xs">Instagram: @village.6k</p>
+        </div>
+      </div>
+
+      {/* 사업자 정보 — 사업자등록증 표기 그대로 (카카오톡 비즈 등 심사용) */}
+      <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/10">
+        <div className="text-[11px] leading-relaxed text-text-muted space-y-1">
+          <p>
+            <span className="text-zinc-500">상호</span> 빌(BILL.)
+            <span className="mx-2 text-zinc-700">|</span>
+            <span className="text-zinc-500">대표</span> 최재형
+            <span className="mx-2 text-zinc-700">|</span>
+            <span className="text-zinc-500">사업자등록번호</span> 690-29-01012
+          </p>
+          <p>
+            <span className="text-zinc-500">주소</span> 서울특별시 마포구 동교로23길 32, 2층 201호 (동교동)
+            <span className="mx-2 text-zinc-700">|</span>
+            <span className="text-zinc-500">연락처</span> 0507-1487-3114
+          </p>
+          <p className="text-zinc-600 pt-2">&copy; VILLAGE. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
