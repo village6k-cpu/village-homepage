@@ -1,13 +1,14 @@
 // VILLAGE. — Discount Page (/discount)
-// 에디토리얼 / 미니멀 재디자인. 카드 모자이크·그라데이션·다색 chip·번호섹션 다 제거.
-// 데이터/계산 로직은 그대로, 디자인 언어만 갈아엎음.
+// 대시보드 랜딩페이지 discount.html → React 1:1 변환
+// 카테고리 탭 → 장비 드롭다운 → 기본 할인 칩 → 장기 칩 → 추가 칩 → 결과 카드
 
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { KAKAO_URL } from "@/lib/products";
+import { Link } from "wouter";
 
-// ── 데이터 ─────────────────────────────────
+// 장비 데이터 (대시보드 랜딩페이지와 동일)
 const ED: Record<string, { n: string; p: number }[]> = {
   '카메라 풀세트': [
     { n: '픽시스 6K 풀세트 (PL 마운트)', p: 150000 }, { n: '소니 BURANO 풀세트', p: 250000 },
@@ -66,9 +67,9 @@ const ED: Record<string, { n: string; p: number }[]> = {
 };
 
 const BD = [
-  { n: '학생 30%', short: '학생', r: 0.3 },
-  { n: '개인사업자/프리랜서 20%', short: '사업자', r: 0.2 },
-  { n: '없음', short: '없음', r: 0 },
+  { n: '학생 30%', r: 0.3 },
+  { n: '개인사업자/프리랜서 20%', r: 0.2 },
+  { n: '없음', r: 0 },
 ];
 const LT = [
   { n: '없음', r: 0 }, { n: '2회차 10%', r: 0.1 }, { n: '3~5회차 20%', r: 0.2 },
@@ -79,21 +80,6 @@ const EX = [
   { n: '3회 쿠폰 5%', r: 0.05 },
   { n: '10회 쿠폰 10%', r: 0.1 },
   { n: '소개 리워드 5%', r: 0.05 },
-];
-
-// 통합 할인 안내 표 데이터 — 페이지 상단 정보 영역
-const DISCOUNT_TABLE: { label: string; value: string; note?: string }[] = [
-  { label: '학생', value: '30%', note: '학생증' },
-  { label: '개인사업자 · 프리랜서', value: '20%', note: '사업자등록증' },
-  { label: '2회차 대여', value: '10%' },
-  { label: '3~5회차', value: '20%' },
-  { label: '6~9회차', value: '35%' },
-  { label: '10~15회차', value: '40%' },
-  { label: '15~19회차', value: '45%' },
-  { label: '20회차~', value: '50%' },
-  { label: '3회 이용 쿠폰', value: '5%' },
-  { label: '10회 이용 쿠폰', value: '10%' },
-  { label: '소개한 사람 / 소개받은 사람', value: '각 +5%' },
 ];
 
 export default function Discount() {
@@ -126,300 +112,301 @@ export default function Discount() {
     <div className="bg-bg-primary text-text-primary">
       <Header />
       <main className="pt-20">
-        {/* ── HERO ───────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pt-14 md:pt-20 pb-10">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-4">Discount</p>
-          <h1 className="font-bold leading-[1.05] tracking-tight text-[40px] md:text-[64px]" style={{ wordBreak: "keep-all" }}>
-            할인은 <span className="text-accent">전부 중복</span>으로 적용됩니다.
-          </h1>
-          <p className="text-text-secondary text-sm md:text-base mt-5 max-w-xl leading-relaxed">
-            보증금·선결제 없이 학생·사업자·장기·쿠폰·소개 할인을 모두 곱연산으로 적용합니다.
-            아래에서 직접 계산해보세요.
-          </p>
-        </section>
 
-        {/* ── 할인 안내 (정보 표 카드) ───────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
-          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
-            <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-divider">
-              <h2 className="text-lg md:text-xl font-bold text-text-primary">할인 안내</h2>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">
-                All discounts stack
-              </span>
-            </div>
-            <dl className="divide-y divide-divider">
-              {DISCOUNT_TABLE.map((row) => (
-                <div key={row.label} className="flex items-baseline justify-between py-3">
-                  <dt className="text-sm md:text-[15px] text-text-primary">
-                    {row.label}
-                    {row.note && (
-                      <span className="ml-2 text-[11px] text-text-muted">{row.note}</span>
-                    )}
-                  </dt>
-                  <dd className="text-base md:text-lg font-headline font-bold tabular-nums text-text-primary">
-                    {row.value}
-                  </dd>
-                </div>
+        {/* Hero */}
+        <div className="py-12 text-center border-b border-divider">
+          <div className="text-xs tracking-[5px] font-medium text-accent">CAMERA VILLAGE</div>
+          <div className="text-3xl font-bold mt-3 tracking-tight leading-tight">
+            빌리지 할인이<br /><span className="text-accent">더 커졌습니다</span>
+          </div>
+          <div className="text-sm mt-2 text-text-muted">전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
+          <div className="flex flex-wrap gap-2 justify-center mt-4">
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">학생 30%</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">사업자 20%</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#85B7EB60] bg-[#85B7EB15] text-[#85B7EB]">3/10 쿠폰</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-emerald-300 bg-emerald-50 text-emerald-500">소개 리워드</span>
+            <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-purple-300 bg-purple-50 text-purple-500">히든 할인</span>
+          </div>
+        </div>
+
+        {/* 01 기본 할인 */}
+        <Section num="01" numColor="text-orange-500" title="기본 할인" sub="학생 또는 사업자, 택1">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="학생" value="30%" color="#D4A017" note="학생증 제시" />
+            <StatCard label="개인사업자 / 프리랜서" value="20%" color="#D4A017" note="사업자등록증 또는 증빙" />
+          </div>
+          <InfoBox items={["전 장비 적용 (시네마 장비 포함)", "장기·쿠폰·소개 할인과 중복 가능"]} />
+        </Section>
+
+        {/* 02 장기 */}
+        <Section num="02" numColor="text-orange-500" title="장기 대여 할인" sub="기본 할인과 중복 적용">
+          <table className="w-full text-sm">
+            <tbody>
+              {[["2회차", "10%"], ["3~5회차", "20%"], ["6~9회차", "35%"], ["10~15회차", "40%"], ["15~19회차", "45%"], ["20회차~", "50%"]].map(([label, rate]) => (
+                <tr key={label} style={{ borderBottom: "1px solid #DEDBD5" }}>
+                  <td className="py-2.5 px-3" style={{ color: "#999999" }}>{label}</td>
+                  <td className="py-2.5 px-3 text-right font-bold font-headline" style={{ color: "#E8593C" }}>{rate}</td>
+                </tr>
               ))}
-            </dl>
-            <p className="mt-5 pt-4 border-t border-divider text-xs text-text-secondary">
-              기본 할인(학생/사업자)은 <strong className="text-text-primary">택1</strong>. 장기·쿠폰·소개는 위에 곱하기로 추가 적용.
-            </p>
+            </tbody>
+          </table>
+        </Section>
+
+        {/* 03 쿠폰 */}
+        <Section num="03" numColor="text-blue-500" title="3/10 쿠폰" sub="이용할수록 추가 할인 자동 발급">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="3회 이용" value="5%" color="#3B82F6" note="쿠폰 자동 발급" />
+            <StatCard label="10회 이용" value="10%" color="#3B82F6" note="쿠폰 자동 발급" />
           </div>
-        </section>
+          <AccentBox color="blue" title="기본 할인과 중복 적용" desc="유효기간 2개월 · 학생/사업자/장기 할인 위에 추가로 적용" />
+        </Section>
 
-        {/* ── 계산기 ─────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
-          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
-            <div className="flex items-baseline justify-between mb-7 pb-4 border-b border-divider">
-              <h2 className="text-lg md:text-xl font-bold text-text-primary">직접 계산</h2>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Calculator</span>
-            </div>
+        {/* 04 소개 */}
+        <Section num="04" numColor="text-emerald-500" title="소개 리워드" sub="소개하면 둘 다 할인">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="소개한 사람" value="+5%" color="#22C55E" />
+            <StatCard label="소개받은 사람" value="+5%" color="#22C55E" />
+          </div>
+          <AccentBox color="green" title="기본 할인과 중복 적용" desc="횟수 제한 없음 · 예약 시 소개자 이름만 알려주세요" />
+        </Section>
 
-            {/* 1. 장비 선택 */}
-            <div className="mb-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                01 · 장비
-              </p>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 mb-4">
-                {Object.keys(ED).map((c) => (
-                  <button
-                    key={c}
-                    onClick={() => { setSelCat(c); setSelEq(null); }}
-                    className={`text-sm pb-1 transition-colors ${
-                      selCat === c
-                        ? "text-text-primary border-b-2 border-accent font-semibold"
-                        : "text-text-secondary hover:text-text-primary border-b-2 border-transparent"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-              <div className="relative">
-                <select
-                  value={selEq ?? ""}
-                  onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
-                  disabled={!selCat}
-                  className="w-full py-3 px-3.5 pr-8 bg-bg-primary border border-divider rounded-lg text-sm md:text-base text-text-primary appearance-none focus:outline-none focus:border-accent disabled:text-text-muted transition-colors"
-                >
-                  {!selCat ? (
-                    <option value="">먼저 카테고리를 선택하세요</option>
-                  ) : (
-                    <>
-                      <option value="">장비를 선택하세요</option>
-                      {ED[selCat].map((e, i) => (
-                        <option key={i} value={i}>
-                          {e.n} — ₩{e.p.toLocaleString()}
-                        </option>
-                      ))}
-                    </>
-                  )}
-                </select>
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-xs">▼</span>
-              </div>
-            </div>
+        {/* 05 히든 할인 */}
+        <Section num="05 — BONUS" numColor="text-purple-500" title="히든 할인" sub="위 할인이 전부가 아닙니다">
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <StatCard label="단골 고객" value="추가 할인" color="#A855F7" note="이용 내역에 따라" small />
+            <StatCard label="제휴업체" value="별도 협의" color="#A855F7" note="정기 이용 시" small />
+          </div>
+          <AccentBox color="purple" title="별도 문의" desc="카카오톡으로 문의하시면 상황에 맞게 안내드려요" />
+        </Section>
 
-            {/* 2. 기본 할인 — 코랄 selected */}
-            <div className="mb-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                02 · 기본 할인 <span className="text-text-muted normal-case font-normal">· 택1</span>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {BD.map((d, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSelBase(selBase === i ? null : i)}
-                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
-                      selBase === i
-                        ? "bg-accent text-white border-accent font-medium"
-                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
-                    }`}
-                  >
-                    {d.n}
-                  </button>
-                ))}
-              </div>
-            </div>
+        {/* 예시 */}
+        <Section num="EXAMPLE" numColor="text-orange-500" title="할인은 중복됩니다" sub="학생 + 장기 + 쿠폰 + 소개, 전부 동시 적용">
+          <CalcExample
+            label="FX3 · 학생 + 10회 쿠폰"
+            original={50000}
+            tags={[{ n: "학생 30%", c: "orange" }, { n: "10회 쿠폰", c: "blue" }]}
+            result={31500} pct="-37%"
+          />
+          <CalcExample
+            label="FX3 · 학생 + 6~9회차 장기 + 소개"
+            original={50000}
+            tags={[{ n: "학생", c: "orange" }, { n: "장기 35%", c: "orange" }, { n: "소개 5%", c: "green" }]}
+            result={21613} pct="-56.8%"
+          />
+        </Section>
 
-            {/* 3. 장기 — 검정 selected */}
-            <div className="mb-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                03 · 장기 대여 <span className="text-text-muted normal-case font-normal">· 택1</span>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {LT.map((d, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSelLt(selLt === i ? null : i)}
-                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
-                      selLt === i
-                        ? "bg-text-primary text-white border-text-primary font-medium"
-                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
-                    }`}
-                  >
-                    {d.n}
-                  </button>
-                ))}
-              </div>
-            </div>
+        {/* === 할인 계산기 === */}
+        <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderTop: "1px solid #DEDBD5" }}>
+          <div className="text-xs tracking-[3px] font-medium text-orange-500 mb-2">CALCULATOR</div>
+          <div className="text-2xl font-bold mb-1 font-headline">내 할인 직접 계산</div>
+          <div className="text-sm mb-5" style={{ color: "#999999" }}>장비 선택 → 할인 적용 → 최종 가격 확인</div>
 
-            {/* 4. 추가 — outline selected */}
-            <div className="mb-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                04 · 추가 할인 <span className="text-text-muted normal-case font-normal">· 중복 가능</span>
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {EX.map((d, i) => (
-                  <button
-                    key={i}
-                    onClick={() => toggleEx(i)}
-                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
-                      selEx.has(i)
-                        ? "bg-accent/10 text-accent border-accent font-medium"
-                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
-                    }`}
-                  >
-                    {d.n}
-                  </button>
-                ))}
-              </div>
-            </div>
+          {/* 카테고리 탭 */}
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장비 카테고리</div>
+          <div className="flex gap-1.5 overflow-x-auto pb-1 mb-4" style={{ scrollbarWidth: "none" }}>
+            {Object.keys(ED).map((c) => (
+              <button key={c} onClick={() => { setSelCat(c); setSelEq(null); }}
+                className={`px-3.5 py-2 rounded-lg text-xs whitespace-nowrap transition-all font-medium ${
+                  selCat === c
+                    ? "bg-accent text-white font-semibold"
+                    : "bg-bg-primary border border-divider text-text-muted"
+                }`}>
+                {c}
+              </button>
+            ))}
+          </div>
 
-            {/* 5. 결과 — 박스로 시각 강조 */}
-            <div className="bg-bg-primary border border-divider rounded-lg p-5 md:p-6">
-              {eq ? (
-                <div>
-                  <div className="flex items-baseline justify-between mb-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary">결과</p>
-                    {savings > 0 && (
-                      <span className="text-xs md:text-sm text-accent font-bold tabular-nums">
-                        −{pct}%
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm md:text-base text-text-primary mb-3 font-medium">{eq.n}</p>
-                  <div className="flex items-baseline gap-3 flex-wrap mb-3">
-                    <span className="text-[36px] md:text-[52px] font-bold font-headline tabular-nums leading-none tracking-tight text-text-primary">
-                      ₩{finalPrice.toLocaleString()}
-                    </span>
-                    {savings > 0 && (
-                      <span className="text-sm md:text-base text-text-muted line-through tabular-nums">
-                        ₩{eq.p.toLocaleString()}
-                      </span>
-                    )}
-                  </div>
-                  {savings > 0 ? (
-                    <p className="text-sm text-text-secondary border-t border-divider pt-3 mt-1">
-                      <strong className="text-accent">₩{savings.toLocaleString()}</strong> 절약
-                      {names.length > 0 && (
-                        <span className="text-text-muted"> · {names.join(" · ")}</span>
-                      )}
-                    </p>
-                  ) : (
-                    <p className="text-xs text-text-muted border-t border-divider pt-3 mt-1">
-                      위에서 할인을 선택하면 절약 금액이 표시됩니다.
-                    </p>
-                  )}
-                </div>
+          {/* 장비 선택 */}
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장비 선택</div>
+          <div className="relative mb-4">
+            <select
+              value={selEq ?? ""}
+              onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
+              className="w-full py-3 px-3.5 pr-9 bg-bg-primary border border-divider rounded-lg text-sm appearance-none focus:outline-none focus:border-accent"
+            >
+              {!selCat ? (
+                <option value="">카테고리를 먼저 선택하세요</option>
               ) : (
-                <p className="text-sm text-text-muted text-center py-6">
-                  장비와 할인을 선택하면 가격이 표시됩니다.
-                </p>
+                <>
+                  <option value="">장비를 선택하세요</option>
+                  {ED[selCat].map((e, i) => (
+                    <option key={i} value={i}>{e.n}  ·  ₩{e.p.toLocaleString()}/일</option>
+                  ))}
+                </>
               )}
-            </div>
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style={{ color: "#999999" }}>▼</div>
           </div>
-        </section>
 
-        {/* ── 예시 ─────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
-          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
-            <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-divider">
-              <h2 className="text-lg md:text-xl font-bold text-text-primary">예시</h2>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Examples</span>
-            </div>
-            <ul className="divide-y divide-divider">
-              <li className="py-3.5 flex items-baseline justify-between gap-4">
-                <div className="text-sm md:text-[15px] text-text-primary">
-                  FX3 풀세트 <span className="text-text-secondary">· 학생 + 10회 쿠폰</span>
-                  <div className="text-xs text-text-muted mt-1 tabular-nums">
-                    ₩90,000 → <span className="text-text-primary font-medium">₩56,700</span>
-                  </div>
-                </div>
-                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−37%</span>
-              </li>
-              <li className="py-3.5 flex items-baseline justify-between gap-4">
-                <div className="text-sm md:text-[15px] text-text-primary">
-                  FX3 풀세트 <span className="text-text-secondary">· 학생 + 6~9회차 + 소개</span>
-                  <div className="text-xs text-text-muted mt-1 tabular-nums">
-                    ₩90,000 → <span className="text-text-primary font-medium">₩38,902</span>
-                  </div>
-                </div>
-                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−56.8%</span>
-              </li>
-              <li className="py-3.5 flex items-baseline justify-between gap-4">
-                <div className="text-sm md:text-[15px] text-text-primary">
-                  쿠크 SP3 렌즈 세트 <span className="text-text-secondary">· 학생 + 3~5회차</span>
-                  <div className="text-xs text-text-muted mt-1 tabular-nums">
-                    ₩200,000 → <span className="text-text-primary font-medium">₩112,000</span>
-                  </div>
-                </div>
-                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−44%</span>
-              </li>
-            </ul>
+          {/* 기본 할인 (택1) */}
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>기본 할인 (택1)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {BD.map((d, i) => (
+              <button key={i} onClick={() => setSelBase(selBase === i ? null : i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selBase === i
+                    ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
+                    : "bg-bg-primary border border-divider text-text-muted"
+                }`}>
+                {d.n}
+              </button>
+            ))}
           </div>
-        </section>
 
-        {/* ── 포함 + CTA ──────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-20 md:pb-28">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-white border border-divider rounded-xl p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                기본 포함
-              </p>
-              <ul className="text-sm text-text-primary space-y-2">
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
-                  배터리 3~4개
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
-                  SD카드 2~3장
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
-                  보증금 · 선결제 없음
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
-                  홍대입구역 도보 3분
-                </li>
-              </ul>
-            </div>
-            <div className="bg-white border border-divider rounded-xl p-6 flex flex-col">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
-                예약
-              </p>
-              <p className="text-sm text-text-primary mb-5 leading-relaxed flex-1">
-                카카오톡 채널로 신분·장비·기간만 알려주시면 됩니다.
-              </p>
-              <a
-                href={KAKAO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => (window as any).naverConv?.()}
-                className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#FAE100] text-[#3C1E1E] font-bold text-sm rounded-lg hover:bg-[#E6D000] active:scale-[0.98] transition-all"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E">
-                  <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
-                </svg>
-                카카오톡으로 예약
-              </a>
-            </div>
+          {/* 장기 대여 (택1) */}
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>장기 대여 (택1)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {LT.map((d, i) => (
+              <button key={i} onClick={() => setSelLt(selLt === i ? null : i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selLt === i
+                    ? "bg-blue-50 border border-blue-400 text-blue-500 font-medium"
+                    : "bg-bg-primary border border-divider text-text-muted"
+                }`}>
+                {d.n}
+              </button>
+            ))}
           </div>
-        </section>
+
+          {/* 추가 할인 (중복 가능) */}
+          <div className="text-xs mb-1.5" style={{ color: "#999999" }}>추가 할인 (중복 가능)</div>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {EX.map((d, i) => (
+              <button key={i} onClick={() => toggleEx(i)}
+                className={`px-3 py-2 rounded-lg text-xs transition-all ${
+                  selEx.has(i)
+                    ? "bg-orange-50 border border-orange-400 text-orange-500 font-medium"
+                    : "bg-bg-primary border border-divider text-text-muted"
+                }`}>
+                {d.n}
+              </button>
+            ))}
+          </div>
+
+          {/* 결과 카드 */}
+          <div className="rounded-xl p-5 text-center mt-4 min-h-[80px] bg-white border border-divider">
+            {eq ? (
+              <>
+                <div className="text-xs mb-1" style={{ color: "#999999" }}>{eq.n}</div>
+                {savings > 0 ? (
+                  <>
+                    <div className="text-sm line-through font-headline" style={{ color: "#A1A1AA" }}>₩{eq.p.toLocaleString()}</div>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1" style={{ color: "#E8593C" }}>₩{finalPrice.toLocaleString()}</div>
+                    <div className="inline-block px-2.5 py-0.5 rounded-full text-sm font-bold font-headline" style={{ background: "rgba(34,197,94,0.1)", color: "#22C55E" }}>-{pct}%</div>
+                    <div className="mt-2.5 pt-2.5 text-xs" style={{ borderTop: "1px solid #DEDBD5", color: "#817662" }}>
+                      <strong style={{ color: "#22C55E" }}>₩{savings.toLocaleString()}</strong> 절약
+                      {names.length > 0 && <><br />{names.join(" + ")}</>}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1">₩{eq.p.toLocaleString()}</div>
+                    <div className="text-xs" style={{ color: "#999999" }}>정가 (할인을 선택해보세요)</div>
+                  </>
+                )}
+              </>
+            ) : (
+              <div className="py-4 text-sm" style={{ color: "#A1A1AA" }}>장비와 할인을 선택해보세요</div>
+            )}
+          </div>
+        </div>
+
+        {/* Perks */}
+        <div className="px-6 mb-6 p-4 rounded-xl max-w-xl mx-auto" style={{ background: "rgba(34,197,94,0.04)", border: "1px solid rgba(34,197,94,0.15)" }}>
+          <div className="text-sm font-semibold mb-2" style={{ color: "#22C55E" }}>기본 포함 (무료)</div>
+          {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
+            <div key={item} className="flex items-center gap-2 text-xs py-0.5" style={{ color: "#999999" }}>
+              <span style={{ color: "#22C55E" }}>✓</span> {item}
+            </div>
+          ))}
+        </div>
+
+        {/* CTA — 카카오톡 예약 */}
+        <div className="px-6 mb-8 max-w-xl mx-auto">
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => (window as any).naverConv?.()}
+            className="flex items-center justify-center gap-2.5 w-full py-4 bg-[#FAE100] text-[#3C1E1E] font-bold text-center rounded-xl text-base hover:bg-[#E6D000] active:scale-[0.98] transition-all">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#3C1E1E">
+              <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
+            </svg>
+            카카오톡으로 예약하기
+          </a>
+        </div>
+
       </main>
       <Footer />
+    </div>
+  );
+}
+
+// --- Sub Components ---
+
+function Section({ num, numColor, title, sub, children }: { num: string; numColor: string; title: string; sub: string; children: React.ReactNode }) {
+  return (
+    <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderBottom: "1px solid #DEDBD5" }}>
+      <div className={`text-xs tracking-[3px] font-medium mb-2 ${numColor}`}>{num}</div>
+      <div className="text-2xl font-bold mb-1 font-headline">{title}</div>
+      <div className="text-sm mb-5" style={{ color: "#999999" }}>{sub}</div>
+      {children}
+    </div>
+  );
+}
+
+function StatCard({ label, value, color, note, small }: { label: string; value: string; color: string; note?: string; small?: boolean }) {
+  return (
+    <div className="bg-bg-primary border border-divider rounded-xl p-4 text-center">
+      <div className="text-xs mb-1" style={{ color: "#999999" }}>{label}</div>
+      <div className={`font-bold font-headline ${small ? "text-xl" : "text-3xl"}`} style={{ color, letterSpacing: "-1px" }}>{value}</div>
+      {note && <div className="text-[11px] mt-1" style={{ color: "#A1A1AA" }}>{note}</div>}
+    </div>
+  );
+}
+
+function InfoBox({ items }: { items: string[] }) {
+  return (
+    <div className="bg-bg-primary border border-divider rounded-xl p-4">
+      {items.map((item) => (
+        <div key={item} className="flex items-center gap-2 text-sm py-1.5" style={{ color: "#999999" }}>
+          <span style={{ color: "#22C55E" }}>✓</span> {item}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AccentBox({ color, title, desc }: { color: string; title: string; desc: string }) {
+  const styles: Record<string, { bg: string; border: string; text: string }> = {
+    blue: { bg: "rgba(59,130,246,0.06)", border: "rgba(59,130,246,0.15)", text: "#3B82F6" },
+    green: { bg: "rgba(34,197,94,0.06)", border: "rgba(34,197,94,0.15)", text: "#22C55E" },
+    purple: { bg: "rgba(168,85,247,0.06)", border: "rgba(168,85,247,0.15)", text: "#A855F7" },
+  };
+  const s = styles[color] || styles.blue;
+  return (
+    <div className="rounded-lg p-3.5 text-sm" style={{ background: s.bg, border: `1px solid ${s.border}`, color: s.text }}>
+      <div className="font-bold text-sm mb-1">{title}</div>
+      <div className="text-xs" style={{ color: "#999999" }}>{desc}</div>
+    </div>
+  );
+}
+
+function CalcExample({ label, original, tags, result, pct }: { label: string; original: number; tags: { n: string; c: string }[]; result: number; pct: string }) {
+  const tagBg: Record<string, string> = { orange: "rgba(232,89,60,0.12)", blue: "rgba(59,130,246,0.1)", green: "rgba(34,197,94,0.1)" };
+  const tagText: Record<string, string> = { orange: "#E8593C", blue: "#3B82F6", green: "#22C55E" };
+  return (
+    <div className="bg-bg-primary border border-divider rounded-xl p-4 mb-2.5">
+      <div className="text-xs mb-2" style={{ color: "#999999" }}>{label}</div>
+      <div className="flex items-center gap-1.5 flex-wrap text-sm">
+        <span className="line-through font-headline" style={{ color: "#A1A1AA" }}>₩{original.toLocaleString()}</span>
+        {tags.map((t, i) => (
+          <span key={i}>
+            <span style={{ color: "#A1A1AA" }}> × </span>
+            <span className="px-2 py-0.5 rounded text-xs" style={{ background: tagBg[t.c], color: tagText[t.c] }}>{t.n}</span>
+          </span>
+        ))}
+      </div>
+      <div className="text-2xl font-bold font-headline mt-2" style={{ color: "#E8593C" }}>
+        ₩{result.toLocaleString()} <span className="text-sm font-bold" style={{ color: "#22C55E" }}>{pct}</span>
+      </div>
     </div>
   );
 }
