@@ -114,19 +114,25 @@ export default function Discount() {
       <main className="pt-20">
 
         {/* Hero */}
-        <div className="px-6 py-14 md:py-20 max-w-xl mx-auto border-b border-divider">
-          <div className="text-[11px] tracking-[0.25em] font-medium text-text-muted uppercase">Discount</div>
-          <h1 className="text-4xl md:text-5xl font-bold mt-3 tracking-tight leading-[1.05]" style={{ wordBreak: "keep-all" }}>
-            할인은 <span className="text-accent">전부 중복</span>됩니다.
+        <div className="py-14 md:py-20 text-center border-b border-divider px-6">
+          <div className="text-[11px] tracking-[0.25em] font-medium text-text-muted uppercase">Camera Village</div>
+          <h1 className="text-4xl md:text-5xl font-bold mt-4 tracking-tight leading-[1.1]">
+            빌리지 할인이<br /><span className="text-accent">더 커졌습니다</span>
           </h1>
-          <div className="text-sm md:text-base mt-4 text-text-secondary leading-relaxed">
-            학생 · 사업자 · 장기 · 쿠폰 · 소개 · 히든 할인을 모두 곱하기로 적용. 보증금 · 선결제 없음.
+          <div className="text-sm md:text-base mt-3 text-text-muted">전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
+          {/* 카테고리 라벨 — 단색 통일된 outline chip (5색 무지개 X) */}
+          <div className="flex flex-wrap gap-1.5 justify-center mt-5 max-w-md mx-auto">
+            <span className="px-3 py-1 rounded-md text-xs font-medium border border-divider bg-white text-text-secondary">학생 30%</span>
+            <span className="px-3 py-1 rounded-md text-xs font-medium border border-divider bg-white text-text-secondary">사업자 20%</span>
+            <span className="px-3 py-1 rounded-md text-xs font-medium border border-divider bg-white text-text-secondary">3/10 쿠폰</span>
+            <span className="px-3 py-1 rounded-md text-xs font-medium border border-divider bg-white text-text-secondary">소개 리워드</span>
+            <span className="px-3 py-1 rounded-md text-xs font-medium border border-divider bg-white text-text-secondary">히든 할인</span>
           </div>
         </div>
 
         {/* 01 기본 할인 */}
         <Section num="01" numColor="text-orange-500" title="기본 할인" sub="학생 또는 사업자, 택1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-3 mb-3">
             <StatCard label="학생" value="30%" color="#D4A017" note="학생증 제시" />
             <StatCard label="개인사업자 / 프리랜서" value="20%" color="#D4A017" note="사업자등록증 또는 증빙" />
           </div>
@@ -149,7 +155,7 @@ export default function Discount() {
 
         {/* 03 쿠폰 */}
         <Section num="03" numColor="text-blue-500" title="3/10 쿠폰" sub="이용할수록 추가 할인 자동 발급">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-3 mb-3">
             <StatCard label="3회 이용" value="5%" color="#3B82F6" note="쿠폰 자동 발급" />
             <StatCard label="10회 이용" value="10%" color="#3B82F6" note="쿠폰 자동 발급" />
           </div>
@@ -158,7 +164,7 @@ export default function Discount() {
 
         {/* 04 소개 */}
         <Section num="04" numColor="text-emerald-500" title="소개 리워드" sub="소개하면 둘 다 할인">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-3 mb-3">
             <StatCard label="소개한 사람" value="+5%" color="#22C55E" />
             <StatCard label="소개받은 사람" value="+5%" color="#22C55E" />
           </div>
@@ -167,7 +173,7 @@ export default function Discount() {
 
         {/* 05 히든 할인 */}
         <Section num="05 — BONUS" numColor="text-purple-500" title="히든 할인" sub="위 할인이 전부가 아닙니다">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+          <div className="grid grid-cols-2 gap-3 mb-3">
             <StatCard label="단골 고객" value="추가 할인" color="#A855F7" note="이용 내역에 따라" small />
             <StatCard label="제휴업체" value="별도 협의" color="#A855F7" note="정기 이용 시" small />
           </div>
@@ -278,48 +284,50 @@ export default function Discount() {
             ))}
           </div>
 
-          {/* 결과 — 카드 안의 좌측 정렬 정보 */}
-          <div className="rounded-lg p-5 mt-4 min-h-[80px] bg-white border border-divider">
+          {/* 결과 카드 — 가운데 정렬 + 큰 가격 강조 */}
+          <div className="rounded-lg p-5 text-center mt-4 min-h-[80px] bg-white border border-divider">
             {eq ? (
               <>
-                <div className="text-[11px] tracking-[0.15em] font-semibold uppercase text-text-muted mb-2">결과</div>
-                <div className="text-sm text-text-primary mb-3">{eq.n}</div>
+                <div className="text-xs mb-1.5 text-text-muted">{eq.n}</div>
                 {savings > 0 ? (
                   <>
-                    <div className="flex items-baseline gap-3 flex-wrap mb-3">
-                      <span className="text-[36px] md:text-[44px] font-bold font-headline tracking-tight leading-none tabular-nums" style={{ color: "#E8593C" }}>
-                        ₩{finalPrice.toLocaleString()}
-                      </span>
-                      <span className="text-sm text-text-muted line-through tabular-nums">₩{eq.p.toLocaleString()}</span>
-                      <span className="text-sm font-bold text-accent tabular-nums">−{pct}%</span>
+                    <div className="text-sm line-through font-headline text-text-muted tabular-nums">₩{eq.p.toLocaleString()}</div>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1 tabular-nums" style={{ color: "#E8593C" }}>
+                      ₩{finalPrice.toLocaleString()}
                     </div>
-                    <div className="pt-3 text-xs text-text-secondary border-t border-divider">
-                      <span className="text-text-primary font-semibold">₩{savings.toLocaleString()}</span> 절약
+                    <div className="inline-block text-sm font-bold text-accent tabular-nums">−{pct}%</div>
+                    <div className="mt-3 pt-3 text-xs text-text-secondary border-t border-divider">
+                      <strong className="text-text-primary">₩{savings.toLocaleString()}</strong> 절약
                       {names.length > 0 && <span className="text-text-muted"> · {names.join(" · ")}</span>}
                     </div>
                   </>
                 ) : (
-                  <div className="flex items-baseline gap-3 flex-wrap">
-                    <span className="text-[36px] md:text-[44px] font-bold font-headline tracking-tight leading-none tabular-nums text-text-primary">
+                  <>
+                    <div className="text-4xl font-bold font-headline tracking-tight my-1 tabular-nums text-text-primary">
                       ₩{eq.p.toLocaleString()}
-                    </span>
-                    <span className="text-xs text-text-muted">정가 · 할인 선택 시 변동</span>
-                  </div>
+                    </div>
+                    <div className="text-xs text-text-muted">정가 · 할인을 선택해보세요</div>
+                  </>
                 )}
               </>
             ) : (
-              <div className="py-4 text-sm text-text-muted">장비와 할인을 선택하면 가격이 표시됩니다.</div>
+              <div className="py-4 text-sm text-text-muted">장비와 할인을 선택해보세요</div>
             )}
           </div>
         </div>
 
         {/* Perks */}
         <div className="px-6 mb-6 max-w-xl mx-auto">
-          <div className="text-[11px] tracking-[0.15em] font-semibold uppercase text-text-muted mb-3">기본 포함</div>
-          <div className="divide-y divide-divider border-y border-divider">
-            {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
-              <div key={item} className="text-sm py-2.5 text-text-secondary">{item}</div>
-            ))}
+          <div className="bg-white border border-divider rounded-lg p-4">
+            <div className="text-[11px] tracking-[0.15em] font-semibold uppercase text-text-muted mb-2.5">기본 포함</div>
+            <div className="space-y-1.5">
+              {["배터리 3~4개 (₩20,000~40,000 상당)", "SD카드 2~3장 (₩15,000~30,000 상당)", "보증금 없음 · 선결제 없음", "카카오톡 간편 예약", "홍대입구역 도보 3분"].map((item) => (
+                <div key={item} className="flex items-start gap-2 text-xs text-text-secondary">
+                  <span className="text-accent mt-0.5 flex-shrink-0">•</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -354,16 +362,12 @@ function Section({ num, title, sub, children }: { num: string; numColor?: string
   );
 }
 
-function StatCard({ label, value, note, small }: { label: string; value: string; color?: string; note?: string; small?: boolean }) {
+function StatCard({ label, value, color, note, small }: { label: string; value: string; color: string; note?: string; small?: boolean }) {
   return (
-    <div className="bg-bg-primary border border-divider rounded-lg px-4 py-3.5 flex items-baseline justify-between gap-3">
-      <div className="min-w-0">
-        <div className="text-sm text-text-primary leading-snug truncate">{label}</div>
-        {note && <div className="text-[11px] text-text-muted mt-0.5">{note}</div>}
-      </div>
-      <div className={`font-bold font-headline tracking-tight text-text-primary tabular-nums flex-shrink-0 ${small ? "text-base" : "text-2xl"}`}>
-        {value}
-      </div>
+    <div className="bg-white border border-divider rounded-lg p-4 text-center">
+      <div className="text-xs mb-1.5 text-text-muted">{label}</div>
+      <div className={`font-bold font-headline tracking-tight ${small ? "text-xl" : "text-3xl"}`} style={{ color }}>{value}</div>
+      {note && <div className="text-[11px] mt-1.5 text-text-muted">{note}</div>}
     </div>
   );
 }
@@ -382,11 +386,11 @@ function InfoBox({ items }: { items: string[] }) {
 }
 
 function AccentBox({ title, desc }: { color?: string; title: string; desc: string }) {
-  // 다색 (blue/green/purple) → 단색 통일. 인라인 노트 톤.
+  // 다색 (blue/green/purple) → 옅은 회색 박스로 통일. 박스 형식은 유지.
   return (
-    <div className="border-l-2 border-text-primary/30 pl-4 py-1">
-      <div className="font-semibold text-sm text-text-primary mb-1">{title}</div>
-      <div className="text-xs text-text-secondary leading-relaxed">{desc}</div>
+    <div className="rounded-lg p-3.5 bg-bg-primary border border-divider">
+      <div className="font-bold text-sm text-text-primary mb-1">{title}</div>
+      <div className="text-xs text-text-muted leading-relaxed">{desc}</div>
     </div>
   );
 }
