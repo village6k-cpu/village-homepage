@@ -29,7 +29,7 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h5 className="text-text-muted font-medium text-xs uppercase tracking-widest mb-6">Quick Links</h5>
           <div className="grid grid-cols-2 gap-4">
-            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="#">이용약관</a>
+            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/terms">이용약관</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/privacy">개인정보처리방침</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/guide">렌탈가이드</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/location">오시는길</a>

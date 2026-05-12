@@ -14,6 +14,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Location from "./pages/Location";
 import Faq from "./pages/Faq";
 import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 /* 페이지 전환 시 스크롤 최상단으로 이동 */
 function ScrollToTop() {
@@ -38,6 +39,7 @@ function Router() {
         <Route path="/location" component={Location} />
         <Route path="/faq" component={Faq} />
         <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
         <Route component={NotFound} />
       </Switch>
     </>
