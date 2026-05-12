@@ -108,10 +108,6 @@ export default function Header() {
             className={location === "/discount" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
             할인계산기
           </Link>
-          <Link href="/guide"
-            className={location === "/guide" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
-            사용가이드
-          </Link>
           <Link href="/location"
             className={location === "/location" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
             오시는길
@@ -237,8 +233,6 @@ export default function Header() {
 
           <Link href="/discount" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">할인계산기</Link>
-          <Link href="/guide" onClick={() => setMobileOpen(false)}
-            className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">사용가이드</Link>
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
           <Link href="/faq" onClick={() => setMobileOpen(false)}
