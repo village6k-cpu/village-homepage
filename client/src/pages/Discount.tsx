@@ -138,237 +138,269 @@ export default function Discount() {
           </p>
         </section>
 
-        {/* ── 할인 안내 (정보 표) ─────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-14 md:pb-20">
-          <div className="flex items-baseline justify-between mb-6 pb-3 border-b border-text-primary/20">
-            <h2 className="text-lg md:text-xl font-bold">할인 안내</h2>
-            <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">
-              All discounts stack
-            </span>
+        {/* ── 할인 안내 (정보 표 카드) ───────────── */}
+        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
+          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
+            <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-divider">
+              <h2 className="text-lg md:text-xl font-bold text-text-primary">할인 안내</h2>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">
+                All discounts stack
+              </span>
+            </div>
+            <dl className="divide-y divide-divider">
+              {DISCOUNT_TABLE.map((row) => (
+                <div key={row.label} className="flex items-baseline justify-between py-3">
+                  <dt className="text-sm md:text-[15px] text-text-primary">
+                    {row.label}
+                    {row.note && (
+                      <span className="ml-2 text-[11px] text-text-muted">{row.note}</span>
+                    )}
+                  </dt>
+                  <dd className="text-base md:text-lg font-headline font-bold tabular-nums text-text-primary">
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-5 pt-4 border-t border-divider text-xs text-text-secondary">
+              기본 할인(학생/사업자)은 <strong className="text-text-primary">택1</strong>. 장기·쿠폰·소개는 위에 곱하기로 추가 적용.
+            </p>
           </div>
-          <dl className="divide-y divide-divider">
-            {DISCOUNT_TABLE.map((row) => (
-              <div key={row.label} className="flex items-baseline justify-between py-3.5">
-                <dt className="text-sm md:text-[15px] text-text-primary">
-                  {row.label}
-                  {row.note && (
-                    <span className="ml-2 text-[11px] text-text-muted">{row.note}</span>
-                  )}
-                </dt>
-                <dd className="text-base md:text-lg font-headline font-bold tabular-nums text-text-primary">
-                  {row.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-5 text-xs text-text-muted">
-            기본 할인(학생/사업자)은 택1. 장기·쿠폰·소개는 위에 곱하기로 추가 적용.
-          </p>
         </section>
 
         {/* ── 계산기 ─────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16 border-t border-text-primary/10 pt-12 md:pt-16">
-          <div className="flex items-baseline justify-between mb-8 pb-3 border-b border-text-primary/20">
-            <h2 className="text-lg md:text-xl font-bold">직접 계산</h2>
-            <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Calculator</span>
-          </div>
+        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
+          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
+            <div className="flex items-baseline justify-between mb-7 pb-4 border-b border-divider">
+              <h2 className="text-lg md:text-xl font-bold text-text-primary">직접 계산</h2>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Calculator</span>
+            </div>
 
-          {/* 1. 장비 선택 */}
-          <div className="mb-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">01 · 장비</p>
-            <div className="flex flex-wrap gap-x-3 gap-y-2 mb-3">
-              {Object.keys(ED).map((c) => (
-                <button
-                  key={c}
-                  onClick={() => { setSelCat(c); setSelEq(null); }}
-                  className={`text-sm pb-1 transition-colors ${
-                    selCat === c
-                      ? "text-text-primary border-b-2 border-accent font-medium"
-                      : "text-text-muted hover:text-text-primary border-b-2 border-transparent"
-                  }`}
+            {/* 1. 장비 선택 */}
+            <div className="mb-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                01 · 장비
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 mb-4">
+                {Object.keys(ED).map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => { setSelCat(c); setSelEq(null); }}
+                    className={`text-sm pb-1 transition-colors ${
+                      selCat === c
+                        ? "text-text-primary border-b-2 border-accent font-semibold"
+                        : "text-text-secondary hover:text-text-primary border-b-2 border-transparent"
+                    }`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+              <div className="relative">
+                <select
+                  value={selEq ?? ""}
+                  onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
+                  disabled={!selCat}
+                  className="w-full py-3 px-3.5 pr-8 bg-bg-primary border border-divider rounded-lg text-sm md:text-base text-text-primary appearance-none focus:outline-none focus:border-accent disabled:text-text-muted transition-colors"
                 >
-                  {c}
-                </button>
-              ))}
-            </div>
-            <div className="relative">
-              <select
-                value={selEq ?? ""}
-                onChange={(e) => setSelEq(e.target.value !== "" ? parseInt(e.target.value) : null)}
-                disabled={!selCat}
-                className="w-full py-3 px-0 pr-8 bg-transparent border-0 border-b border-text-primary/30 text-base appearance-none focus:outline-none focus:border-accent disabled:text-text-muted transition-colors"
-              >
-                {!selCat ? (
-                  <option value="">먼저 카테고리를 선택하세요</option>
-                ) : (
-                  <>
-                    <option value="">장비를 선택하세요</option>
-                    {ED[selCat].map((e, i) => (
-                      <option key={i} value={i}>
-                        {e.n} — ₩{e.p.toLocaleString()}
-                      </option>
-                    ))}
-                  </>
-                )}
-              </select>
-              <span className="absolute right-1 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-sm">↓</span>
-            </div>
-          </div>
-
-          {/* 2. 기본 할인 */}
-          <div className="mb-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">02 · 기본 할인 (택1)</p>
-            <div className="flex flex-wrap gap-2">
-              {BD.map((d, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelBase(selBase === i ? null : i)}
-                  className={`px-3.5 py-1.5 text-sm border transition-colors ${
-                    selBase === i
-                      ? "bg-text-primary text-bg-primary border-text-primary"
-                      : "bg-transparent text-text-muted border-divider hover:border-text-primary hover:text-text-primary"
-                  }`}
-                  style={{ borderRadius: 0 }}
-                >
-                  {d.n}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 3. 장기 */}
-          <div className="mb-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">03 · 장기 대여 (택1)</p>
-            <div className="flex flex-wrap gap-2">
-              {LT.map((d, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelLt(selLt === i ? null : i)}
-                  className={`px-3.5 py-1.5 text-sm border transition-colors ${
-                    selLt === i
-                      ? "bg-text-primary text-bg-primary border-text-primary"
-                      : "bg-transparent text-text-muted border-divider hover:border-text-primary hover:text-text-primary"
-                  }`}
-                  style={{ borderRadius: 0 }}
-                >
-                  {d.n}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 4. 추가 */}
-          <div className="mb-10">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">04 · 추가 할인 (중복)</p>
-            <div className="flex flex-wrap gap-2">
-              {EX.map((d, i) => (
-                <button
-                  key={i}
-                  onClick={() => toggleEx(i)}
-                  className={`px-3.5 py-1.5 text-sm border transition-colors ${
-                    selEx.has(i)
-                      ? "bg-text-primary text-bg-primary border-text-primary"
-                      : "bg-transparent text-text-muted border-divider hover:border-text-primary hover:text-text-primary"
-                  }`}
-                  style={{ borderRadius: 0 }}
-                >
-                  {d.n}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 5. 결과 — 카드 아닌 정보 영역 */}
-          <div className="border-t border-text-primary/20 pt-8">
-            {eq ? (
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">결과</p>
-                <p className="text-sm text-text-secondary mb-1">{eq.n}</p>
-                <div className="flex items-baseline gap-4 flex-wrap">
-                  <span className="text-[44px] md:text-[64px] font-bold font-headline tabular-nums leading-none tracking-tight text-text-primary">
-                    ₩{finalPrice.toLocaleString()}
-                  </span>
-                  {savings > 0 && (
-                    <span className="text-base md:text-lg text-text-muted line-through tabular-nums">
-                      ₩{eq.p.toLocaleString()}
-                    </span>
+                  {!selCat ? (
+                    <option value="">먼저 카테고리를 선택하세요</option>
+                  ) : (
+                    <>
+                      <option value="">장비를 선택하세요</option>
+                      {ED[selCat].map((e, i) => (
+                        <option key={i} value={i}>
+                          {e.n} — ₩{e.p.toLocaleString()}
+                        </option>
+                      ))}
+                    </>
                   )}
-                  {savings > 0 && (
-                    <span className="text-base md:text-lg text-accent font-medium tabular-nums">
-                      −{pct}%
+                </select>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-xs">▼</span>
+              </div>
+            </div>
+
+            {/* 2. 기본 할인 — 코랄 selected */}
+            <div className="mb-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                02 · 기본 할인 <span className="text-text-muted normal-case font-normal">· 택1</span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {BD.map((d, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelBase(selBase === i ? null : i)}
+                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
+                      selBase === i
+                        ? "bg-accent text-white border-accent font-medium"
+                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
+                    }`}
+                  >
+                    {d.n}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. 장기 — 검정 selected */}
+            <div className="mb-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                03 · 장기 대여 <span className="text-text-muted normal-case font-normal">· 택1</span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {LT.map((d, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelLt(selLt === i ? null : i)}
+                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
+                      selLt === i
+                        ? "bg-text-primary text-white border-text-primary font-medium"
+                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
+                    }`}
+                  >
+                    {d.n}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. 추가 — outline selected */}
+            <div className="mb-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                04 · 추가 할인 <span className="text-text-muted normal-case font-normal">· 중복 가능</span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {EX.map((d, i) => (
+                  <button
+                    key={i}
+                    onClick={() => toggleEx(i)}
+                    className={`px-3.5 py-2 text-sm rounded-md border transition-colors ${
+                      selEx.has(i)
+                        ? "bg-accent/10 text-accent border-accent font-medium"
+                        : "bg-bg-primary text-text-secondary border-divider hover:border-text-primary hover:text-text-primary"
+                    }`}
+                  >
+                    {d.n}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 5. 결과 — 박스로 시각 강조 */}
+            <div className="bg-bg-primary border border-divider rounded-lg p-5 md:p-6">
+              {eq ? (
+                <div>
+                  <div className="flex items-baseline justify-between mb-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary">결과</p>
+                    {savings > 0 && (
+                      <span className="text-xs md:text-sm text-accent font-bold tabular-nums">
+                        −{pct}%
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm md:text-base text-text-primary mb-3 font-medium">{eq.n}</p>
+                  <div className="flex items-baseline gap-3 flex-wrap mb-3">
+                    <span className="text-[36px] md:text-[52px] font-bold font-headline tabular-nums leading-none tracking-tight text-text-primary">
+                      ₩{finalPrice.toLocaleString()}
                     </span>
+                    {savings > 0 && (
+                      <span className="text-sm md:text-base text-text-muted line-through tabular-nums">
+                        ₩{eq.p.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                  {savings > 0 ? (
+                    <p className="text-sm text-text-secondary border-t border-divider pt-3 mt-1">
+                      <strong className="text-accent">₩{savings.toLocaleString()}</strong> 절약
+                      {names.length > 0 && (
+                        <span className="text-text-muted"> · {names.join(" · ")}</span>
+                      )}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-text-muted border-t border-divider pt-3 mt-1">
+                      위에서 할인을 선택하면 절약 금액이 표시됩니다.
+                    </p>
                   )}
                 </div>
-                {savings > 0 && (
-                  <p className="text-sm text-text-secondary mt-4">
-                    <span className="text-text-primary font-medium">₩{savings.toLocaleString()}</span> 절약
-                    {names.length > 0 && (
-                      <span className="text-text-muted"> · {names.join(" · ")}</span>
-                    )}
-                  </p>
-                )}
-                {savings === 0 && (
-                  <p className="text-xs text-text-muted mt-3">아래에서 할인을 선택해보세요.</p>
-                )}
-              </div>
-            ) : (
-              <p className="text-sm text-text-muted py-6">장비와 할인을 선택하면 가격이 표시됩니다.</p>
-            )}
+              ) : (
+                <p className="text-sm text-text-muted text-center py-6">
+                  장비와 할인을 선택하면 가격이 표시됩니다.
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
         {/* ── 예시 ─────────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-14 md:pb-20 border-t border-text-primary/10 pt-12 md:pt-16">
-          <div className="flex items-baseline justify-between mb-6 pb-3 border-b border-text-primary/20">
-            <h2 className="text-lg md:text-xl font-bold">예시</h2>
-            <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Examples</span>
+        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-12 md:pb-16">
+          <div className="bg-white border border-divider rounded-xl p-6 md:p-8">
+            <div className="flex items-baseline justify-between mb-5 pb-4 border-b border-divider">
+              <h2 className="text-lg md:text-xl font-bold text-text-primary">예시</h2>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-text-muted">Examples</span>
+            </div>
+            <ul className="divide-y divide-divider">
+              <li className="py-3.5 flex items-baseline justify-between gap-4">
+                <div className="text-sm md:text-[15px] text-text-primary">
+                  FX3 풀세트 <span className="text-text-secondary">· 학생 + 10회 쿠폰</span>
+                  <div className="text-xs text-text-muted mt-1 tabular-nums">
+                    ₩90,000 → <span className="text-text-primary font-medium">₩56,700</span>
+                  </div>
+                </div>
+                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−37%</span>
+              </li>
+              <li className="py-3.5 flex items-baseline justify-between gap-4">
+                <div className="text-sm md:text-[15px] text-text-primary">
+                  FX3 풀세트 <span className="text-text-secondary">· 학생 + 6~9회차 + 소개</span>
+                  <div className="text-xs text-text-muted mt-1 tabular-nums">
+                    ₩90,000 → <span className="text-text-primary font-medium">₩38,902</span>
+                  </div>
+                </div>
+                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−56.8%</span>
+              </li>
+              <li className="py-3.5 flex items-baseline justify-between gap-4">
+                <div className="text-sm md:text-[15px] text-text-primary">
+                  쿠크 SP3 렌즈 세트 <span className="text-text-secondary">· 학생 + 3~5회차</span>
+                  <div className="text-xs text-text-muted mt-1 tabular-nums">
+                    ₩200,000 → <span className="text-text-primary font-medium">₩112,000</span>
+                  </div>
+                </div>
+                <span className="text-base md:text-lg text-accent font-bold tabular-nums whitespace-nowrap">−44%</span>
+              </li>
+            </ul>
           </div>
-          <ul className="divide-y divide-divider">
-            <li className="py-4 flex items-baseline justify-between gap-4">
-              <div className="text-sm md:text-[15px]">
-                FX3 풀세트 <span className="text-text-muted">· 학생 + 10회 쿠폰</span>
-                <div className="text-xs text-text-muted mt-1 tabular-nums">
-                  ₩90,000 → ₩56,700
-                </div>
-              </div>
-              <span className="text-base md:text-lg text-accent font-medium tabular-nums whitespace-nowrap">−37%</span>
-            </li>
-            <li className="py-4 flex items-baseline justify-between gap-4">
-              <div className="text-sm md:text-[15px]">
-                FX3 풀세트 <span className="text-text-muted">· 학생 + 6~9회차 + 소개</span>
-                <div className="text-xs text-text-muted mt-1 tabular-nums">
-                  ₩90,000 → ₩38,902
-                </div>
-              </div>
-              <span className="text-base md:text-lg text-accent font-medium tabular-nums whitespace-nowrap">−56.8%</span>
-            </li>
-            <li className="py-4 flex items-baseline justify-between gap-4">
-              <div className="text-sm md:text-[15px]">
-                쿠크 SP3 렌즈 세트 <span className="text-text-muted">· 학생 + 3~5회차</span>
-                <div className="text-xs text-text-muted mt-1 tabular-nums">
-                  ₩200,000 → ₩112,000
-                </div>
-              </div>
-              <span className="text-base md:text-lg text-accent font-medium tabular-nums whitespace-nowrap">−44%</span>
-            </li>
-          </ul>
         </section>
 
         {/* ── 포함 + CTA ──────────────────────── */}
-        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-20 md:pb-28 border-t border-text-primary/10 pt-12 md:pt-16">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">기본 포함</p>
-              <ul className="text-sm text-text-secondary space-y-1.5">
-                <li>배터리 3~4개</li>
-                <li>SD카드 2~3장</li>
-                <li>보증금 · 선결제 없음</li>
-                <li>홍대입구역 도보 3분</li>
+        <section className="max-w-3xl mx-auto px-6 md:px-12 pb-20 md:pb-28">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-white border border-divider rounded-xl p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                기본 포함
+              </p>
+              <ul className="text-sm text-text-primary space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
+                  배터리 3~4개
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
+                  SD카드 2~3장
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
+                  보증금 · 선결제 없음
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-text-muted flex-shrink-0" />
+                  홍대입구역 도보 3분
+                </li>
               </ul>
             </div>
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.2em] text-text-muted mb-3">예약</p>
-              <p className="text-sm text-text-secondary mb-4 leading-relaxed">
+            <div className="bg-white border border-divider rounded-xl p-6 flex flex-col">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-text-secondary mb-3">
+                예약
+              </p>
+              <p className="text-sm text-text-primary mb-5 leading-relaxed flex-1">
                 카카오톡 채널로 신분·장비·기간만 알려주시면 됩니다.
               </p>
               <a
@@ -376,9 +408,12 @@ export default function Discount() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => (window as any).naverConv?.()}
-                className="inline-flex items-center gap-2 text-sm font-medium text-text-primary border-b border-text-primary pb-0.5 hover:text-accent hover:border-accent transition-colors"
+                className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#FAE100] text-[#3C1E1E] font-bold text-sm rounded-lg hover:bg-[#E6D000] active:scale-[0.98] transition-all"
               >
-                카카오톡으로 예약하기 →
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E">
+                  <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.22 4.65 6.6-.15.56-.96 3.6-.99 3.83 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.55.08 1.13.12 1.73.12 5.52 0 10-3.58 10-7.93C22 6.58 17.52 3 12 3z"/>
+                </svg>
+                카카오톡으로 예약
               </a>
             </div>
           </div>
