@@ -114,12 +114,12 @@ export default function Discount() {
       <main className="pt-20">
 
         {/* Hero */}
-        <div className="py-12 text-center border-b border-divider">
-          <div className="text-xs tracking-[5px] font-medium text-accent">CAMERA VILLAGE</div>
-          <div className="text-3xl font-bold mt-3 tracking-tight leading-tight">
+        <div className="py-14 md:py-20 text-center border-b border-divider">
+          <div className="text-[11px] tracking-[0.25em] font-medium text-accent uppercase">Camera Village</div>
+          <h1 className="text-4xl md:text-5xl font-bold mt-4 tracking-tight leading-[1.1]">
             빌리지 할인이<br /><span className="text-accent">더 커졌습니다</span>
-          </div>
-          <div className="text-sm mt-2 text-text-muted">전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
+          </h1>
+          <div className="text-sm md:text-base mt-3 text-text-muted">전부 중복 적용 · 보증금 없음 · 선결제 없음</div>
           <div className="flex flex-wrap gap-2 justify-center mt-4">
             <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">학생 30%</span>
             <span className="px-3.5 py-1.5 rounded-md text-xs font-medium border border-[#E8593C40] bg-[#E8593C10] text-accent">사업자 20%</span>
@@ -196,8 +196,8 @@ export default function Discount() {
         </Section>
 
         {/* === 할인 계산기 === */}
-        <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderTop: "1px solid #DEDBD5" }}>
-          <div className="text-xs tracking-[3px] font-medium text-orange-500 mb-2">CALCULATOR</div>
+        <div className="px-6 py-8 max-w-xl mx-auto" style={{ borderTop: "1px solid #DEDBD5" }}>
+          <div className="text-[11px] tracking-[0.15em] font-semibold text-text-muted mb-2 uppercase">Calculator</div>
           <div className="text-2xl font-bold mb-1 font-headline">내 할인 직접 계산</div>
           <div className="text-sm mb-5" style={{ color: "#999999" }}>장비 선택 → 할인 적용 → 최종 가격 확인</div>
 
@@ -341,10 +341,10 @@ export default function Discount() {
 
 // --- Sub Components ---
 
-function Section({ num, numColor, title, sub, children }: { num: string; numColor: string; title: string; sub: string; children: React.ReactNode }) {
+function Section({ num, title, sub, children }: { num: string; numColor?: string; title: string; sub: string; children: React.ReactNode }) {
   return (
-    <div className="px-6 py-7 max-w-xl mx-auto" style={{ borderBottom: "1px solid #DEDBD5" }}>
-      <div className={`text-xs tracking-[3px] font-medium mb-2 ${numColor}`}>{num}</div>
+    <div className="px-6 py-8 max-w-xl mx-auto" style={{ borderBottom: "1px solid #DEDBD5" }}>
+      <div className="text-[11px] tracking-[0.15em] font-semibold mb-2 text-text-muted uppercase">{num}</div>
       <div className="text-2xl font-bold mb-1 font-headline">{title}</div>
       <div className="text-sm mb-5" style={{ color: "#999999" }}>{sub}</div>
       {children}
@@ -354,9 +354,9 @@ function Section({ num, numColor, title, sub, children }: { num: string; numColo
 
 function StatCard({ label, value, color, note, small }: { label: string; value: string; color: string; note?: string; small?: boolean }) {
   return (
-    <div className="bg-bg-primary border border-divider rounded-xl p-4 text-center">
-      <div className="text-xs mb-1" style={{ color: "#999999" }}>{label}</div>
-      <div className={`font-bold font-headline ${small ? "text-xl" : "text-3xl"}`} style={{ color, letterSpacing: "-1px" }}>{value}</div>
+    <div className="bg-bg-primary border border-divider rounded-lg p-4 text-center">
+      <div className="text-xs mb-1.5" style={{ color: "#999999" }}>{label}</div>
+      <div className={`font-bold font-headline tracking-tight ${small ? "text-xl" : "text-3xl"}`} style={{ color }}>{value}</div>
       {note && <div className="text-[11px] mt-1" style={{ color: "#A1A1AA" }}>{note}</div>}
     </div>
   );
@@ -364,10 +364,11 @@ function StatCard({ label, value, color, note, small }: { label: string; value: 
 
 function InfoBox({ items }: { items: string[] }) {
   return (
-    <div className="bg-bg-primary border border-divider rounded-xl p-4">
+    <div className="bg-bg-primary border border-divider rounded-lg p-4">
       {items.map((item) => (
-        <div key={item} className="flex items-center gap-2 text-sm py-1.5" style={{ color: "#999999" }}>
-          <span style={{ color: "#22C55E" }}>✓</span> {item}
+        <div key={item} className="flex items-start gap-2 text-sm py-1" style={{ color: "#666666" }}>
+          <span className="text-text-muted mt-0.5">·</span>
+          <span>{item}</span>
         </div>
       ))}
     </div>
@@ -390,22 +391,20 @@ function AccentBox({ color, title, desc }: { color: string; title: string; desc:
 }
 
 function CalcExample({ label, original, tags, result, pct }: { label: string; original: number; tags: { n: string; c: string }[]; result: number; pct: string }) {
-  const tagBg: Record<string, string> = { orange: "rgba(232,89,60,0.12)", blue: "rgba(59,130,246,0.1)", green: "rgba(34,197,94,0.1)" };
-  const tagText: Record<string, string> = { orange: "#E8593C", blue: "#3B82F6", green: "#22C55E" };
   return (
-    <div className="bg-bg-primary border border-divider rounded-xl p-4 mb-2.5">
-      <div className="text-xs mb-2" style={{ color: "#999999" }}>{label}</div>
-      <div className="flex items-center gap-1.5 flex-wrap text-sm">
-        <span className="line-through font-headline" style={{ color: "#A1A1AA" }}>₩{original.toLocaleString()}</span>
+    <div className="bg-bg-primary border border-divider rounded-lg p-4 mb-2.5">
+      <div className="text-xs mb-2.5" style={{ color: "#999999" }}>{label}</div>
+      <div className="flex items-center gap-1.5 flex-wrap text-sm text-text-muted">
+        <span className="line-through tabular-nums">₩{original.toLocaleString()}</span>
         {tags.map((t, i) => (
           <span key={i}>
-            <span style={{ color: "#A1A1AA" }}> × </span>
-            <span className="px-2 py-0.5 rounded text-xs" style={{ background: tagBg[t.c], color: tagText[t.c] }}>{t.n}</span>
+            <span className="text-text-muted mx-0.5">×</span>
+            <span className="text-text-secondary">{t.n}</span>
           </span>
         ))}
       </div>
-      <div className="text-2xl font-bold font-headline mt-2" style={{ color: "#E8593C" }}>
-        ₩{result.toLocaleString()} <span className="text-sm font-bold" style={{ color: "#22C55E" }}>{pct}</span>
+      <div className="text-2xl font-bold font-headline tracking-tight mt-2 tabular-nums" style={{ color: "#E8593C" }}>
+        ₩{result.toLocaleString()} <span className="text-sm font-semibold text-accent ml-1">{pct}</span>
       </div>
     </div>
   );
