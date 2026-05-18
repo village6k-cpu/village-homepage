@@ -1194,8 +1194,8 @@ export const products: Product[] = [
   },
   {
   id: 139,
-  name: "V마운트 배터리 세트(3개)",
-  priceDay: 10000,
+  name: "V마운트 배터리 (개당)",
+  priceDay: 5000,
   category: "기타",
   image: "/images/products/139.png",
   productUrl: "https://village6k.co.kr/product/e5874f7f-b02e-40a8-8660-05d69c59e8f5"
