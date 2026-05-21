@@ -34,6 +34,7 @@ const ED: Record<string, { n: string; p: number }[]> = {
     { n: '삼양 XEEN 세트', p: 50000 }, { n: '삼양 XEEN CF 세트', p: 80000 },
     { n: '라오와 24mm Probe', p: 30000 }, { n: '캐논 RF 100-500', p: 30000 },
     { n: '틸타 MB-T12 매트박스', p: 20000 }, { n: 'NiSi PL 필터', p: 10000 },
+    { n: 'NiSi 가변 ND 필터 82mm', p: 10000 },
   ],
   '조명': [
     { n: '난룩스 Evoke 1200B', p: 50000 }, { n: '어퓨쳐 600X 프로 세트', p: 35000 },

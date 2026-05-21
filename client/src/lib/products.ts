@@ -1613,6 +1613,15 @@ export const products: Product[] = [
   productUrl: "https://pf.kakao.com/_xhPMls",
   tag: "NEW"
   },
+  {
+  id: 189,
+  name: "NiSi True Color ND-Vario 가변 ND 필터 (82mm, 1-5 Stop)",
+  priceDay: 10000,
+  category: "렌즈",
+  image: "/images/products/189.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [
