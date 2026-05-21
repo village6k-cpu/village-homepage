@@ -7,7 +7,12 @@ import ProductCard from "./ProductCard";
 export default function ProductSection() {
   const [active, setActive] = useState("전체");
   const tabs = ["전체", ...categories];
-  const filtered = products.filter((p: Product) => active === "전체" || p.category === active);
+  // NEW 태그가 가장 먼저, 그다음 입고예정, 나머지는 기존 순서 유지 (stable sort)
+  const tagPriority: Record<string, number> = { NEW: 0, "입고예정": 1 };
+  const filtered = products
+    .filter((p: Product) => active === "전체" || p.category === active)
+    .slice()
+    .sort((a, b) => (tagPriority[a.tag ?? ""] ?? 99) - (tagPriority[b.tag ?? ""] ?? 99));
 
   return (
     <section id="products" className="py-24 bg-bg-primary">
