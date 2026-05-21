@@ -1,7 +1,7 @@
 // VILLAGE — 공지 토스트 (필터 가격 인상 안내)
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "village-notice-filter-price-2026-04";
+const STORAGE_KEY = "village-notice-filter-price-2026-05";
 
 export default function NoticePopup() {
   const [open, setOpen] = useState(false);
@@ -57,11 +57,24 @@ export default function NoticePopup() {
             필터류 가격 인상 안내
           </p>
           <p className="text-xs text-text-secondary leading-relaxed mb-2">
-            원가 상승·파손 이슈로 필터 대여 가격을{" "}
-            <span className="text-text-muted line-through">7,000원</span>
-            {" → "}
-            <span className="font-semibold text-accent">10,000원</span>으로 조정합니다.
+            원가 상승·파손 이슈로 필터 대여 가격을 차등 조정합니다.
           </p>
+          <ul className="text-xs text-text-secondary leading-relaxed mb-2 space-y-1">
+            <li>
+              <span className="text-text-primary font-medium">일반 필터</span>{" "}
+              <span className="text-text-muted line-through">7,000원</span>
+              {" → "}
+              <span className="font-semibold text-accent">10,000원</span>
+            </li>
+            <li>
+              <span className="text-text-primary font-medium">시네 필터</span>{" "}
+              <span className="text-text-muted line-through">10,000원</span>
+              {" → "}
+              <span className="font-semibold text-accent">15,000원</span>
+              <br />
+              <span className="text-[11px] text-text-muted">(Hollywood Black Magic · Black Pro-Mist)</span>
+            </li>
+          </ul>
           <p className="text-xs text-text-secondary leading-relaxed mb-2">
             보다 안정적인 컨디션과 퀄리티 유지를 위한 조치이니, 너그러운 양해 부탁드립니다.
           </p>
