@@ -1349,7 +1349,7 @@ export const products: Product[] = [
   {
   id: 158,
   name: "티펜 Black Pro-Mist 필터 (4x5.65 or 67-82mm)",
-  priceDay: 10000,
+  priceDay: 15000,
   category: "렌즈",
   image: "/images/products/158.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944-48-49"
@@ -1357,7 +1357,7 @@ export const products: Product[] = [
   {
   id: 159,
   name: "슈나이더 Hollywood Black Magic 필터 (4x5.65 or 67-82mm)",
-  priceDay: 10000,
+  priceDay: 15000,
   category: "렌즈",
   image: "/images/products/159.png",
   productUrl: "https://village6k.co.kr/product/128e4c67-099c-4a81-8978-7c781480e944-48-49-50"
