@@ -1604,6 +1604,15 @@ export const products: Product[] = [
   image: "/images/products/187.png",
   productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86-87-88"
   },
+  {
+  id: 188,
+  name: "Synco Xtalk XMax 인터컴 (9구 세트)",
+  priceDay: 70000,
+  category: "기타",
+  image: "/images/products/188.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [
