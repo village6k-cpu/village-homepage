@@ -110,7 +110,7 @@ export default function Faq() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="궁금한 키워드 입력 (예: 보증금, 학생, 택배)"
+              placeholder="궁금한 키워드 입력 (예: 보증금, 학생, 예약)"
               className="w-full pl-12 pr-10 py-3.5 bg-white border border-divider rounded-xl text-sm focus:outline-none focus:border-accent transition-colors"
             />
             {query && (
