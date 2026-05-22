@@ -3,31 +3,16 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { products, categories, formatPrice, KAKAO_URL } from "@/lib/products";
 
-const FAQ_SEEN_KEY = "village_faq_seen_v1";
-
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useLocation();
-  const [showFaqDot, setShowFaqDot] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // FAQ 펄스 알림 — 한번도 안 본 방문자에게만 표시
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem(FAQ_SEEN_KEY)) setShowFaqDot(true);
-    } catch {}
-  }, []);
-
-  // /faq 진입하면 알림 끄기 + localStorage 저장
-  useEffect(() => {
-    if (location === "/faq") {
-      try { localStorage.setItem(FAQ_SEEN_KEY, "1"); } catch {}
-      setShowFaqDot(false);
-    }
-  }, [location]);
+  // FAQ 펄스 — 항상 표시 (FAQ 페이지 자체에서는 가림)
+  const showFaqDot = location !== "/faq";
 
   const doSearch = (q: string) => {
     if (q.trim()) {
@@ -183,10 +168,9 @@ export default function Header() {
 
           {/* 모바일 전용 — FAQ 빠른 진입 (햄버거 옆 항상 노출) */}
           <Link href="/faq"
-            className="md:hidden relative inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-accent/40 bg-accent/5 text-accent text-xs font-semibold"
+            className="md:hidden relative inline-flex items-center px-3 py-1.5 rounded-md border border-accent/40 bg-accent/5 text-accent text-xs font-semibold"
             aria-label="자주묻는질문">
-            <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>help</span>
-            <span>FAQ</span>
+            FAQ
             {showFaqDot && (
               <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
@@ -252,7 +236,6 @@ export default function Header() {
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
           <Link href="/faq" onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2 text-sm py-3 font-medium text-accent">
-            <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>help</span>
             자주묻는질문
             {showFaqDot && (
               <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
