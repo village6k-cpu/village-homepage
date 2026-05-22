@@ -116,9 +116,9 @@ export default function Header() {
             className={`relative ${location === "/faq" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}`}>
             자주묻는질문
             {showFaqDot && (
-              <span className="absolute -top-0.5 -right-2.5 flex h-2 w-2" aria-hidden="true">
+              <span className="absolute -top-1 -right-3 flex h-2.5 w-2.5" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
               </span>
             )}
           </Link>
@@ -180,6 +180,21 @@ export default function Header() {
             className="hidden sm:inline-block bg-[#FAE100] text-[#3C1E1E] px-6 py-2.5 font-bold text-sm rounded-lg hover:bg-[#E6D000] transition-colors">
             카카오톡 대여 신청
           </a>
+
+          {/* 모바일 전용 — FAQ 빠른 진입 (햄버거 옆 항상 노출) */}
+          <Link href="/faq"
+            className="md:hidden relative inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-accent/40 bg-accent/5 text-accent text-xs font-semibold"
+            aria-label="자주묻는질문">
+            <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>help</span>
+            <span>FAQ</span>
+            {showFaqDot && (
+              <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
+              </span>
+            )}
+          </Link>
+
           <button className="md:hidden text-text-primary" onClick={() => setMobileOpen(!mobileOpen)}>
             <span className="material-symbols-outlined text-3xl">{mobileOpen ? "close" : "menu"}</span>
           </button>
@@ -236,12 +251,13 @@ export default function Header() {
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
           <Link href="/faq" onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-2 text-sm py-3 font-medium text-text-secondary hover:text-text-primary">
+            className="flex items-center gap-2 text-sm py-3 font-medium text-accent">
+            <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>help</span>
             자주묻는질문
             {showFaqDot && (
-              <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
               </span>
             )}
           </Link>
