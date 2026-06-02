@@ -1622,6 +1622,33 @@ export const products: Product[] = [
   productUrl: "https://pf.kakao.com/_xhPMls",
   tag: "NEW"
   },
+  {
+  id: 190,
+  name: "홀리랜드 솔리드컴 SE 인터컴 4S",
+  priceDay: 40000,
+  category: "모니터/무선",
+  image: "/images/products/190.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
+  {
+  id: 191,
+  name: "홀리랜드 솔리드컴 SE 인터컴 5S",
+  priceDay: 50000,
+  category: "모니터/무선",
+  image: "/images/products/191.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
+  {
+  id: 192,
+  name: "홀리랜드 솔리드컴 SE 인터컴 8S",
+  priceDay: 70000,
+  category: "모니터/무선",
+  image: "/images/products/192.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [
