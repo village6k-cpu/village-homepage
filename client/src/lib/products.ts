@@ -314,7 +314,7 @@ export const products: Product[] = [
   },
   {
   id: 35,
-  name: "홀리랜드 솔리드컴 C1 PRO - 6S",
+  name: "홀리랜드 솔리드컴 C1 PRO 인터컴 - 6S",
   priceDay: 70000,
   category: "모니터/무선",
   image: "/images/products/035.png",
@@ -348,7 +348,7 @@ export const products: Product[] = [
   },
   {
   id: 39,
-  name: "홀리랜드 솔리드컴 C1 PRO - 4S",
+  name: "홀리랜드 솔리드컴 C1 PRO 인터컴 - 4S",
   priceDay: 50000,
   category: "모니터/무선",
   image: "/images/products/039.png",
