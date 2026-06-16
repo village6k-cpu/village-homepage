@@ -724,7 +724,7 @@ export const productComponents: Record<number, Component[]> = {
     { name: "소니 XQD 128", qty: 2 },
     { name: "V마운트 배터리", qty: 2, note: "카메라" },
     { name: "V마운트 배터리 충전기", qty: 1 },
-    { name: "LVM-170A", qty: 2, note: "카메라" },
+    { name: "LVM-170A", qty: 1, note: "카메라" },
     { name: "SDI 롱라인, SDI 라인, 노가암", qty: 4, note: "카메라" },
   ],
   183: [
