@@ -84,8 +84,11 @@ export default function Location() {
                 <span className="material-symbols-outlined text-accent" style={{ fontSize: "22px" }}>call</span>
                 <p className="text-xs uppercase tracking-widest text-text-muted font-medium">Tel</p>
               </div>
-              <a href="tel:0507-1487-3114" className="text-lg font-semibold text-text-primary hover:text-accent transition-colors">
+              <a href="tel:0507-1487-3114" className="block text-lg font-semibold text-text-primary hover:text-accent transition-colors">
                 0507-1487-3114
+              </a>
+              <a href="tel:010-5963-5457" className="block text-lg font-semibold text-text-primary hover:text-accent transition-colors mt-1">
+                010-5963-5457
               </a>
               <p className="text-sm text-text-secondary mt-1">상담 및 예약 문의</p>
             </div>

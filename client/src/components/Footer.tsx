@@ -40,7 +40,7 @@ export default function Footer() {
         <div>
           <h5 className="text-text-muted font-medium text-xs uppercase tracking-widest mb-6">Contact</h5>
           <p className="text-text-muted text-xs mb-2">KakaoTalk: 카메라빌리지</p>
-          <p className="text-text-muted text-xs mb-2">Tel: 0507-1487-3114</p>
+          <p className="text-text-muted text-xs mb-2">Tel: 0507-1487-3114 / 010-5963-5457</p>
           <p className="text-text-muted text-xs">Instagram: @village.6k</p>
         </div>
       </div>
