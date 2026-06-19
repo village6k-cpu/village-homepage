@@ -96,6 +96,10 @@ export default function Faq() {
             <a href="tel:0507-1487-3114" className="text-text-primary font-medium underline-offset-2 hover:underline">
               0507-1487-3114
             </a>
+            {" / "}
+            <a href="tel:010-5963-5457" className="text-text-primary font-medium underline-offset-2 hover:underline">
+              010-5963-5457
+            </a>
             .
           </p>
         </div>
