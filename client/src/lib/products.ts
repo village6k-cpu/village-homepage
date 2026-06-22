@@ -1649,6 +1649,15 @@ export const products: Product[] = [
   productUrl: "https://pf.kakao.com/_xhPMls",
   tag: "NEW"
   },
+  {
+  id: 193,
+  name: "OSEE MEGA22S4 (1500nit 쿼드뷰 터치 4분할 필드모니터)",
+  priceDay: 40000,
+  category: "모니터/무선",
+  image: "",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [
