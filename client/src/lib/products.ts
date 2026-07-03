@@ -1658,6 +1658,24 @@ export const products: Product[] = [
   productUrl: "https://pf.kakao.com/_xhPMls",
   tag: "NEW"
   },
+  {
+  id: 194,
+  name: "소니 A7M5 바디 세트 (CF-A 메모리, 배터리 포함)",
+  priceDay: 40000,
+  category: "카메라",
+  image: "/images/products/194.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
+  {
+  id: 195,
+  name: "어퓨쳐 스톰 700X 세트",
+  priceDay: 45000,
+  category: "조명",
+  image: "/images/products/195.png",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [

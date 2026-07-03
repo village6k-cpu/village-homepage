@@ -489,4 +489,16 @@ export const productComponents: Record<number, Component[]> = {
     { name: "V마운트 배터리", qty: 2, note: "카메라" },
     { name: "970 더미, HDMI 라인, 멀티 D탭", qty: 1, note: "카메라" },
   ],
+  194: [
+    { name: "소니 A7M5 바디(케이지)", qty: 1, note: "카메라" },
+    { name: "소니 CF-A 160", qty: 2, note: "카메라" },
+    { name: "소니 CF-A 리더기", qty: 2, note: "카메라" },
+    { name: "NP-FZ100", qty: 3, note: "카메라" },
+    { name: "NP-FZ100 충전기", qty: 1, note: "카메라" },
+  ],
+  195: [
+    { name: "헤드 / 발라스터 / 클램프 / 라인*2", qty: 1, note: "조명" },
+    { name: "소프트박스", qty: 1, note: "조명" },
+    { name: "C스탠드", qty: 1, note: "조명" },
+  ],
 };
