@@ -680,11 +680,12 @@ export const products: Product[] = [
   },
   {
   id: 78,
-  name: "소니 GM 단렌즈 세트",
+  name: "소니 GM 단렌즈 세트 (14·24·35·50·85)",
   priceDay: 90000,
   category: "렌즈",
   image: "/images/products/078.png",
-  productUrl: "https://village6k.co.kr/product/de76a085-ad9c-4431-8201-078e9b05cce5"
+  productUrl: "https://village6k.co.kr/product/de76a085-ad9c-4431-8201-078e9b05cce5",
+  tag: "NEW"
   },
   {
   id: 79,

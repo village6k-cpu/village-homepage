@@ -212,6 +212,14 @@ export const productComponents: Record<number, Component[]> = {
   75: [
     { name: "비디오 헤드 / 75볼 트라이*2 / 970배터리*2", qty: 1, note: "그립" },
   ],
+  78: [
+    { name: "소니 FE 14mm F1.8 GM", qty: 1, note: "기본 구성" },
+    { name: "소니 FE 24mm F1.4 GM", qty: 1, note: "기본 구성" },
+    { name: "소니 FE 35mm F1.4 GM", qty: 1, note: "기본 구성" },
+    { name: "소니 FE 50mm F1.4 GM", qty: 1, note: "기본 구성" },
+    { name: "소니 FE 85mm F1.4 GM", qty: 1, note: "기본 구성" },
+    { name: "소니 FE 135mm F1.8 GM", qty: 1, note: "선택 추가 +2만원" },
+  ],
   80: [
     { name: "헤드 / 발라스터 / 클램프 / 라인*2", qty: 1, note: "조명" },
     { name: "소프트박스", qty: 1, note: "조명" },
