@@ -212,6 +212,14 @@ export const productComponents: Record<number, Component[]> = {
   75: [
     { name: "비디오 헤드 / 75볼 트라이*2 / 970배터리*2", qty: 1, note: "그립" },
   ],
+  78: [
+    { name: "소니 GM 14mm", qty: 1, note: "렌즈" },
+    { name: "소니 GM 24mm", qty: 1, note: "렌즈" },
+    { name: "소니 GM 35mm", qty: 1, note: "렌즈" },
+    { name: "소니 GM 50mm", qty: 1, note: "렌즈" },
+    { name: "소니 GM 85mm", qty: 1, note: "렌즈" },
+    { name: "소니 GM 135mm", qty: 1, note: "별도 추가 +2만원" },
+  ],
   80: [
     { name: "헤드 / 발라스터 / 클램프 / 라인*2", qty: 1, note: "조명" },
     { name: "소프트박스", qty: 1, note: "조명" },
