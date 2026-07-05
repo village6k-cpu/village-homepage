@@ -177,6 +177,9 @@ export default function ProductDetail() {
                   </div>
                   <div className="col-span-8 md:col-span-7">
                     <span className="text-sm md:text-base font-medium text-text-primary">{c.name}</span>
+                    {c.note && /추가|별도|선택|\+|원/.test(c.note) && (
+                      <span className="md:hidden block mt-1 text-xs font-semibold text-accent">{c.note}</span>
+                    )}
                   </div>
                   <div className="col-span-2 text-center">
                     <span className="inline-flex items-center justify-center min-w-[32px] h-7 bg-bg-primary rounded-md text-sm font-medium text-text-primary">
