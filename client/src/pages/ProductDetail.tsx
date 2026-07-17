@@ -93,9 +93,13 @@ export default function ProductDetail() {
                       <span className="text-accent font-bold text-3xl">{formatPrice(discountPrice)}</span>
                       <span className="text-text-muted text-sm">/ 24h</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-1.5">
                       <span className="text-text-muted text-sm line-through">{formatPrice(product.priceDay)}</span>
                       <span className="text-xs font-medium text-accent bg-accent/10 px-2 py-0.5 rounded">학생 30% 할인가</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-text-primary text-base font-semibold">{formatPrice(Math.round(product.priceDay * 0.8))}</span>
+                      <span className="text-xs font-medium text-text-secondary bg-bg-primary px-2 py-0.5 rounded">사업자·프리랜서 20% 할인가</span>
                     </div>
                   </>
                 )}
