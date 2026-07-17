@@ -16,7 +16,7 @@ export const products: Product[] = [
   {
   id: 1,
   name: "PYXIS 6K 시네마 풀세트(EF or PL / BRAW·풀프레임)",
-  priceDay: 120000,
+  priceDay: 100000,
   category: "카메라 풀세트",
   image: "/images/products/001.png",
   productUrl: "https://village6k.co.kr/product/36c20010-19bf-49df-b920-dce0c4e0469a",

@@ -78,7 +78,7 @@ export default function PyxisLaunchPopup() {
         {/* 본문 */}
         <div className="px-6 pt-5 pb-6">
           <p className="text-[11px] font-bold text-accent tracking-widest uppercase mb-1.5">
-            드디어, 렌탈 시작
+            신규 입고
           </p>
           <h3 className="text-lg font-black text-text-primary leading-snug mb-2">
             PYXIS 6K 시네마 풀세트
@@ -97,12 +97,12 @@ export default function PyxisLaunchPopup() {
           </div>
 
           <p className="text-sm text-text-secondary leading-relaxed mb-4">
-            오래 기다리셨죠. 픽시스 6K, 이제 <span className="text-text-primary font-semibold">바로 대여</span>하실 수 있습니다.
+            픽시스 6K 렌탈이 시작되었습니다.
           </p>
 
           {/* 가격 */}
           <div className="flex items-baseline gap-1.5 mb-4">
-            <span className="text-2xl font-black text-text-primary">120,000</span>
+            <span className="text-2xl font-black text-text-primary">100,000</span>
             <span className="text-sm text-text-muted">원 / 1일</span>
           </div>
 
