@@ -15,12 +15,12 @@ export interface Product {
 export const products: Product[] = [
   {
   id: 1,
-  name: "픽시스 6K 풀세트 (PL 마운트) - 입고 예정",
-  priceDay: 150000,
+  name: "PYXIS 6K 시네마 풀세트(EF or PL / BRAW·풀프레임)",
+  priceDay: 120000,
   category: "카메라 풀세트",
   image: "/images/products/001.png",
   productUrl: "https://village6k.co.kr/product/36c20010-19bf-49df-b920-dce0c4e0469a",
-  tag: "입고예정"
+  tag: "NEW"
   },
   {
   id: 2,

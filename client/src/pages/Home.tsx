@@ -5,7 +5,7 @@ import FeatureBanner from "@/components/FeatureBanner";
 import ProductSection from "@/components/ProductSection";
 import ReelsSection from "@/components/ReelsSection";
 import Footer from "@/components/Footer";
-import NoticePopup from "@/components/NoticePopup";
+import PyxisLaunchPopup from "@/components/PyxisLaunchPopup";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <ReelsSection />
       </main>
       <Footer />
-      <NoticePopup />
+      <PyxisLaunchPopup />
     </div>
   );
 }
