@@ -49,6 +49,10 @@ export default function ProductCard({ product }: { product: Product }) {
                 <span className="text-[11px] text-text-muted">/ 24h</span>
               </div>
               <span className="text-[10px] font-medium text-accent">학생 할인가</span>
+              <div className="flex items-baseline gap-1 mt-0.5">
+                <span className="text-text-primary font-medium text-sm">{formatPrice(Math.round(product.priceDay * 0.8))}</span>
+                <span className="text-[10px] text-text-muted">사업자·프리랜서 할인가</span>
+              </div>
             </div>
           )}
           <div className="w-10 h-10 flex items-center justify-center bg-bg-primary hover:bg-accent hover:text-white transition-colors rounded-lg text-text-muted">
