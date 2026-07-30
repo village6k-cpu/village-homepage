@@ -50,18 +50,19 @@ export default function Header() {
   };
 
   const isEquipmentPage = location.startsWith("/equipment");
+  const isGuidePage = location.startsWith("/guide");
 
   return (
     <>
-    <nav className="fixed top-0 w-full z-50 bg-[#F5F3EF]/90 backdrop-blur-md h-20 px-8 border-b border-divider">
+    <nav className="fixed top-0 w-full z-50 bg-[#F5F3EF]/90 backdrop-blur-md h-20 px-4 sm:px-8 border-b border-divider">
       <div className="flex justify-between items-center h-full max-w-[1920px] mx-auto">
         {/* Logo — VILLAGE. (bold + coral dot) */}
-        <Link href="/" className="text-2xl font-black tracking-tight text-text-primary">
+        <Link href="/" className="text-xl sm:text-2xl font-black tracking-tight text-text-primary">
           VILLAGE<span className="text-accent">.</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10 font-medium text-sm">
+        <div className="hidden md:flex items-center gap-8 lg:gap-10 font-medium text-sm">
           {/* 장비목록 — 호버 드롭다운 */}
           <div className="relative"
             onMouseEnter={() => setEquipOpen(true)}
@@ -93,6 +94,10 @@ export default function Header() {
             className={location === "/discount" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
             할인계산기
           </Link>
+          <Link href="/guide"
+            className={isGuidePage ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
+            장비 사용법
+          </Link>
           <Link href="/location"
             className={location === "/location" ? "text-text-primary font-bold border-b-2 border-accent pb-1" : "text-text-secondary hover:text-text-primary transition-colors"}>
             오시는길
@@ -110,7 +115,7 @@ export default function Header() {
         </div>
 
         {/* Right side: search + CTA */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 md:gap-4">
           {/* Desktop search */}
           <div className="hidden md:block relative" ref={searchRef}>
             <div className="flex items-center gap-2 bg-bg-primary border border-divider rounded-lg px-4 py-2 transition-all"
@@ -179,6 +184,12 @@ export default function Header() {
             )}
           </Link>
 
+          <Link href="/guide"
+            className="md:hidden inline-flex items-center px-2.5 py-1.5 rounded-md border border-divider bg-white text-text-primary text-xs font-semibold"
+            aria-label="장비 사용법 영상">
+            사용법
+          </Link>
+
           <button className="md:hidden text-text-primary" onClick={() => setMobileOpen(!mobileOpen)}>
             <span className="material-symbols-outlined text-3xl">{mobileOpen ? "close" : "menu"}</span>
           </button>
@@ -232,6 +243,11 @@ export default function Header() {
 
           <Link href="/discount" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">할인계산기</Link>
+          <Link href="/guide" onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2 text-sm py-3 font-semibold text-accent">
+            <span className="material-symbols-outlined !text-lg">smart_display</span>
+            장비 사용법 영상
+          </Link>
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
           <Link href="/faq" onClick={() => setMobileOpen(false)}

@@ -1,83 +1,184 @@
-// VILLAGE — Guide Page (/guide)
-import { useState } from "react";
+// VILLAGE — YouTube Equipment Guide Page (/guide)
+import { useEffect, useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { reels, reelSeries } from "@/lib/reels";
+import { fetchEquipmentGuides, filterEquipmentGuides } from "@/lib/equipmentGuides";
+import type { EquipmentGuideVideo } from "@/lib/equipmentGuides";
 
-const placeholderReels = [
-  { title: "FX3 필수 설정 5가지", desc: "소니 시네마 라인 최적화 가이드", series: "사용법", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBJV4nJyLk2MId-SmyKFnB6viqrnfvL8PYu5XRf9GXkclcOJaR69N-aEj4XZNRsmx7nmssfOWDqcfHQHEilUbV7ji5IJrwOm5cFe05OjkpDv2LfJKqc7sEH3B6H_1YMo4ZdwFDASUx0DZ3O4kW9r8wRgvLRzrYkl70fF8EfDzCIp2BuL5rarrRLmb6O1cksDHGagfm5HgKiZKbQr6OXp5JTdwE1syBOTikJq-iRPG_jxyg0wc7TqFKVkKeyC-eeuFFqA-T30Ko_T38" },
-  { title: "장비 사용법 및 주의사항", desc: "렌즈 교체부터 센서 보호까지", series: "주의사항", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3dCAvUaHIYuLyd2UlBRK1nAVtQ53LFjwwS0Kyk34y5jMXakHUwkuJCdB2chJIJQMD7pFuj63Tfnkjht9pR3q9e29hif8qtG1qwCc3YE1SK4-VD4YxZa0Tjc4vPUGZUWremTHCcSv_4wVF0eXdpQ3TdTrv4lOwIkxEX8xOanvrXLA2zXF2InxN9cM7_DH7T1VGz4n7t6EN59QQwKul4RrRKuStJs7CNw2NjXRSA34zTGrqdYsTAIJ6LLHyW441-iRyIv6HhH5icdQ" },
-  { title: "팬싸인회 캠 세팅 꿀팁", desc: "최고의 직캠을 위한 포커스 설정", series: "팁", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPN9kBr3j_b670jcnA4c8rhTTHiOPnSafDYn_Gy_HzD4cdZ6442eID2u-hUElNK9oPpHU2iiKZwHMTN7XHI4oFWotlIXbq6Flu4lSkmzyTgT9P16PNLxA2iNdOgOZJTyI0CRJrUnINvJ3h2y1Ou7ktmnP02eLH7CcTB_MCMljXdK7xVJm6SLn68qr7StzhJA3x-h5tbSO6kitGmm9wWbvpi8rCHXDQFHVGRu9MIB0Way4egS9QR61mpvsc-_Ox2RJJyEj_6kUO_Iw" },
-];
+function initialSearchQuery() {
+  if (typeof window === "undefined") return "";
+  return new URLSearchParams(window.location.search).get("q")?.trim() || "";
+}
 
-export default function Guide() {
-  const [activeSeries, setActiveSeries] = useState<string>("전체");
-
-  const displayReels = reels.length > 0
-    ? reels.filter((r) => activeSeries === "전체" || r.series === activeSeries)
-    : placeholderReels.filter((r) => activeSeries === "전체" || r.series === activeSeries);
+function GuideCard({ guide }: { guide: EquipmentGuideVideo }) {
+  const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="min-h-screen bg-bg-primary">
-      <Header />
-      <div style={{ height: "80px" }} />
-
-      <main className="max-w-7xl mx-auto px-8 py-16">
-        <div className="mb-12">
-          <h1 className="text-3xl font-bold mb-3">장비 사용 가이드</h1>
-          <div className="accent-line mb-4" />
-          <p className="text-sm text-text-muted">
-            전문가가 알려주는 장비 사용법, 주의사항, 그리고 꿀팁
-          </p>
+    <article className={`overflow-hidden rounded-2xl border bg-white ${guide.required ? "border-accent/50" : "border-divider"}`}>
+      {playing ? (
+        <div className="aspect-video bg-black">
+          <iframe
+            src={guide.embedUrl}
+            title={guide.title}
+            className="h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="group relative block aspect-video w-full overflow-hidden bg-zinc-900 text-left"
+        >
+          {guide.thumbnailUrl && (
+            <img
+              src={guide.thumbnailUrl}
+              alt=""
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+          )}
+          <span className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/30" />
+          <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+            <span className="material-symbols-outlined !text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+          </span>
+          <span className="sr-only">{guide.title} 재생</span>
+        </button>
+      )}
 
-        <div className="flex flex-wrap gap-2 mb-12">
-          {reelSeries.map((series) => (
-            <button key={series} onClick={() => setActiveSeries(series)}
-              className={`px-5 py-2 rounded-lg text-sm transition-colors ${
-                activeSeries === series
-                  ? "bg-tag-dark text-white font-medium"
-                  : "border border-divider text-text-secondary hover:border-text-primary"
-              }`}>
-              {series}
-            </button>
+      <div className="p-5">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          {guide.required && (
+            <span className="rounded-md bg-accent/10 px-2.5 py-1 text-[11px] font-bold text-accent">필수 확인</span>
+          )}
+          {guide.equipmentNames.slice(0, 2).map((name) => (
+            <span key={name} className="rounded-md bg-bg-primary px-2.5 py-1 text-[11px] font-medium text-text-muted">
+              {name}
+            </span>
           ))}
         </div>
+        <h2 className="text-lg font-bold leading-snug text-text-primary">{guide.title}</h2>
+        {guide.summary && <p className="mt-2 text-sm font-medium leading-relaxed text-text-muted">{guide.summary}</p>}
+        <a
+          href={guide.watchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
+        >
+          YouTube에서 크게 보기
+          <span className="material-symbols-outlined !text-base">open_in_new</span>
+        </a>
+      </div>
+    </article>
+  );
+}
 
-        {displayReels.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayReels.map((reel, i) => (
-              <a key={i}
-                href={"instagramUrl" in reel ? (reel as any).instagramUrl : "https://www.instagram.com/village.6k/"}
-                target="_blank" rel="noopener noreferrer" className="group cursor-pointer">
-                <div className="aspect-[9/16] relative overflow-hidden rounded-2xl mb-4">
-                  <img src={reel.image} alt={reel.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                      <span className="material-symbols-outlined text-white" style={{ fontSize: "28px", fontVariationSettings: "'FILL' 1" }}>
-                        play_arrow
-                      </span>
-                    </div>
-                  </div>
-                  <div className="absolute top-4 left-4 px-3 py-1 text-[10px] font-medium rounded-md bg-accent text-white">
-                    {"series" in reel ? reel.series : ""}
-                  </div>
-                </div>
-                <h4 className="font-bold text-lg mb-1">{reel.title}</h4>
-                <p className="text-sm text-text-muted">{reel.desc}</p>
-              </a>
-            ))}
+export default function Guide() {
+  const [query, setQuery] = useState(initialSearchQuery);
+  const [loading, setLoading] = useState(true);
+  const [configured, setConfigured] = useState(false);
+  const [guides, setGuides] = useState<EquipmentGuideVideo[]>([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    fetchEquipmentGuides(controller.signal)
+      .then((result) => {
+        if (!active) return;
+        setConfigured(result.configured);
+        setGuides(result.guides);
+        setError("");
+      })
+      .catch((reason) => {
+        if (reason instanceof DOMException && reason.name === "AbortError") return;
+        if (!active) return;
+        setError(reason instanceof Error ? reason.message : "사용법 영상을 불러오지 못했습니다.");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, []);
+
+  const visibleGuides = useMemo(() => filterEquipmentGuides(guides, query), [guides, query]);
+
+  return (
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      <Header />
+      <div className="h-20" />
+
+      <main className="mx-auto w-full max-w-7xl px-5 py-12 md:px-8 md:py-16">
+        <header className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
+          <p className="mb-3 text-xs font-bold tracking-[0.18em] text-accent">EQUIPMENT GUIDE</p>
+          <h1 className="text-3xl font-black tracking-tight md:text-4xl">장비 사용법 영상</h1>
+          <p className="mt-4 text-sm font-medium leading-relaxed text-text-muted md:text-base">
+            장착 방향, 파손 주의, 분실하기 쉬운 부품까지.<br className="hidden sm:block" />
+            장비명이나 막힌 부분을 검색하면 짧은 영상으로 바로 확인할 수 있습니다.
+          </p>
+        </header>
+
+        <label className="mx-auto block max-w-2xl">
+          <span className="sr-only">장비명 또는 문제 검색</span>
+          <div className="flex items-center gap-3 rounded-2xl border border-divider bg-white px-4 py-3.5 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/10">
+            <span className="material-symbols-outlined text-text-muted">search</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="예: 미라지 매트박스, 플레이트, 나비나사"
+              className="min-w-0 flex-1 bg-transparent text-base font-medium text-text-primary outline-none placeholder:text-text-muted"
+              autoComplete="off"
+            />
+            {query && (
+              <button type="button" onClick={() => setQuery("")} className="rounded-lg px-2 py-1 text-xs font-bold text-text-muted hover:bg-bg-primary">
+                지우기
+              </button>
+            )}
           </div>
-        ) : (
-          <div className="text-center py-20">
-            <span className="material-symbols-outlined mb-4" style={{ fontSize: "48px", color: "#DEDBD5" }}>videocam</span>
-            <p className="text-sm text-text-muted">해당 시리즈의 가이드가 아직 없습니다.</p>
-            <p className="text-xs mt-2 text-text-muted">곧 업로드 예정입니다!</p>
-          </div>
-        )}
+        </label>
+
+        <div className="mt-8">
+          {loading ? (
+            <div className="rounded-2xl border border-divider bg-white p-10 text-center text-sm font-medium text-text-muted">사용법 영상을 불러오는 중...</div>
+          ) : error ? (
+            <div className="rounded-2xl border border-accent/30 bg-accent/5 p-8 text-center">
+              <p className="font-bold text-text-primary">영상을 불러오지 못했습니다</p>
+              <p className="mt-2 text-sm text-text-muted">{error}</p>
+              <button type="button" onClick={() => window.location.reload()} className="mt-4 text-sm font-bold text-accent hover:underline">다시 시도</button>
+            </div>
+          ) : !configured ? (
+            <div className="rounded-2xl border border-divider bg-white p-10 text-center">
+              <span className="material-symbols-outlined text-accent !text-5xl">video_library</span>
+              <p className="mt-3 font-bold">사용법 영상 준비 중입니다</p>
+              <p className="mt-2 text-sm text-text-muted">영상이 등록되면 이곳에서 장비명으로 바로 검색할 수 있습니다.</p>
+            </div>
+          ) : visibleGuides.length === 0 ? (
+            <div className="rounded-2xl border border-divider bg-white p-10 text-center">
+              <p className="font-bold">검색 결과가 없습니다</p>
+              <p className="mt-2 text-sm text-text-muted">장비 모델명이나 ‘조임쇠’, ‘플레이트’처럼 문제를 바꿔 검색해보세요.</p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-4 flex items-center justify-between px-1 text-xs font-bold text-text-muted">
+                <span>{query ? `검색 결과 ${visibleGuides.length}개` : `전체 영상 ${visibleGuides.length}개`}</span>
+                <span>필수 영상 우선</span>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {visibleGuides.map((guide) => <GuideCard key={guide.id} guide={guide} />)}
+              </div>
+            </>
+          )}
+        </div>
+
+        <aside className="mt-12 rounded-2xl bg-footer-bg px-6 py-7 text-center text-white md:px-10">
+          <p className="font-bold">영상으로 해결되지 않나요?</p>
+          <p className="mt-1 text-sm text-zinc-400">장비를 억지로 조작하지 말고 카카오톡 채널 빌리지로 문의해주세요.</p>
+        </aside>
       </main>
 
       <Footer />

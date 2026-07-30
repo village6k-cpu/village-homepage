@@ -31,7 +31,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-4">
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/terms">이용약관</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/privacy">개인정보처리방침</a>
-            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/guide">렌탈가이드</a>
+            <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/guide">장비 사용법 영상</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/location">오시는길</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="/discount">할인혜택</a>
             <a className="text-text-muted text-xs hover:text-accent transition-colors" href="#">공지사항</a>

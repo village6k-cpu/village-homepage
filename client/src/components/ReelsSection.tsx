@@ -1,46 +1,34 @@
-// VILLAGE — Equipment Guide Section
+// VILLAGE — Equipment Guide Search CTA
 import { Link } from "wouter";
-
-const reels = [
-  { title: "FX3 필수 설정 5가지", desc: "소니 시네마 라인 최적화 가이드",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBJV4nJyLk2MId-SmyKFnB6viqrnfvL8PYu5XRf9GXkclcOJaR69N-aEj4XZNRsmx7nmssfOWDqcfHQHEilUbV7ji5IJrwOm5cFe05OjkpDv2LfJKqc7sEH3B6H_1YMo4ZdwFDASUx0DZ3O4kW9r8wRgvLRzrYkl70fF8EfDzCIp2BuL5rarrRLmb6O1cksDHGagfm5HgKiZKbQr6OXp5JTdwE1syBOTikJq-iRPG_jxyg0wc7TqFKVkKeyC-eeuFFqA-T30Ko_T38" },
-  { title: "장비 사용법 및 주의사항", desc: "렌즈 교체부터 센서 보호까지",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB3dCAvUaHIYuLyd2UlBRK1nAVtQ53LFjwwS0Kyk34y5jMXakHUwkuJCdB2chJIJQMD7pFuj63Tfnkjht9pR3q9e29hif8qtG1qwCc3YE1SK4-VD4YxZa0Tjc4vPUGZUWremTHCcSv_4wVF0eXdpQ3TdTrv4lOwIkxEX8xOanvrXLA2zXF2InxN9cM7_DH7T1VGz4n7t6EN59QQwKul4RrRKuStJs7CNw2NjXRSA34zTGrqdYsTAIJ6LLHyW441-iRyIv6HhH5icdQ" },
-  { title: "팬싸인회 캠 세팅 꿀팁", desc: "최고의 직캠을 위한 포커스 설정",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPN9kBr3j_b670jcnA4c8rhTTHiOPnSafDYn_Gy_HzD4cdZ6442eID2u-hUElNK9oPpHU2iiKZwHMTN7XHI4oFWotlIXbq6Flu4lSkmzyTgT9P16PNLxA2iNdOgOZJTyI0CRJrUnINvJ3h2y1Ou7ktmnP02eLH7CcTB_MCMljXdK7xVJm6SLn68qr7StzhJA3x-h5tbSO6kitGmm9wWbvpi8rCHXDQFHVGRu9MIB0Way4egS9QR61mpvsc-_Ox2RJJyEj_6kUO_Iw" },
-];
 
 export default function ReelsSection() {
   return (
-    <section className="py-24 bg-bg-primary">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex justify-between items-end mb-16">
-          <div>
-            <h2 className="text-3xl font-bold text-text-primary mb-3">장비 가이드</h2>
-            <div className="accent-line" />
-          </div>
-          <Link href="/guide" className="text-accent font-medium text-sm hover:underline">
-            전체 보기
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reels.map((reel, i) => (
-            <div key={i} className="group cursor-pointer">
-              <div className="aspect-[9/16] relative overflow-hidden rounded-2xl mb-4">
-                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  src={reel.image} alt={reel.title} loading="lazy" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                    <span className="material-symbols-outlined !text-3xl text-white" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-                  </div>
-                </div>
-              </div>
-              <h4 className="font-bold text-lg mb-1 text-text-primary">{reel.title}</h4>
-              <p className="text-text-muted text-sm">{reel.desc}</p>
+    <section className="bg-bg-primary py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <Link
+          href="/guide"
+          className="group grid overflow-hidden rounded-3xl border border-divider bg-white md:grid-cols-[1fr_auto]"
+        >
+          <div className="p-7 md:p-12">
+            <p className="mb-3 text-xs font-bold tracking-[0.16em] text-accent">EQUIPMENT GUIDE</p>
+            <h2 className="text-2xl font-black leading-tight text-text-primary md:text-3xl">장비 사용 중 막히셨나요?</h2>
+            <p className="mt-4 max-w-2xl text-sm font-medium leading-relaxed text-text-muted md:text-base">
+              조임쇠가 안 잠기거나 플레이트 방향이 헷갈릴 때, 억지로 조작하지 마세요.<br className="hidden md:block" />
+              장비명이나 문제를 검색하면 빌리지의 짧은 설명 영상을 바로 볼 수 있습니다.
+            </p>
+            <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white transition-transform group-hover:translate-x-1">
+              사용법 영상 검색
+              <span className="material-symbols-outlined !text-xl">arrow_forward</span>
             </div>
-          ))}
-        </div>
+          </div>
+          <div className="flex min-h-[180px] items-center justify-center bg-footer-bg px-10 py-8 md:min-w-[280px]">
+            <div className="text-center">
+              <span className="material-symbols-outlined text-accent !text-7xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
+              <p className="mt-3 text-sm font-bold text-white">촬영 · 검색 · 바로 해결</p>
+              <p className="mt-1 text-xs text-zinc-500">조임쇠 · 플레이트 · 나비나사</p>
+            </div>
+          </div>
+        </Link>
       </div>
     </section>
   );
