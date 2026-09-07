@@ -1517,8 +1517,8 @@ export const products: Product[] = [
   },
   {
   id: 177,
-  name: "클라우드 백업 서비스 (1캠 기준)",
-  priceDay: 10000,
+  name: "클라우드 백업 서비스 (팬싸캠 일괄)",
+  priceDay: 50000,
   category: "기타",
   image: "/images/products/177.png",
   productUrl: "https://village6k.co.kr/product/3c5871b2-7752-4ec2-8614-7005d9ac4c24"
@@ -1676,6 +1676,14 @@ export const products: Product[] = [
   image: "/images/products/195.png",
   productUrl: "https://pf.kakao.com/_xhPMls",
   tag: "NEW"
+  },
+  {
+  id: 196,
+  name: "클라우드 백업 서비스 (촬영팀 일괄)",
+  priceDay: 100000,
+  category: "기타",
+  image: "/images/products/177.png",
+  productUrl: "https://village6k.co.kr/product/3c5871b2-7752-4ec2-8614-7005d9ac4c24"
   },
 ];
 
