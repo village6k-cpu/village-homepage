@@ -49,9 +49,6 @@ export const productComponents: Record<number, Component[]> = {
     { name: "노가암, SDI 연선*3, 멀티 D탭", qty: 3, note: "카메라" },
     { name: "매트박스", qty: 1, note: "카메라" },
   ],
-  10: [
-    { name: "롱 SDI or HDMI", qty: 1, note: "무선" },
-  ],
   11: [
     { name: "롱 SDI or HDMI", qty: 1, note: "무선" },
   ],

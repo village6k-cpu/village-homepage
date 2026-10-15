@@ -91,14 +91,6 @@ export const products: Product[] = [
   tag: "SALE"
   },
   {
-  id: 10,
-  name: "17인치 모니터(구형)",
-  priceDay: 25000,
-  category: "모니터/무선",
-  image: "/images/products/010.png",
-  productUrl: "https://village6k.co.kr/product/fc721926-5fba-4362-8d09-bf1b3c3d29cc-198"
-  },
-  {
   id: 11,
   name: "TVLogic LVM-180A",
   priceDay: 35000,
@@ -1010,7 +1002,7 @@ export const products: Product[] = [
   {
   id: 117,
   name: "헤이저 머신 (용액 포함, 지속 분사)",
-  priceDay: 30000,
+  priceDay: 50000,
   category: "기타",
   image: "/images/products/117.png",
   productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86"
