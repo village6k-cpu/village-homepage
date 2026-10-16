@@ -124,10 +124,12 @@ export default function ProductDetail() {
 
               {/* 혜택 안내 */}
               <div className="bg-white rounded-xl p-4 mb-6 space-y-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-accent">✓</span>
-                  <span className="text-text-secondary">배터리 + SD카드 무료 포함</span>
-                </div>
+                {(product.category === "카메라" || product.category === "카메라 풀세트") && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-accent">✓</span>
+                    <span className="text-text-secondary">배터리 + SD카드 무료 포함</span>
+                  </div>
+                )}
                 {isFullSet && (
                   <div className="flex items-center gap-2 text-sm">
                     <span className="text-accent">✓</span>
