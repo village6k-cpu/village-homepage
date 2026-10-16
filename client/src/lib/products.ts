@@ -10,6 +10,7 @@ export interface Product {
   image: string;
   productUrl: string;
   tag?: 'SALE' | 'NEW' | 'BEST' | '입고예정';
+  detailNote?: string;
 }
 
 export const products: Product[] = [
@@ -997,7 +998,8 @@ export const products: Product[] = [
   priceDay: 30000,
   category: "기타",
   image: "/images/products/116.png",
-  productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86-87"
+  productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86-87",
+  detailNote: "중국산 저가 용액이 아닌 국산 수용성 용액을 채워드립니다. 기본적으로 하루 정도 사용 가능한 양을 채워드리며 그 이상은 추가금이 있을 수 있습니다."
   },
   {
   id: 117,
@@ -1005,7 +1007,8 @@ export const products: Product[] = [
   priceDay: 50000,
   category: "기타",
   image: "/images/products/117.png",
-  productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86"
+  productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86",
+  detailNote: "중국산 저가 용액이 아닌 국산 수용성 용액을 채워드립니다. 기본적으로 하루 정도 사용 가능한 양을 채워드리며 그 이상은 추가금이 있을 수 있습니다."
   },
   {
   id: 118,
