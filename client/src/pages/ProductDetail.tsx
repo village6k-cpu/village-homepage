@@ -116,9 +116,9 @@ export default function ProductDetail() {
 
               {/* 제품별 안내 문구 */}
               {product.detailNote && (
-                <div className="flex items-start gap-2.5 px-4 py-3.5 mb-4 rounded-xl bg-sky-50 border border-sky-200">
-                  <span className="material-symbols-outlined text-sky-500 !text-lg mt-0.5">water_drop</span>
-                  <span className="text-sm text-sky-700 leading-relaxed">{product.detailNote}</span>
+                <div className="flex items-start gap-2.5 px-4 py-3.5 mb-4 rounded-xl bg-white border border-divider">
+                  <span className="material-symbols-outlined text-text-muted !text-lg mt-0.5">info</span>
+                  <span className="text-sm text-text-secondary leading-relaxed">{product.detailNote}</span>
                 </div>
               )}
 
