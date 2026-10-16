@@ -994,7 +994,7 @@ export const products: Product[] = [
   {
   id: 116,
   name: "포그 머신 (용액 포함)",
-  priceDay: 20000,
+  priceDay: 30000,
   category: "기타",
   image: "/images/products/116.png",
   productUrl: "https://village6k.co.kr/product/loofahsponge-slice-84-85-86-87"
