@@ -1194,7 +1194,8 @@ export const products: Product[] = [
   priceDay: 5000,
   category: "기타",
   image: "/images/products/139.png",
-  productUrl: "https://village6k.co.kr/product/e5874f7f-b02e-40a8-8660-05d69c59e8f5"
+  productUrl: "https://village6k.co.kr/product/e5874f7f-b02e-40a8-8660-05d69c59e8f5",
+  detailNote: "카메라 또는 조명기 반출 시에만 추가 가능한 제품입니다. 개별 렌탈 문의 절대 금지."
   },
   {
   id: 140,
