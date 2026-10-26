@@ -2,6 +2,7 @@
 import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import UsageNoticePopup from "@/components/UsageNoticePopup";
 import { products, formatPrice, KAKAO_URL, Product } from "@/lib/products";
 import { productComponents, Component } from "@/lib/productComponents";
 
@@ -267,6 +268,7 @@ export default function ProductDetail() {
         )}
       </main>
       <Footer />
+      <UsageNoticePopup />
     </div>
   );
 }
