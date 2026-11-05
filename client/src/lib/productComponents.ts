@@ -519,4 +519,8 @@ export const productComponents: Record<number, Component[]> = {
     { name: "소프트박스", qty: 1, note: "조명" },
     { name: "C스탠드", qty: 1, note: "조명" },
   ],
+  197: [
+    { name: "레오포토 LY-224C 미스터Y 삼각대", qty: 1 },
+    { name: "레오포토 LH-25R 볼헤드", qty: 1 },
+  ],
 };

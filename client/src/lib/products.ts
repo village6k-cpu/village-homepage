@@ -1681,6 +1681,15 @@ export const products: Product[] = [
   image: "/images/products/177.png",
   productUrl: "https://village6k.co.kr/product/3c5871b2-7752-4ec2-8614-7005d9ac4c24"
   },
+  {
+  id: 197,
+  name: "레오포토 LY-224C 미스터Y 삼각대 (LH-25R 헤드)",
+  priceDay: 10000,
+  category: "삼각대",
+  image: "/images/products/197.jpg",
+  productUrl: "https://pf.kakao.com/_xhPMls",
+  tag: "NEW"
+  },
 ];
 
 export const categories = [
