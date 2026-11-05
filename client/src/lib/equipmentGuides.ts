@@ -44,11 +44,14 @@ export function normalizeEquipmentGuideText(value: unknown) {
   return String(value ?? "")
     .normalize("NFKC")
     .toLowerCase()
+    .replace(/small\s*hd|스몰\s*(?:hd|에이치디)/g, "스몰hd")
     .replace(/아푸투레|아푸투어|aputure/g, "아푸처")
     .replace(/[^0-9a-z가-힣]+/g, "");
 }
 
-export function filterEquipmentGuides(guides: EquipmentGuideVideo[], query: string) {
+type SearchableGuide = Pick<EquipmentGuideVideo, "title" | "summary" | "equipmentNames" | "keywords">;
+
+export function filterEquipmentGuides<T extends SearchableGuide>(guides: T[], query: string): T[] {
   const tokens = query
     .split(/[\s,，/]+/)
     .map(normalizeEquipmentGuideText)

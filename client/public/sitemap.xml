@@ -16,6 +16,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://village6k.co.kr/guide/smallhd-safe-connection</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://village6k.co.kr/guide/smallhd-no-signal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://village6k.co.kr/guide/smallhd-focus-exposure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://village6k.co.kr/location</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

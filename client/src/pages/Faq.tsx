@@ -1,6 +1,6 @@
 // VILLAGE — FAQ 페이지 (/faq)
 // 목적: 카톡/전화 문의를 줄이기 위한 자주묻는질문 페이지
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactElement } from "react";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ function renderAnswer(text: string) {
   const lines = text.split("\n");
   return lines.map((line, li) => {
     // [text](url) → <a>
-    const parts: (string | JSX.Element)[] = [];
+    const parts: (string | ReactElement)[] = [];
     const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
     let last = 0, m, key = 0;
     while ((m = regex.exec(line)) !== null) {

@@ -163,7 +163,7 @@ export default function ProductDetail() {
                 className="mt-3 flex w-full items-center justify-center gap-2.5 rounded-xl border border-accent/40 bg-white px-6 py-3.5 text-base font-bold text-accent transition-colors hover:bg-accent/5"
               >
                 <span className="material-symbols-outlined">smart_display</span>
-                이 장비 사용법 영상 보기
+                이 장비 사용법 보기
               </Link>
             </div>
           </div>

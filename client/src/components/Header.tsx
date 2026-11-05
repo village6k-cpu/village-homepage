@@ -186,7 +186,7 @@ export default function Header() {
 
           <Link href="/guide"
             className="md:hidden inline-flex items-center px-2.5 py-1.5 rounded-md border border-divider bg-white text-text-primary text-xs font-semibold"
-            aria-label="장비 사용법 영상">
+            aria-label="장비 사용법">
             사용법
           </Link>
 
@@ -246,7 +246,7 @@ export default function Header() {
           <Link href="/guide" onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2 text-sm py-3 font-semibold text-accent">
             <span className="material-symbols-outlined !text-lg">smart_display</span>
-            장비 사용법 영상
+            장비 사용법
           </Link>
           <Link href="/location" onClick={() => setMobileOpen(false)}
             className="block text-sm py-3 font-medium text-text-secondary hover:text-text-primary">오시는길</Link>
