@@ -54,7 +54,7 @@ export default function UsageNoticePopup({ variant = "default" }: { variant?: "d
         <p className="text-[11px] font-bold text-accent tracking-widest mb-2">안내</p>
         <p className="text-sm text-text-primary leading-relaxed mb-5">
           {variant === "gm-zoom" ? (
-            "GM 줌렌즈에는 기본 UV 필터가 장착되어 반출됩니다. GM 줌렌즈는 대물렌즈에 작은 실기스만 생겨도 수리비가 50만원 이상 발생하는 제품이니 리스크를 인지하신 후, UV필터를 해체하여 사용 희망하실 경우에는 UV필터 케이스를 요청해주시기 바랍니다."
+            "GM 줌렌즈에는 기본 UV 필터가 장착되어 반출됩니다. GM 줌렌즈는 대물렌즈에 작은 실기스만 생겨도 고가의 수리비가 발생하므로 리스크를 인지하신 후, UV필터를 해체하여 사용 희망하실 경우에는 UV필터 케이스를 요청해주시기 바랍니다."
           ) : (
             <>
               해당 장비의 사용법을 모르실 경우에는 반드시 예약 시 미리 알려주시기 바랍니다.
