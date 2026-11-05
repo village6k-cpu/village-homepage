@@ -1,27 +1,6 @@
 import { Link } from "wouter";
 import type { FieldGuide } from "@/lib/fieldGuides";
 
-export function PowerSequence() {
-  return (
-    <div className="grid gap-3 sm:grid-cols-2" aria-label="빌리지 전원 사용 순서">
-      {[
-        { label: "켤 때", first: "카메라", second: "모니터", icon: "power_settings_new" },
-        { label: "끌 때", first: "모니터", second: "카메라", icon: "power_off" },
-      ].map((sequence) => (
-        <div key={sequence.label} className="rounded-xl border border-white/15 bg-white/5 px-5 py-4">
-          <p className="mb-2 flex items-center gap-2 text-xs font-bold text-white/60">
-            <span aria-hidden="true" className="material-symbols-outlined !text-base text-[#FF9479]">{sequence.icon}</span>
-            {sequence.label}
-          </p>
-          <p className="flex items-center gap-3 text-lg font-bold tracking-tight text-white">
-            {sequence.first}<span aria-label="다음" className="text-[#FF9479]">→</span>{sequence.second}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function FieldGuideCard({ guide }: { guide: FieldGuide }) {
   return (
     <article className="overflow-hidden rounded-2xl border border-accent/50 bg-white">

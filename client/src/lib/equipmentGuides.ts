@@ -45,7 +45,7 @@ export function normalizeEquipmentGuideText(value: unknown) {
     .normalize("NFKC")
     .toLowerCase()
     .replace(/small\s*hd|스몰\s*(?:hd|에이치디)/g, "스몰hd")
-    .replace(/아푸투레|아푸투어|aputure/g, "아푸처")
+    .replace(/아푸투레|아푸투어|어퓨쳐|어퓨처|아퓨쳐|아퓨처|아푸쳐|aputure/g, "아푸처")
     .replace(/[^0-9a-z가-힣]+/g, "");
 }
 
