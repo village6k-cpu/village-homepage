@@ -1,15 +1,16 @@
-// VILLAGE — 장비 사용법 미숙 관련 안내 팝업 (상품 상세 진입 시, 하루 1회)
+// VILLAGE — 상품별 이용 안내 팝업 (안내 종류별 하루 1회 숨김)
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "village-popup-usage-notice";
-
-export default function UsageNoticePopup() {
+export default function UsageNoticePopup({ variant = "default" }: { variant?: "default" | "gm-zoom" }) {
+  const storageKey = variant === "gm-zoom"
+    ? "village-popup-gm-zoom-uv-notice"
+    : "village-popup-usage-notice";
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     try {
-      const hideUntil = localStorage.getItem(STORAGE_KEY);
+      const hideUntil = localStorage.getItem(storageKey);
       if (hideUntil && Number(hideUntil) > Date.now()) return;
     } catch {}
     const t = setTimeout(() => {
@@ -17,12 +18,12 @@ export default function UsageNoticePopup() {
       requestAnimationFrame(() => setEntered(true));
     }, 600);
     return () => clearTimeout(t);
-  }, []);
+  }, [storageKey]);
 
   const dismiss = (remember: boolean) => {
     if (remember) {
       try {
-        localStorage.setItem(STORAGE_KEY, String(Date.now() + 24 * 60 * 60 * 1000));
+        localStorage.setItem(storageKey, String(Date.now() + 24 * 60 * 60 * 1000));
       } catch {}
     }
     setEntered(false);
@@ -52,8 +53,14 @@ export default function UsageNoticePopup() {
       >
         <p className="text-[11px] font-bold text-accent tracking-widest mb-2">안내</p>
         <p className="text-sm text-text-primary leading-relaxed mb-5">
-          해당 장비의 사용법을 모르실 경우에는 반드시 예약 시 미리 알려주시기 바랍니다.
-          장비 사용 미숙으로 인한 책임 회피 또는 환불 요구는 불가한 점 양지 바랍니다.
+          {variant === "gm-zoom" ? (
+            "GM 줌렌즈에는 기본 UV 필터가 장착되어 반출됩니다. GM 줌렌즈는 대물렌즈에 작은 실기스만 생겨도 수리비가 50만원 이상 발생하는 제품이니 리스크를 인지하신 후, UV필터를 해체하여 사용 희망하실 경우에는 UV필터 케이스를 요청해주시기 바랍니다."
+          ) : (
+            <>
+              해당 장비의 사용법을 모르실 경우에는 반드시 예약 시 미리 알려주시기 바랍니다.
+              장비 사용 미숙으로 인한 책임 회피 또는 환불 요구는 불가한 점 양지 바랍니다.
+            </>
+          )}
         </p>
 
         <button

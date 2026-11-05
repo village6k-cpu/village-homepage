@@ -39,6 +39,7 @@ export default function ProductDetail() {
   const img = product.image && product.image.length > 0 ? product.image : DEFAULT_IMG;
   const discountPrice = Math.round(product.priceDay * 0.7);
   const tagClass = product.tag ? tagStyles[product.tag] || "" : "";
+  const noticeVariant = [69, 92, 106, 107].includes(id) ? "gm-zoom" : "default";
 
   // 풀세트 상품 (무선 송수신기 포함)
   const FULLSET_IDS = [13, 84, 112, 170, 179, 182];
@@ -268,7 +269,7 @@ export default function ProductDetail() {
         )}
       </main>
       <Footer />
-      <UsageNoticePopup />
+      <UsageNoticePopup key={noticeVariant} variant={noticeVariant} />
     </div>
   );
 }
