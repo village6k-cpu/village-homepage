@@ -1,9 +1,12 @@
-// VILLAGE — 상품별 이용 안내 팝업 (안내 종류별 하루 1회 숨김)
+// VILLAGE — 상품별 이용 안내 팝업 (GM 줌렌즈는 상품별 하루 1회 숨김)
 import { useEffect, useState } from "react";
 
-export default function UsageNoticePopup({ variant = "default" }: { variant?: "default" | "gm-zoom" }) {
+export default function UsageNoticePopup({ variant = "default", productId }: {
+  variant?: "default" | "gm-zoom";
+  productId: number;
+}) {
   const storageKey = variant === "gm-zoom"
-    ? "village-popup-gm-zoom-uv-notice"
+    ? `village-popup-gm-zoom-uv-notice-${productId}`
     : "village-popup-usage-notice";
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState(false);

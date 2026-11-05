@@ -269,7 +269,11 @@ export default function ProductDetail() {
         )}
       </main>
       <Footer />
-      <UsageNoticePopup key={noticeVariant} variant={noticeVariant} />
+      <UsageNoticePopup
+        key={noticeVariant === "gm-zoom" ? id : noticeVariant}
+        variant={noticeVariant}
+        productId={id}
+      />
     </div>
   );
 }
