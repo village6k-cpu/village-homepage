@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { fetchEquipmentGuides, filterEquipmentGuides } from "@/lib/equipmentGuides";
 import type { EquipmentGuideVideo } from "@/lib/equipmentGuides";
-import FieldGuideSeries from "@/components/FieldGuideSeries";
-import { fieldGuides } from "@/lib/fieldGuides";
+import FieldGuideCard from "@/components/FieldGuideCard";
+import { fieldGuides, type FieldGuide } from "@/lib/fieldGuides";
 import { KAKAO_URL } from "@/lib/products";
 
 function initialSearchQuery() {
@@ -77,10 +77,18 @@ function GuideCard({ guide }: { guide: EquipmentGuideVideo }) {
   );
 }
 
+export function GuideGrid({ articles, videos }: { articles: FieldGuide[]; videos: EquipmentGuideVideo[] }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {articles.map((guide) => <FieldGuideCard key={guide.id} guide={guide} />)}
+      {videos.map((guide) => <GuideCard key={guide.id} guide={guide} />)}
+    </div>
+  );
+}
+
 export default function Guide() {
   const [query, setQuery] = useState(initialSearchQuery);
   const [loading, setLoading] = useState(true);
-  const [configured, setConfigured] = useState(false);
   const [guides, setGuides] = useState<EquipmentGuideVideo[]>([]);
   const [error, setError] = useState("");
 
@@ -90,7 +98,6 @@ export default function Guide() {
     fetchEquipmentGuides(controller.signal)
       .then((result) => {
         if (!active) return;
-        setConfigured(result.configured);
         setGuides(result.guides);
         setError("");
       })
@@ -118,11 +125,9 @@ export default function Guide() {
 
       <main className="mx-auto w-full max-w-7xl px-5 py-12 md:px-8 md:py-16">
         <header className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
-          <p className="mb-3 text-xs font-bold tracking-[0.18em] text-accent">EQUIPMENT GUIDE</p>
           <h1 className="text-3xl font-black tracking-tight md:text-4xl">장비 사용법</h1>
           <p className="mt-4 text-sm font-medium leading-relaxed text-text-muted md:text-base">
-            장착 방향, 파손 주의, 분실하기 쉬운 부품까지.<br className="hidden sm:block" />
-            촬영 전 필수 가이드와 짧은 영상으로, 현장에서 필요한 기본을 확인하세요.
+            장비별 사용 방법과 주의사항을 글과 영상으로 확인하세요.
           </p>
         </header>
 
@@ -134,7 +139,7 @@ export default function Guide() {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="예: 스몰HD, 케이블 연결, 미라지 매트박스"
+              placeholder="장비명이나 궁금한 내용을 검색하세요"
               className="min-w-0 flex-1 bg-transparent text-base font-medium text-text-primary outline-none placeholder:text-text-muted"
               autoComplete="off"
             />
@@ -146,49 +151,30 @@ export default function Guide() {
           </div>
         </label>
 
-        <FieldGuideSeries guides={visibleFieldGuides} searching={Boolean(query.trim())} />
-
-        <section className="mt-12 md:mt-16" aria-labelledby="video-guides-heading">
-          <div className="mb-5">
-            <p className="mb-2 text-[11px] font-bold tracking-[0.18em] text-accent">WATCH & LEARN</p>
-            <h2 id="video-guides-heading" className="text-2xl font-black tracking-tight">영상으로 따라 하기</h2>
-            <p className="mt-2 text-sm leading-6 text-text-secondary">장착 방향과 조작 방법을 실제 영상으로 확인하세요.</p>
+        <section className="mt-8" aria-label="장비 사용 안내 목록">
+          <div className="mb-4 flex items-center justify-between px-1 text-xs font-bold text-text-muted">
+            <span>{query.trim() ? "검색 결과" : "전체 안내"} {visibleFieldGuides.length + visibleGuides.length}개</span>
+            <span>필수 안내 우선</span>
           </div>
+          <GuideGrid articles={visibleFieldGuides} videos={visibleGuides} />
           {loading ? (
-            <div className="rounded-2xl border border-divider bg-white p-10 text-center text-sm font-medium text-text-muted">사용법 영상을 불러오는 중...</div>
+            <p role="status" className="mt-4 text-center text-sm text-text-secondary">영상을 불러오는 중입니다.</p>
           ) : error ? (
-            <div className="rounded-2xl border border-accent/30 bg-accent/5 p-8 text-center">
-              <p className="font-bold text-text-primary">영상을 불러오지 못했습니다</p>
-              <p className="mt-2 text-sm text-text-muted">{error}</p>
-              <button type="button" onClick={() => window.location.reload()} className="mt-4 text-sm font-bold text-accent hover:underline">다시 시도</button>
+            <div role="status" className="mt-4 rounded-xl border border-divider bg-white p-4 text-sm text-text-secondary">
+              <p>영상을 불러오지 못했습니다. {error}</p>
+              <button type="button" onClick={() => window.location.reload()} className="mt-2 min-h-11 font-bold text-accent hover:underline">다시 시도</button>
             </div>
-          ) : !configured ? (
+          ) : visibleFieldGuides.length + visibleGuides.length === 0 ? (
             <div className="rounded-2xl border border-divider bg-white p-10 text-center">
-              <span className="material-symbols-outlined text-accent !text-5xl">video_library</span>
-              <p className="mt-3 font-bold">사용법 영상 준비 중입니다</p>
-              <p className="mt-2 text-sm text-text-muted">영상이 등록되면 이곳에서 장비명으로 바로 검색할 수 있습니다.</p>
+              <p className="font-bold">{query.trim() ? "검색 결과가 없습니다" : "등록된 안내가 없습니다"}</p>
+              <p className="mt-2 text-sm text-text-muted">장비명이나 검색어를 바꿔보세요.</p>
             </div>
-          ) : visibleGuides.length === 0 ? (
-            <div className="rounded-2xl border border-divider bg-white p-10 text-center">
-              <p className="font-bold">{visibleFieldGuides.length > 0 ? "이 검색어로 등록된 영상은 없습니다" : "검색 결과가 없습니다"}</p>
-              <p className="mt-2 text-sm text-text-muted">장비 모델명이나 ‘조임쇠’, ‘플레이트’처럼 문제를 바꿔 검색해보세요.</p>
-            </div>
-          ) : (
-            <>
-              <div className="mb-4 flex items-center justify-between px-1 text-xs font-bold text-text-muted">
-                <span>{query ? `검색 결과 ${visibleGuides.length}개` : `전체 영상 ${visibleGuides.length}개`}</span>
-                <span>필수 영상 우선</span>
-              </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {visibleGuides.map((guide) => <GuideCard key={guide.id} guide={guide} />)}
-              </div>
-            </>
-          )}
+          ) : null}
         </section>
 
         <aside className="mt-12 rounded-2xl bg-footer-bg px-6 py-7 text-center text-white md:px-10">
-          <p className="font-bold">가이드로 해결되지 않나요?</p>
-          <p className="mt-1 text-sm text-zinc-400">장비를 억지로 조작하지 말고 카카오톡 채널 빌리지로 문의해주세요.</p>
+          <p className="font-bold">사용 중 문제가 있으면 문의해주세요.</p>
+          <p className="mt-1 text-sm text-zinc-400">장비를 억지로 조작하지 말고 현재 상태를 알려주세요.</p>
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#FF9479] hover:underline">빌리지에 문의하기 <span aria-hidden="true">↗</span></a>
         </aside>
       </main>
