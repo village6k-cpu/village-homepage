@@ -25,6 +25,9 @@ export default function FieldGuideDetail() {
 
           <section aria-labelledby="quick-summary-heading" className="rounded-2xl border border-accent/40 bg-white p-5 sm:p-7">
             <h2 id="quick-summary-heading" className="mb-4 text-lg font-bold text-accent">30초 요약</h2>
+            <p className="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold leading-7 text-red-800">
+              <span className="mr-2">경고</span>{guide.quickWarning}
+            </p>
             <ul className="space-y-3">
               {guide.quickSummary.map((item) => (
                 <li key={item} className="flex gap-3 text-sm font-medium leading-7 sm:text-base">

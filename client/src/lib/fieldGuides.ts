@@ -15,6 +15,7 @@ export interface FieldGuide {
   equipmentNames: string[];
   keywords: string[];
   quickSummary: string[];
+  quickWarning: string;
   intro: string;
   sections: FieldGuideSection[];
   sources: { title: string; url: string }[];
@@ -41,6 +42,7 @@ export const fieldGuides: FieldGuide[] = [
       "켤 때는 카메라 → 모니터, 끌 때는 모니터 → 카메라 순서입니다.",
       "SDI + 외부 전원: 전원선 먼저, SDI 나중에 연결합니다. 분리할 때는 SDI부터 뺍니다.",
     ],
+    quickWarning: "연결·분리 순서를 지키지 않으면 모니터나 카메라의 단자가 손상될 수 있으며, 고가의 수리비가 발생할 수 있습니다.",
     intro: "SmallHD 모니터의 영상 단자는 충격이나 잘못된 전원 연결로 손상될 수 있습니다. 케이블을 연결하거나 분리하기 전에 아래 순서를 확인해주세요.",
     sections: [
       {
@@ -93,6 +95,7 @@ export const fieldGuides: FieldGuide[] = [
       "분리할 때는 전원 OFF → 돼지코 뽑기 → 장비 사이 케이블 분리 순서입니다.",
       "전기가 공급되는 상태에서는 중간 케이블을 뺐다 끼우지 마세요. 고장 원인이 될 수 있습니다.",
     ],
+    quickWarning: "전기가 공급되는 상태에서 케이블을 뺐다 끼우면 조명기·발라스터가 고장 날 수 있으며, 고가의 수리비가 발생할 수 있습니다.",
     intro: "어퓨쳐 등 AC 전원을 사용하는 조명의 연결 순서입니다. 발라스터는 조명에 전원을 공급하고 밝기 등을 조절하는 컨트롤 박스입니다. 외장 발라스터가 없는 모델도 전원 플러그는 나머지 연결을 마친 뒤 꽂아주세요.",
     sections: [
       {
