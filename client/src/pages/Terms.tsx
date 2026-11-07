@@ -4,7 +4,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const EFFECTIVE_DATE = "2026년 5월 12일";
+const REVISION_DATE = "2026년 11월 7일";
 
 const ARTICLES: { num: string; title: string; body: React.ReactNode }[] = [
   {
@@ -24,7 +24,7 @@ const ARTICLES: { num: string; title: string; body: React.ReactNode }[] = [
       <ul className="list-disc pl-5 space-y-1.5">
         <li><strong className="text-text-primary">"이용자"</strong>란 본 약관에 따라 회사의 서비스를 신청하고 이용하는 자를 말합니다.</li>
         <li><strong className="text-text-primary">"장비"</strong>란 회사가 보유 또는 관리하는 카메라·렌즈·조명·음향·서포트 등 영상 촬영 관련 일체의 물품을 말합니다.</li>
-        <li><strong className="text-text-primary">"대여 기간"</strong>이란 이용자가 장비를 픽업한 시점부터 반납한 시점까지의 기간을 말합니다.</li>
+        <li><strong className="text-text-primary">"대여 기간"</strong>이란 예약 확정 시 회사와 이용자가 합의한 픽업 일시부터 반납 일시까지의 기간을 말합니다. 양 당사자가 일정을 변경하기로 합의한 경우에는 변경된 기간을 적용합니다.</li>
         <li><strong className="text-text-primary">"예약"</strong>이란 이용자가 카카오톡 채널·전화 등을 통해 특정 장비 및 기간을 신청하고 회사가 이를 확인한 행위를 말합니다.</li>
       </ul>
     ),
@@ -91,6 +91,7 @@ const ARTICLES: { num: string; title: string; body: React.ReactNode }[] = [
     body: (
       <ul className="list-disc pl-5 space-y-1.5">
         <li>이용자는 약정한 일시와 장소에서 장비를 픽업·반납해야 합니다.</li>
+        <li>이용자는 장비를 인도받은 때부터 실제로 반납할 때까지 장비를 관리할 의무를 부담합니다.</li>
         <li>이용자는 장비를 선량한 관리자의 주의 의무로 사용해야 하며, 통상적 사용 범위를 초과하는 용도(우천 시 무방수 장비 사용, 해수·모래 노출 등)는 사전에 회사와 협의해야 합니다.</li>
         <li>이용자는 장비를 제3자에게 임의로 재임대·양도할 수 없습니다.</li>
         <li>이용자는 장비의 분실·도난·파손이 발생한 경우 즉시 회사에 통지해야 합니다.</li>
@@ -123,11 +124,11 @@ const ARTICLES: { num: string; title: string; body: React.ReactNode }[] = [
   },
   {
     num: "제10조",
-    title: "예약 취소 및 환불",
+    title: "예약 취소, 조기 반납 및 환불",
     body: (
       <ul className="list-disc pl-5 space-y-1.5">
         <li>이용자가 픽업 전 예약을 취소하는 경우, 별도의 위약금이 청구되지 않습니다(선결제가 없으므로).</li>
-        <li>이용자가 픽업 후 자발적으로 조기 반납하는 경우, 이미 사용한 일수에 대한 대여료가 청구되며 사용하지 않은 잔여 일수는 청구되지 않습니다.</li>
+        <li><strong className="text-text-primary">장비를 픽업한 뒤 이용자의 사정으로 약정한 반납 일시보다 일찍 반납하더라도, 조기 반납 접수만으로 대여 기간이나 대여료가 변경되지 않습니다. 대여료는 예약 확정 시 합의한 기간과 금액을 기준으로 정산합니다.</strong> 회사의 귀책사유, 당사자 간 별도 합의 또는 관련 법령에 따라 대여료를 조정해야 하는 경우에는 그에 따릅니다.</li>
         <li>장비의 결함으로 정상적인 사용이 불가한 경우, 회사는 즉시 대체 장비를 제공하거나 해당 일자에 대한 대여료를 청구하지 않습니다.</li>
       </ul>
     ),
@@ -137,10 +138,10 @@ const ARTICLES: { num: string; title: string; body: React.ReactNode }[] = [
     title: "장비의 파손·분실",
     body: (
       <ul className="list-disc pl-5 space-y-1.5">
-        <li>대여 기간 중 장비에 파손·분실이 발생한 경우, 이용자는 그 사실을 즉시 회사에 통지해야 합니다.</li>
-        <li>회사는 공식 서비스센터 또는 제조사의 수리 견적을 근거로 수리 비용을 산정합니다.</li>
-        <li>수리가 불가능하거나 분실된 경우, 동일·동급 장비의 시장 가격을 기준으로 변상금을 산정합니다.</li>
-        <li>고의·중과실 정도, 통상적 마모 여부 등을 고려하여 양 당사자가 협의하여 부담 비율을 정합니다.</li>
+        <li>장비를 인도받은 때부터 실제 반납할 때까지 장비의 파손·고장·분실이 발생한 경우, 이용자는 그 사실을 즉시 회사에 통지해야 합니다.</li>
+        <li><strong className="text-text-primary">이용자의 고의·과실 또는 계약상 관리 의무 위반으로 장비가 파손·고장·분실된 경우, 이용자는 그로 인해 발생한 손해를 배상합니다.</strong> 통상적인 마모, 인도 전부터 있었던 하자 또는 회사의 귀책사유에 해당하는 부분은 이용자 부담에서 제외합니다.</li>
+        <li>수리가 가능한 경우에는 공식 서비스센터 또는 제조사의 견적을 기준으로 필요한 수리비를 산정합니다. 수리가 불가능하거나 분실된 경우에는 장비의 사용 연수와 상태를 고려하여 동일·동급 장비의 시장 가격을 기준으로 변상금을 산정합니다.</li>
+        <li>회사는 반출·반납 점검 기록, 수리 견적, 시세 등 확인 가능한 자료에 따라 책임 범위와 청구 금액의 근거를 안내합니다. 운송·점검 비용이나 대여 불가에 따른 손실은 이용자의 귀책사유로 실제 발생한 금액을 입증할 수 있는 경우 관련 법령에 따른 배상 범위에서 청구할 수 있습니다.</li>
         <li>이용자는 본인의 책임 보험(개인 배상책임보험 등)을 통한 보상을 회사에 요청할 수 있습니다.</li>
       </ul>
     ),
@@ -193,7 +194,8 @@ export default function Terms() {
             회사와 이용자의 권리·의무를 규정합니다.
           </p>
           <div className="mt-4 pt-4 border-t border-divider text-xs text-text-muted">
-            시행일: {EFFECTIVE_DATE}
+            <p>개정일 {REVISION_DATE}</p>
+            <p className="mt-2">개정 내용은 이를 안내받고 동의하여 체결한 신규 대여 계약에 적용합니다. 기존 계약은 체결 당시 약관과 개별 약정에 따릅니다.</p>
           </div>
 
           {/* 본문 */}
