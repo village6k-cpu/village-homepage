@@ -33,7 +33,7 @@ export const fieldGuides: FieldGuide[] = [
     equipmentLabel: "SmallHD 모니터",
     imageUrl: "/images/products/134.png",
     productId: 134,
-    title: "SmallHD 모니터 연결·분리 주의사항",
+    title: "SmallHD 모니터 연결·분리 주의사항 (모든 모니터 공통)",
     summary: "케이블을 만지기 전 양쪽 전원을 꺼주세요. 전원 ON·OFF 순서와 SDI·HDMI 단자 취급 방법을 안내합니다.",
     equipmentNames,
     keywords: ["전원", "연결", "분리", "케이블", "SDI", "HDMI", "D-Tap", "배터리", "파손", "안전", "수리", "모니터"],
