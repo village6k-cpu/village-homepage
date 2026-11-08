@@ -131,4 +131,67 @@ export const fieldGuides: FieldGuide[] = [
       { title: "Aputure · LS 600d Pro 조명기·컨트롤 박스 연결", url: "https://help.aputure.com/en/ls600d-pro/getting-started" },
     ],
   },
+  {
+    id: "recorder-mic-setup",
+    equipmentLabel: "Zoom F6 · Zoom H8 · TASCAM Portacapture X8",
+    imageUrl: "/images/products/120.png",
+    productId: 120,
+    title: "레코더 마이크 연결과 소리 확인",
+    summary: "마이크 소리가 안 들어오거나 이어폰 한쪽만 들릴 때, 팬텀 전원과 스테레오 링크를 확인하는 방법입니다.",
+    equipmentNames: ["Zoom F6", "줌 F6", "Zoom H8", "줌 H8", "TASCAM Portacapture X8", "타스캠 X8", "Portacapture X8", "포타캡처 X8"],
+    keywords: ["레코더", "래코더", "녹음기", "오디오", "붐마이크", "팬텀 전원", "48V", "PHANTOM", "XLR", "이어폰", "헤드폰", "한쪽", "모노", "스테레오 링크", "PAN"],
+    quickSummary: [
+      "팬텀 전원을 끈 상태에서 XLR 마이크를 연결하고, 꽂은 번호의 녹음 트랙을 켭니다.",
+      "팬텀 전원이 필요한 마이크만 해당 입력에서 켭니다. 전압은 마이크 사양에 맞춥니다.",
+      "모노 마이크 한 개가 이어폰 한쪽에서만 들리면 해당 입력의 스테레오 링크를 끄고, PAN을 가운데로 맞춥니다.",
+      "촬영 전에 입력 미터를 보고, 짧게 녹음한 파일을 재생해 소리를 확인합니다.",
+    ],
+    quickWarning: "팬텀 전원이 켜진 상태에서 XLR을 꽂거나 빼면 큰 소음이 나거나 마이크와 레코더가 손상될 수 있습니다. 케이블을 바꾸기 전에 해당 입력의 팬텀 전원을 끄세요.",
+    intro: "팬텀 전원은 레코더가 XLR 케이블을 통해 마이크에 공급하는 전원입니다. 붐에 장착했더라도 필요한 전원은 마이크 모델마다 다릅니다. 무선 수신기나 믹서를 연결할 때는 장비의 출력 레벨에 맞춰 입력을 설정하고, 팬텀 전원은 꺼둡니다.",
+    sections: [
+      {
+        title: "마이크 소리가 안 들어올 때",
+        body: "말하거나 소리를 내면서 마이크를 꽂은 번호의 입력 미터를 보세요. 미터가 안 움직이면 입력부터, 미터가 움직이는데 이어폰이 조용하면 듣는 설정부터 확인합니다.",
+        steps: [
+          "실제 꽂은 단자와 선택한 녹음 트랙이 맞는지 확인합니다. 외장 마이크를 연결했다면 내장 마이크 트랙과 구분하세요.",
+          "마이크 입력 설정과 입력 레벨(GAIN 또는 TRIM)을 확인합니다. 팬텀이 필요한 마이크라면 연결한 입력만 켜고 마이크 사양에 맞는 전압을 사용합니다.",
+          "미터가 움직이면 이어폰이 헤드폰 단자에 끝까지 들어갔는지, 볼륨과 모니터링 설정이 맞는지 확인합니다.",
+        ],
+      },
+      {
+        title: "이어폰 한쪽만 들릴 때",
+        body: "스테레오 링크는 두 입력을 왼쪽과 오른쪽 한 쌍으로 묶습니다. 예를 들어 X8에서 3·4번이 묶여 있고 3번에만 모노 마이크를 꽂으면 왼쪽만 들릴 수 있습니다.",
+        steps: [
+          "모노 마이크 한 개를 쓰는 경우 해당 입력 쌍의 스테레오 링크를 풀고, 믹서의 좌우 배치(PAN)를 중앙에 둡니다.",
+          "X/Y 마이크처럼 좌우를 따로 받는 스테레오 소스를 쓰는 경우에는 해당 스테레오 설정을 유지합니다.",
+          "짧게 녹음하고 재생해 확인합니다. 이어폰에서 듣는 좌우 배치와 실제로 저장되는 트랙은 설정에 따라 다를 수 있습니다.",
+        ],
+      },
+      {
+        title: "TASCAM Portacapture X8",
+        body: "외장 XLR 마이크는 옆면 3~6번에 연결합니다. 상단 1·2번은 기본 마이크가 연결되는 자리입니다.",
+        steps: [
+          "MANUAL 앱 → INPUT(입력) → 해당 트랙의 입력 설정 아이콘을 누릅니다.",
+          "INPUT은 MIC로 설정합니다. 팬텀이 필요한 경우 해당 입력의 PHANTOM을 켜고 확인 창에서 YES를 누릅니다. 전압 메뉴는 GENERAL SETTINGS → I/O SETTINGS → PHANTOM입니다.",
+          "모노 마이크가 한쪽만 들리면 같은 입력 설정에서 STEREO LINK를 끄고 MIXER에서 해당 트랙의 PAN을 중앙에 둡니다.",
+        ],
+        tip: "팬텀을 켰는데도 작동하지 않거나 전원이 꺼지면 배터리 잔량과 전원 공급 상태를 확인하세요. X8의 POWER SAVE MODE에서는 팬텀 전원이 꺼집니다.",
+      },
+      {
+        title: "Zoom F6",
+        body: "MENU → INPUT → PFL → 연결한 트랙 → Source에서 입력을 설정합니다. 팬텀이 필요한 마이크는 Mic (PH), 일반 마이크 입력은 Mic를 선택합니다. 팬텀 전압은 INPUT → Phantom Settings → Voltage에서 확인합니다.",
+        tip: "한쪽만 들리면 INPUT → Link Settings → Input Link에서 해당 입력 쌍이 Stereo로 묶였는지 확인하세요. 모노로 쓸 때는 링크를 풀고 PFL의 Pan을 Center로 맞춥니다. 그래도 한쪽만 들리면 OUTPUT → Headphone Out → Routing을 확인하세요.",
+      },
+      {
+        title: "Zoom H8",
+        body: "FIELD 앱 → 마이크 아이콘 → 연결한 트랙 → Phantom → On/Off에서 팬텀을 설정합니다. 전압은 같은 메뉴의 Voltage(For all tracks)에서 확인합니다. 팬텀 전압을 바꾸면 다른 입력에도 적용되므로 연결한 마이크 사양을 함께 확인하세요.",
+        tip: "모노 마이크 한 개를 연결했는데 한쪽만 들리면 트랙 설정에서 Stereo Link를 끄고 Fader/Pan → Pan을 Center로 맞춥니다.",
+      },
+    ],
+    sources: [
+      { title: "TASCAM · Portacapture X8 공식 설명서", url: "https://manual.tascam.jp/portacapture_x8/rm/en/manual.html" },
+      { title: "Zoom · F6 공식 설명서 (PDF)", url: "https://zoomcorp.com/documents/248/E_F6.pdf" },
+      { title: "Zoom · H8 공식 설명서 (PDF)", url: "https://zoomcorp.com/media/documents/E_H8_v2.pdf" },
+    ],
+  },
 ];
