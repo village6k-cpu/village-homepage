@@ -211,4 +211,46 @@ export const fieldGuides: FieldGuide[] = [
       { title: "Zoom · H8 공식 설명서 (PDF)", url: "https://zoomcorp.com/media/documents/E_H8_v2.pdf" },
     ],
   },
+  {
+    id: "osee-mega22s4-sdi-split",
+    equipmentLabel: "OSEE MEGA 22S4",
+    imageUrl: "/images/products/193.png",
+    productId: 193,
+    title: "OSEE MEGA 22S4에서 SDI 2분할 보기",
+    summary: "SDI 1번과 2번이 각각 나오는데 2분할에서 한쪽이 검게 뜰 때, 각 칸에 들어갈 입력을 확인하는 방법입니다.",
+    equipmentNames: ["OSEE MEGA 22S4", "MEGA22S4", "22S4", "오씨", "오시"],
+    keywords: ["SDI", "SDI1", "SDI2", "2분할", "분할 화면", "한쪽", "검은 화면", "입력 배정", "PBP HH", "Source Allocation"],
+    quickSummary: [
+      "모니터 앞면 MODE 버튼을 눌러 PBP HH를 고릅니다. 두 화면을 좌우로 나란히 보는 모드입니다.",
+      "조이스틱을 아래로 두 번 움직여 Monitor Settings에 들어간 뒤 Display → Source Allocation을 엽니다.",
+      "Main Window(첫 번째 칸)는 SDI1, Sub1 Window(두 번째 칸)는 SDI2로 맞춥니다.",
+    ],
+    quickWarning: "두 입력이 단독 화면에서 나온다면 SDI 케이블은 그대로 두고 메뉴부터 확인하세요. 케이블을 옮겨야 할 때는 카메라와 모니터 전원을 모두 끈 뒤 작업하세요.",
+    intro: "MODE에서 SDI1이나 SDI2를 고르면 그 입력을 전체 화면으로 봅니다. 2분할에서는 각 칸에 어떤 입력을 보여줄지 따로 정합니다. 단독 화면에서 두 입력이 모두 나오는데 2분할 한쪽이 비어 있다면, 그 칸에 다른 단자가 배정돼 있는지 확인하세요.",
+    sections: [
+      {
+        title: "1. 2분할을 켜고 두 칸에 입력 배정하기",
+        body: "카메라 두 대가 모니터 뒤쪽 SDI IN1과 SDI IN2에 연결된 경우입니다.",
+        steps: [
+          "앞면 MODE 버튼을 눌러 왼쪽 위 메뉴를 엽니다. MODE를 다시 눌러 PBP HH에 주황색 선택 표시를 두고 화면이 바뀔 때까지 기다립니다.",
+          "조이스틱을 아래로 한 번 움직여 상단 메뉴를 띄웁니다. Monitor Settings가 선택된 상태에서 아래로 한 번 더 움직입니다.",
+          "Display → Source Allocation을 선택하고 조이스틱을 오른쪽으로 움직여 엽니다.",
+          "조이스틱 위·아래로 칸을 고르고 좌·우로 입력을 바꿉니다. Main Window는 SDI1, Sub1 Window는 SDI2에 둡니다. 입력을 고르면 자동 저장됩니다.",
+        ],
+        tip: "MODE 목록에 PBP HH가 없다면 Monitor Settings → System → Function Key → MODE Key → Layout Config에서 PBP HH를 ON으로 바꿉니다.",
+      },
+      {
+        title: "2. 배정이 맞는데도 한쪽이 검게 뜰 때",
+        body: "케이블은 그대로 두고 Source Allocation에서만 배정을 바꿔보세요. Main Window에 SDI2, Sub1 Window에 SDI1을 넣습니다.",
+        steps: [
+          "검은 화면이 SDI2를 따라 첫 번째 칸으로 옮겨가면, MODE에서 SDI2 단독 화면을 다시 열고 두 번째 카메라의 SDI 출력이 계속 들어오는지 확인합니다.",
+          "입력을 바꿔도 같은 칸만 검으면 PBP VV에서도 같은 증상이 나는지 확인합니다. PBP VV는 두 화면을 위아래로 배치합니다.",
+          "확인을 마치면 Main Window = SDI1, Sub1 Window = SDI2로 되돌립니다. 계속 검게 뜨면 각 입력의 단독 화면 결과와 Source Allocation 화면을 빌리지에 보내주세요.",
+        ],
+      },
+    ],
+    sources: [
+      { title: "OSEE 공식 설명서 4.2.5.3 · 분할 화면 입력 배정 그림", url: "https://cdn.shopify.com/s/files/1/0601/0041/1549/files/45.010525.003.1_Mega_22S4_LCD_Monitor-English_Manual-V010000-2025.09.29.pdf?v=1762243135#page=32" },
+    ],
+  },
 ];
