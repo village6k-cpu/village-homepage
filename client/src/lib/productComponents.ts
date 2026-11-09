@@ -446,7 +446,7 @@ export const productComponents: Record<number, Component[]> = {
     { name: "매트박스", qty: 2, note: "카메라" },
     { name: "소니 CF-A 160", qty: 2, note: "카메라" },
     { name: "소니 CF-A 리더기", qty: 2, note: "카메라" },
-    { name: "V마운트 배터리", qty: 4, note: "카메라" },
+    { name: "V마운트 배터리", qty: 2, note: "카메라" },
     { name: "V마운트 배터리 충전기", qty: 1, note: "카메라" },
     { name: "NP-FZ100", qty: 3 },
     { name: "NP-FZ100 충전기", qty: 1 },
