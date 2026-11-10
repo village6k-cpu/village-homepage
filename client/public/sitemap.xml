@@ -51,6 +51,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://village6k.co.kr/guide/solidcom-se-pairing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://village6k.co.kr/guide/solidcom-c1-pro-pairing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://village6k.co.kr/guide/synco-xtalk-xmax-pairing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://village6k.co.kr/location</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

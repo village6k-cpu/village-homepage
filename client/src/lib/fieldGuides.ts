@@ -420,4 +420,116 @@ export const fieldGuides: FieldGuide[] = [
       sdiSafetySource,
     ],
   },
+  {
+    id: "solidcom-se-pairing",
+    equipmentLabel: "홀리랜드 · Solidcom SE",
+    imageUrl: "/images/products/190.png",
+    productId: 190,
+    title: "솔리드컴 SE 페어링 방법",
+    summary: "마스터와 연결할 헤드셋에서 볼륨 + 버튼을 동시에 5초 누릅니다.",
+    equipmentNames: ["홀리랜드 솔리드컴 SE", "Hollyland Solidcom SE", "Solidcom SE Global Version", "솔리드컴 SE 4S", "솔리드컴 SE 5S", "솔리드컴 SE 8S"],
+    keywords: ["인터컴", "헤드셋", "페어링", "마스터", "리모트", "볼륨 +", "Volume +"],
+    quickSummary: [
+      "같은 세트라면 먼저 전원만 켜서 서로 말이 들리는지 확인합니다.",
+      "새 헤드셋을 연결할 때는 마스터와 새 헤드셋의 볼륨 + 버튼을 동시에 5초 누릅니다.",
+      "마이크 LED가 빠르게 깜빡이면 손을 뗍니다. LED가 깜빡이지 않고 계속 켜져 있으면 연결된 상태입니다.",
+    ],
+    quickWarning: "SE는 1.9 GHz와 2.4 GHz 버전이 있습니다. 헤드셋을 추가할 때는 같은 버전인지 먼저 확인하세요.",
+    intro: "마스터는 다른 헤드셋이 연결되는 기준입니다. 제조사 기본 색상은 마스터가 갈색 헤드밴드, 리모트가 검은색 헤드밴드입니다.",
+    sections: [
+      {
+        title: "양쪽에서 볼륨 + 5초",
+        body: "마스터와 새로 연결할 헤드셋을 가까이 두고 켭니다. 이미 연결된 헤드셋도 전원을 켜 둡니다.",
+        steps: [
+          "마스터와 새 헤드셋의 볼륨 + 버튼을 동시에 5초간 누릅니다.",
+          "마이크 쪽 LED가 빠르게 깜빡이면 버튼에서 손을 뗍니다.",
+          "LED가 계속 켜진 상태가 되면 마이크를 내리고, 양쪽에서 한 번씩 말해 확인합니다.",
+        ],
+        tip: "불이 계속 빨갛게 켜져 있으면 음소거 상태입니다. 마이크를 내리고 TALK/MUTE 버튼으로 말하기 상태를 확인하세요.",
+      },
+    ],
+    sources: [
+      { title: "Hollyland · Solidcom SE 설명서 (PDF)", url: "https://download.hollyland.com/User_manual/Solidcom%20SE/Solidcom%20SE%20Quick%20Guide%20V1.0.pdf" },
+      { title: "Hollyland · Solidcom SE 2.4 GHz 설명서 (PDF)", url: "https://download.hollyland.com/User_manual/Solidcom%20SE%20Global%20Version/Solidcom%20SE%202.4G%20-%20Quick%20Guide%20V1.0%20%28English%29.pdf" },
+    ],
+  },
+  {
+    id: "solidcom-c1-pro-pairing",
+    equipmentLabel: "홀리랜드 · Solidcom C1 Pro",
+    imageUrl: "/images/products/035.png",
+    productId: 35,
+    title: "솔리드컴 C1 Pro 페어링 방법",
+    summary: "허브 없는 4S·6S 세트는 마스터와 연결할 헤드셋에서 A 버튼을 동시에 5초 누릅니다.",
+    equipmentNames: ["홀리랜드 솔리드컴 C1 프로", "Hollyland Solidcom C1 Pro", "솔리드컴 C1 Pro 4S", "솔리드컴 C1 Pro 6S"],
+    keywords: ["인터컴", "헤드셋", "페어링", "마스터", "리모트", "A 버튼", "허브", "USB Pairing"],
+    quickSummary: [
+      "빨간색 표시가 마스터, 파란색 표시가 리모트입니다.",
+      "마스터와 연결할 리모트의 A 버튼을 동시에 5초 누릅니다.",
+      "마이크 LED가 깜빡임을 멈추면 양쪽에서 한 번씩 말해 확인합니다.",
+    ],
+    quickWarning: "허브에 헤드셋을 붙일 때는 USB Pairing을 사용합니다. 허브 없는 세트에서만 아래 A 버튼 방식으로 연결하세요.",
+    intro: "같은 세트로 받은 헤드셋은 전원을 켜면 보통 바로 연결됩니다. 새 헤드셋을 추가하거나 연결이 풀렸을 때 아래 방법을 쓰세요.",
+    sections: [
+      {
+        title: "4S·6S 세트에서 헤드셋 연결",
+        body: "마스터와 새로 연결할 리모트를 가까이 두고 켭니다. 이미 쓰고 있던 헤드셋도 전원을 켜 둡니다.",
+        steps: [
+          "마스터와 리모트의 A 버튼을 동시에 5초간 누릅니다.",
+          "양쪽 마이크 끝 LED가 깜빡임을 멈추고 계속 켜지면 연결된 상태입니다.",
+          "마이크를 내리고 TALK 상태에서 한 명씩 말해 양쪽에서 들리는지 확인합니다.",
+        ],
+      },
+      {
+        title: "별도 허브를 쓰는 경우",
+        body: "허브와 리모트 헤드셋을 USB 케이블로 연결합니다. 허브 화면에 USB Pairing이 뜨면 비어 있는 번호를 고르고 가운데 확인 버튼을 누릅니다. 기존 헤드셋도 켜 두면 번호 중복을 피할 수 있습니다.",
+      },
+    ],
+    sources: [
+      { title: "Hollyland · Solidcom C1 Pro 허브 없는 모델 설명서 (PDF)", url: "https://download.hollyland.com/User_manual/SOLIDCOM%20C1%20PRO/Hollyland%20Solidcom%20C1%20Pro%EF%BC%88No%20Hub%EF%BC%89User%20Manual/Hollyland%20Solidcom%20C1%20Pro%EF%BC%88No%20Hub%EF%BC%89User%20Manual%20%28English%29%20V4.0.pdf" },
+      { title: "Hollyland · Solidcom C1 Pro 허브 설명서 (PDF)", url: "https://download.hollyland.com/User_manual/SOLIDCOM%20C1%20PRO/Solidcom%20C1%20Pro%20-%20Hub8S%20User%20Manual/Hollyland%20Solidcom%20C1%20Pro%20-%20Hub8S%20User%20Manual%EF%BC%88English%EF%BC%89%20V1.0.0.pdf" },
+    ],
+  },
+  {
+    id: "synco-xtalk-xmax-pairing",
+    equipmentLabel: "SYNCO · Xtalk XMax",
+    imageUrl: "/images/products/188.png",
+    productId: 188,
+    title: "SYNCO Xtalk XMax 페어링 방법",
+    summary: "9대 세트는 Master 1대, Level 1 네 대, Level 2 네 대로 나눠 두 번에 걸쳐 연결합니다.",
+    equipmentNames: ["SYNCO Xtalk XMax", "Xtalk XMax 9구 세트", "XMax9", "싱코 엑스톡 엑스맥스", "신코 엑스톡 엑스맥스"],
+    keywords: ["인터컴", "헤드셋", "페어링", "A 버튼", "마스터", "Master", "Level 1", "Level 2", "EasyGo", "9대"],
+    quickSummary: [
+      "기존 9대 세트는 Master → Level 1 → Level 2 순으로 켜고 먼저 통화해 봅니다.",
+      "다시 묶을 때는 Master 1대, Level 1 네 대, Level 2 네 대로 맞춥니다.",
+      "A 버튼을 누르다 첫 번째 삑에서 떼면 페어링입니다. Master와 Level 1부터 묶고, 그다음 Level 1과 Level 2를 묶습니다.",
+    ],
+    quickWarning: "역할을 바꿀 때와 페어링할 때 손을 떼는 삑 소리 횟수가 다릅니다. 이미 연결된 상태에서 A 버튼을 첫 삑까지 누르면 연결이 풀릴 수 있습니다.",
+    intro: "빌리지 9대 세트를 한 그룹으로 묶는 방법입니다. Level 1은 Master에 직접 연결되고, Level 2는 Level 1을 거쳐 연결됩니다.",
+    sections: [
+      {
+        title: "1. 헤드셋 9대의 역할 확인",
+        body: "볼륨 +를 길게 누르고 첫 삑에서 떼면 현재 역할을 음성으로 알려줍니다. 바꿀 헤드셋에서만 A를 길게 누르고 아래 횟수에서 손을 떼세요.",
+        steps: [
+          "두 번째 삑에서 떼면 Master입니다. 역할 표시등은 빨간색입니다.",
+          "세 번째 삑에서 떼면 Level 1입니다. 역할 표시등은 파란색입니다.",
+          "네 번째 삑에서 떼면 Level 2입니다. 역할 표시등은 초록색입니다.",
+        ],
+      },
+      {
+        title: "2. 첫 삑에서 떼고 두 번에 나눠 연결",
+        body: "각 단계에서 해당하는 기기의 A 버튼을 1분 안에 차례로 길게 누르고, 첫 삑이 들릴 때마다 손을 뗍니다. 연결을 시작하면 Connecting and Pairing 음성이 나옵니다.",
+        steps: [
+          "Master와 Level 1 네 대에서 실행합니다. 연결이 끝나면 이 다섯 대를 끄고 Master → Level 1 순서로 다시 켭니다.",
+          "이번에는 Level 1 네 대와 Level 2 네 대에서 같은 방법으로 실행합니다.",
+          "연결이 끝나면 아홉 대를 끄고 Master → Level 1 → Level 2 순으로 켭니다. 각 헤드셋에서 한 번씩 말해 확인하세요.",
+        ],
+        tip: "Level 2 설정이 없거나 일부만 연결되면 빌리지에 문의하세요. 9대를 한 그룹으로 쓰려면 13인용 펌웨어 구성이 필요합니다.",
+      },
+    ],
+    sources: [
+      { title: "SYNCO · Xtalk XMax 설명서 (PDF)", url: "https://cdn.shopify.com/s/files/1/0474/9895/2861/files/SYNCO_Xtalk_XMax_User_Guide_English.pdf" },
+      { title: "SYNCO · Xtalk 버튼과 역할 확인", url: "https://www.syncoaudio.com/pages/synco-xtalk-buttons" },
+      { title: "SYNCO · Xtalk 인원별 펌웨어 안내", url: "https://www.syncoaudio.com/pages/synco-xtalk-user-guide" },
+    ],
+  },
 ];
