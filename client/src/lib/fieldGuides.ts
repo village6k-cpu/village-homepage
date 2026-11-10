@@ -262,4 +262,126 @@ export const fieldGuides: FieldGuide[] = [
       { title: "OSEE 공식 설명서 4.2.5.3 · 분할 화면 입력 배정 그림", url: "https://cdn.shopify.com/s/files/1/0601/0041/1549/files/45.010525.003.1_Mega_22S4_LCD_Monitor-English_Manual-V010000-2025.09.29.pdf?v=1762243135#page=32" },
     ],
   },
+  {
+    id: "hollyland-wireless-pairing",
+    equipmentLabel: "홀리랜드 · Pyro / Mars",
+    imageUrl: "/images/products/019.png",
+    productId: 19,
+    title: "홀리랜드 무선 송수신기 페어링 방법",
+    summary: "Pyro는 같은 그룹으로 맞추고, Mars는 양쪽에서 PAIR를 누릅니다.",
+    equipmentNames: ["홀리랜드", "Hollyland", "Pyro S", "Pyro 7", "파이로 S", "파이로 7", "Mars 4K", "Mars 400S", "Mars 400S Pro", "Mars M1", "마스 4K", "마스 400S", "마스 M1"],
+    keywords: ["페어링", "무선송수신기", "무선 영상", "송신기", "수신기", "TX", "RX", "Group Pairing", "PAIR"],
+    quickSummary: [
+      "Pyro S·Pyro 7은 Group Pairing에서 송신기와 수신기를 같은 그룹으로 맞추면 자동 연결됩니다.",
+      "Mars 4K·400S·400S Pro는 양쪽 메뉴에서 PAIR를 거의 동시에 누릅니다.",
+      "Pyro 7이나 Mars M1을 모니터로 받을 때는 Receiver 모드로 맞춥니다.",
+    ],
+    quickWarning: "SDI 케이블을 꽂거나 뺄 때는 연결된 양쪽 장비의 전원을 끄세요. 단자가 손상되면 수리비가 크게 나올 수 있습니다.",
+    intro: "TX는 카메라 영상을 보내는 송신기, RX는 영상을 받는 수신기입니다. 본체에 적힌 모델명을 보고 아래에서 해당하는 방법을 따라 하세요.",
+    sections: [
+      {
+        title: "Pyro S·Pyro 7",
+        body: "Pyro S는 메뉴 버튼을 3초간 누릅니다. Pyro 7은 화면 왼쪽 위의 무선 표시를 눌러 Wireless 메뉴를 열고, 영상을 받는 쪽이라면 Mode를 Receiver로 바꿉니다.",
+        steps: [
+          "양쪽의 Group Pairing에서 같은 글자를 고릅니다. 예를 들어 송신기와 수신기 모두 A로 맞춥니다.",
+          "자동으로 연결되면 수신 화면에 카메라 영상이 나오는지 확인합니다. 여러 세트를 쓰면 세트마다 그룹을 다르게 지정하세요.",
+        ],
+      },
+      {
+        title: "Mars 4K·400S·400S Pro",
+        body: "송신기와 수신기를 1m 이상 떨어뜨려 두고, 양쪽의 가운데 메뉴 버튼을 길게 누릅니다.",
+        steps: [
+          "양쪽에서 System Setting을 열고 PAIR 또는 Pairing을 거의 동시에 선택합니다.",
+          "Mars M1을 Mars 4K나 400S Pro와 쓴다면 M1의 Settings → Function Switch에서 역할을 정합니다. M1에서 영상을 볼 때는 Receiver를 고르고, 두 기기에서 Pair를 거의 동시에 누릅니다.",
+        ],
+      },
+      {
+        title: "연결됐는데 화면이 안 나올 때",
+        body: "카메라 출력은 송신기 IN에, 외장 모니터를 쓰면 수신기 OUT은 모니터 IN에 연결합니다. 모니터에서 실제로 꽂은 HDMI 또는 SDI 입력을 골랐는지 확인하세요.",
+      },
+    ],
+    sources: [
+      { title: "Hollyland · Pyro S 설명서", url: "https://www.hollyland.com/download/manual/pyro-s" },
+      { title: "Hollyland · Pyro 7 설명서 (PDF)", url: "https://download.hollyland.com/User_manual/Pyro%207/Pyro%207%20Quick%20Guide%20V1.0.0.pdf" },
+      { title: "Hollyland · Mars 4K 페어링", url: "https://www.hollyland.com/support/faq/mars-4k/connection-2" },
+      { title: "Hollyland · Mars 400S Pro 페어링", url: "https://www.hollyland.com/support/faq/mars-400spro/connection-3" },
+      { title: "Hollyland · Mars 400S 설명서 (PDF)", url: "https://cvp.com/pdf/hollyland-mars-400s-user-note.pdf" },
+      { title: "Hollyland · Mars M1 페어링", url: "https://www.hollyland.com/faq/which-devices-can-connect-to-mars-m1-and-how-to-pair-them" },
+      sdiSafetySource,
+    ],
+  },
+  {
+    id: "dji-sdr-pairing",
+    equipmentLabel: "DJI SDR Transmission",
+    imageUrl: "/images/products/014.png",
+    productId: 14,
+    title: "DJI SDR 페어링 방법",
+    summary: "수신기에서 CTRL.A를 고른 뒤 송신기의 링크 버튼을 길게 누릅니다.",
+    equipmentNames: ["DJI SDR Transmission", "DJI SDR", "디제이아이 SDR"],
+    keywords: ["페어링", "무선송수신기", "무선 영상", "송신기", "수신기", "TX", "RX", "Connection Mode", "CTRL.A", "CTRL.B"],
+    quickSummary: [
+      "수신기 화면을 위에서 아래로 쓸어내리고 Connection Mode → CTRL.A를 누릅니다.",
+      "송신기 본체의 링크 버튼을 길게 눌러 연결합니다.",
+      "수신기를 한 대 더 연결할 때는 두 번째 수신기에 CTRL.B를 지정합니다.",
+    ],
+    quickWarning: "SDI 케이블을 꽂거나 뺄 때는 연결된 양쪽 장비의 전원을 끄세요. 단자가 손상되면 수리비가 크게 나올 수 있습니다.",
+    intro: "카메라에 연결하는 쪽이 송신기(TX), 모니터에 연결하는 쪽이 수신기(RX)입니다. 수신기 한 대를 연결할 때는 CTRL.A부터 설정하세요.",
+    sections: [
+      {
+        title: "수신기에서 먼저 시작하기",
+        body: "송신기와 수신기 전원을 켭니다.",
+        steps: [
+          "수신기 홈 화면을 위에서 아래로 쓸어내립니다. Connection Mode에서 CTRL.A를 눌러 연결 대기 상태로 들어갑니다.",
+          "송신기 본체의 링크 버튼을 길게 누릅니다. 연결이 끝나면 수신기에 신호가 잡히고 모니터에 카메라 영상이 나오는지 확인합니다.",
+          "수신기를 추가할 때는 두 번째 수신기에서 CTRL.B를 고르고 송신기 링크 버튼을 다시 길게 누릅니다.",
+        ],
+      },
+      {
+        title: "연결됐는데 화면이 안 나올 때",
+        body: "카메라 출력이 송신기 IN에, 수신기 OUT이 모니터 IN에 꽂혀 있는지 확인합니다. 모니터에서 실제로 꽂은 HDMI 또는 SDI 입력을 고르세요.",
+      },
+    ],
+    sources: [
+      { title: "DJI · SDR Transmission 설명서 5.1 Control Mode (PDF)", url: "https://dl.djicdn.com/downloads/DJI_SDR_Transmission/20240913/UM/DJI_SDR_Transmission_User_Guide_v1.0_EN.pdf" },
+      sdiSafetySource,
+    ],
+  },
+  {
+    id: "teradek-bolt-pairing",
+    equipmentLabel: "테라덱 · Bolt 1000 XT / 500 LT",
+    imageUrl: "/images/products/129.png",
+    productId: 129,
+    title: "테라덱 Bolt 페어링 방법",
+    summary: "수신기에서 Pairing을 열고 송신기의 작은 Reset 버튼을 1초 누릅니다.",
+    equipmentNames: ["테라덱", "Teradek", "Bolt 1000 XT", "Bolt 1000XT", "Bolt 500 LT", "Bolt 500LT", "볼트 1000XT", "볼트 500LT"],
+    keywords: ["페어링", "무선송수신기", "무선 영상", "송신기", "수신기", "TX", "RX", "Pairing", "Reset"],
+    quickSummary: [
+      "수신기 조이스틱으로 Pairing 메뉴를 엽니다.",
+      "송신기의 작은 Reset 버튼을 클립으로 1초 눌렀다가 뗍니다.",
+      "수신 화면에 OK가 뜨면 누르고, 모니터에서 카메라 영상을 확인합니다.",
+    ],
+    quickWarning: "SDI 케이블을 꽂거나 뺄 때는 연결된 양쪽 장비의 전원을 끄세요. 단자가 손상되면 수리비가 크게 나올 수 있습니다.",
+    intro: "빌리지에서 대여하는 Bolt 1000 XT와 Bolt 500 LT 기준입니다. 세트에 들어 있는 송신기(TX)와 수신기(RX)를 사용하세요.",
+    sections: [
+      {
+        title: "수신기 메뉴 → 송신기 버튼",
+        body: "연결할 한 세트만 켭니다. 1000 XT는 수신기 본체 화면에서, 500 LT는 수신기에 연결한 모니터에서 메뉴를 봅니다.",
+        steps: [
+          "수신기 조이스틱으로 Pairing을 선택합니다. 500 LT는 조이스틱을 눌러 모니터에 상태 화면을 띄우고, 오른쪽으로 밀어 메뉴를 엽니다.",
+          "송신기 본체의 Reset 버튼을 찾아 클립으로 1초만 눌렀다가 뗍니다. 송신기 LED가 깜빡이면 페어링이 시작된 상태입니다.",
+          "수신 화면에 송신기가 잡히고 OK가 뜨면 조이스틱으로 선택합니다. 모니터에 카메라 영상이 나오는지 확인하세요.",
+        ],
+      },
+      {
+        title: "송신기를 못 찾을 때",
+        body: "송신기와 수신기 전원을 껐다 켜고, 서로 1m 이상 떨어뜨린 뒤 다시 시도하세요. 수신기를 추가할 때도 한 대씩 페어링합니다.",
+      },
+    ],
+    sources: [
+      { title: "Teradek · Bolt 1000 XT 설명서", url: "https://www.manualslib.com/manual/1590904/Teradek-Bolt-1000-Xt-Tx.html?page=7" },
+      { title: "Teradek · 3세대 Bolt 페어링 설명서 (PDF)", url: "https://cdn.teradek.com/Public/Bolt3/Docs/Teradek_Bolt_3rd_gen_qsg_v1_1116.pdf" },
+      { title: "SmallHD · Teradek 연결 문제 확인", url: "https://guide.smallhd.com/a/1753005-wireless-pairing" },
+      sdiSafetySource,
+    ],
+  },
 ];
