@@ -3,6 +3,10 @@ export interface FieldGuideSection {
   body: string;
   steps?: string[];
   tip?: string;
+  photoGroups?: {
+    title: string;
+    photos: { imageUrl: string; alt: string; caption: string }[];
+  }[];
 }
 
 export interface FieldGuide {
@@ -366,9 +370,41 @@ export const fieldGuides: FieldGuide[] = [
       {
         title: "수신기 메뉴 → 송신기 버튼",
         body: "연결할 한 세트만 켭니다. 1000 XT는 수신기 본체 화면에서, 500 LT는 수신기에 연결한 모니터에서 메뉴를 봅니다.",
+        photoGroups: [
+          {
+            title: "Bolt 1000 XT",
+            photos: [
+              {
+                imageUrl: "/images/guides/teradek/bolt-1000-xt-rx.jpg",
+                alt: "Bolt 1000 XT 수신기 옆면. OLED 화면 위 조이스틱에 M이 표시돼 있습니다.",
+                caption: "RX 조이스틱 · M",
+              },
+              {
+                imageUrl: "/images/guides/teradek/bolt-1000-xt-tx.jpg",
+                alt: "Bolt 1000 XT 송신기 옆면. 미니 USB 단자 바로 아래 작은 Reset 구멍에 L이 표시돼 있습니다.",
+                caption: "TX Reset 버튼 · L",
+              },
+            ],
+          },
+          {
+            title: "Bolt 500 LT",
+            photos: [
+              {
+                imageUrl: "/images/guides/teradek/bolt-500-lt-rx.jpg",
+                alt: "Bolt 500 LT 수신기 옆면. 미니 USB 단자와 Reset 구멍 위의 동그란 조이스틱에 L이 표시돼 있습니다.",
+                caption: "RX 조이스틱 · L",
+              },
+              {
+                imageUrl: "/images/guides/teradek/bolt-500-lt-tx.jpg",
+                alt: "Bolt 500 LT 송신기 옆면. 미니 USB 단자 바로 아래 작은 Reset 구멍에 K가 표시돼 있습니다.",
+                caption: "TX Reset 버튼 · K",
+              },
+            ],
+          },
+        ],
         steps: [
           "수신기 조이스틱으로 Pairing을 선택합니다. 500 LT는 조이스틱을 눌러 모니터에 상태 화면을 띄우고, 오른쪽으로 밀어 메뉴를 엽니다.",
-          "송신기 본체의 Reset 버튼을 찾아 클립으로 1초만 눌렀다가 뗍니다. 송신기 LED가 깜빡이면 페어링이 시작된 상태입니다.",
+          "송신기 옆면의 미니 USB 단자 바로 아래에 있는 작은 Reset 버튼을 클립으로 1초만 눌렀다가 뗍니다. 송신기 LED가 깜빡이면 페어링이 시작된 상태입니다.",
           "수신 화면에 송신기가 잡히고 OK가 뜨면 조이스틱으로 선택합니다. 모니터에 카메라 영상이 나오는지 확인하세요.",
         ],
       },
@@ -378,8 +414,8 @@ export const fieldGuides: FieldGuide[] = [
       },
     ],
     sources: [
-      { title: "Teradek · Bolt 1000 XT 설명서", url: "https://www.manualslib.com/manual/1590904/Teradek-Bolt-1000-Xt-Tx.html?page=7" },
-      { title: "Teradek · 3세대 Bolt 페어링 설명서 (PDF)", url: "https://cdn.teradek.com/Public/Bolt3/Docs/Teradek_Bolt_3rd_gen_qsg_v1_1116.pdf" },
+      { title: "Teradek · Bolt 1000 XT 버튼 사진과 설명서 (PDF)", url: "https://d1xl95ab8ijfds.cloudfront.net/Public/Bolt3/Docs/xt_lt/Teradek_Bolt_1000-3000_XT_Quick_Start_Guide_v1.5_0419_web.pdf#page=2" },
+      { title: "Teradek · Bolt 500 LT 버튼 사진과 설명서 (PDF)", url: "https://d1xl95ab8ijfds.cloudfront.net/Public/Bolt3/Docs/xt_lt/Teradek_Bolt_500_LT_Quick_Start_Guide_v1.5_0419_web.pdf#page=2" },
       { title: "SmallHD · Teradek 연결 문제 확인", url: "https://guide.smallhd.com/a/1753005-wireless-pairing" },
       sdiSafetySource,
     ],

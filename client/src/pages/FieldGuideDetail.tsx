@@ -46,6 +46,23 @@ export default function FieldGuideDetail() {
                 <section key={section.title} id={`section-${index + 1}`} className="scroll-mt-28">
                   <h3 className="text-lg font-bold leading-relaxed">{section.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-text-secondary">{section.body}</p>
+                  {section.photoGroups && (
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {section.photoGroups.map((group) => (
+                        <div key={group.title} className="rounded-xl border border-divider bg-white p-3">
+                          <h4 className="mb-3 text-sm font-bold">{group.title}</h4>
+                          <div className="grid grid-cols-2 gap-2">
+                            {group.photos.map((photo) => (
+                              <figure key={photo.imageUrl} className="min-w-0">
+                                <img src={photo.imageUrl} alt={photo.alt} loading="lazy" className="h-40 w-full object-contain" />
+                                <figcaption className="mt-2 text-center text-xs font-bold leading-5">{photo.caption}</figcaption>
+                              </figure>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {section.steps && (
                     <ol className="mt-4 space-y-3">
                       {section.steps.map((step, stepIndex) => (
