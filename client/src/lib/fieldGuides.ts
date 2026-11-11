@@ -20,6 +20,7 @@ export interface FieldGuide {
   keywords: string[];
   quickSummary: string[];
   quickWarning: string;
+  video?: { title: string; credit: string; watchUrl: string; embedUrl: string };
   intro: string;
   sections: FieldGuideSection[];
   sources: { title: string; url: string }[];
@@ -530,6 +531,53 @@ export const fieldGuides: FieldGuide[] = [
       { title: "SYNCO · Xtalk XMax 설명서 (PDF)", url: "https://cdn.shopify.com/s/files/1/0474/9895/2861/files/SYNCO_Xtalk_XMax_User_Guide_English.pdf" },
       { title: "SYNCO · Xtalk 버튼과 역할 확인", url: "https://www.syncoaudio.com/pages/synco-xtalk-buttons" },
       { title: "SYNCO · Xtalk 인원별 펌웨어 안내", url: "https://www.syncoaudio.com/pages/synco-xtalk-user-guide" },
+    ],
+  },
+  {
+    id: "tilta-cine-slider-setup",
+    equipmentLabel: "틸타 · TSS-01",
+    imageUrl: "/images/products/082.png",
+    productId: 82,
+    title: "틸타 시네 슬라이더 사용법",
+    summary: "레일 수평 맞추기, 봉과 어댑터 연결하기, 고정 노브 조이는 법을 확인하세요.",
+    equipmentNames: ["틸타 시네 슬라이더", "Tilta Cine Slider", "Tilta Slider System", "TSS-01", "TSS01"],
+    keywords: ["조립", "사용법", "노브", "조임쇠", "봉", "레일", "어댑터", "연장", "유격", "수평", "나사산"],
+    quickSummary: [
+      "카메라를 올리기 전에 지지대 높이를 맞추고, 이어 붙일 두 봉을 같은 높이에서 일직선으로 놓습니다.",
+      "봉–어댑터–봉은 손으로 돌렸을 때 부드럽게 들어가야 합니다. 끝까지 맞물렸으면 손으로 흔들어 유격이 없는지 확인합니다.",
+      "연결부가 흔들리면 풀어서 봉의 양 끝을 바꿔 끼워보세요. 그래도 유격이 있으면 사용을 멈춥니다.",
+      "고정 노브는 부품이 제자리에 앉은 뒤 손으로 조입니다. 카메라를 올리기 전에 빈 캐리지를 끝까지 천천히 움직여 봅니다.",
+    ],
+    quickWarning: "수평이 틀어진 상태에서 봉이나 노브를 힘으로 조이면 나사산이나 연결부가 손상돼 수리비가 나올 수 있습니다. 손으로 돌리다 걸리면 바로 풀고 수평부터 다시 맞추세요.",
+    video: {
+      title: "Tilta TSS-01 조립 참고 영상",
+      credit: "KINEMOTOR | KINOARENDA",
+      watchUrl: "https://www.youtube.com/watch?v=vWHh-YcFFjQ",
+      embedUrl: "https://www.youtube-nocookie.com/embed/vWHh-YcFFjQ?rel=0",
+    },
+    intro: "빌리지에서 대여하는 TSS-01 기준입니다. 봉은 캐리지가 움직이는 레일이고, 어댑터는 봉 두 개를 이어주는 연결 부품입니다.",
+    sections: [
+      {
+        title: "봉–어댑터–봉 연결하기",
+        body: "봉이 한쪽으로 처진 채 맞물리지 않도록 양쪽을 받치고, 지지대 높이를 맞춥니다. 봉 두 개를 같은 높이에서 일직선으로 놓은 뒤 어댑터를 손으로 돌려 끼웁니다.",
+        steps: [
+          "정상적으로 물리면 처음부터 부드럽게 돌아갑니다. 처음부터 뻑뻑하거나 중간에 걸리면 풀어서 봉의 높이와 각도를 다시 맞춥니다.",
+          "봉이 끝까지 맞물리면 연결부 양쪽을 잡고 살짝 흔들어보세요. 덜컥거리거나 틈이 벌어지면 다시 조립합니다.",
+          "유격이 남으면 해당 봉을 앞뒤로 뒤집어 반대쪽 끝을 어댑터에 연결해 보세요. 다시 조여도 흔들리면 카메라를 올리지 말고 빌리지에 연락해 주세요.",
+        ],
+      },
+      {
+        title: "고정 노브 조이기",
+        body: "봉과 지지대가 제자리에 앉은 상태에서 고정 노브를 손으로 돌립니다. 부품이 밀리거나 흔들리지 않을 만큼 조이고, 손으로 가볍게 움직여 고정됐는지 확인하세요.",
+        tip: "노브로 어긋난 부품을 끌어 맞추지 마세요. 노브를 풀고 부품을 제자리에 놓은 뒤 손으로 다시 조이면 됩니다.",
+      },
+      {
+        title: "카메라를 올리기 전 확인",
+        body: "레일 두 줄이 평행하고 수평인지, 양쪽 끝의 스토퍼와 바퀴 안전 부품이 제자리에 있는지 확인합니다. 빈 캐리지를 천천히 끝에서 끝까지 밀어보고, 이음새에서 걸리거나 덜컥거리면 연결부부터 다시 확인하세요.",
+      },
+    ],
+    sources: [
+      { title: "Tilta Japan · TSS-01 구성품", url: "https://tilta.shop/items/62eafdc31d6b10616066a5b3" },
     ],
   },
 ];

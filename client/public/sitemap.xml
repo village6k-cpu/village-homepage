@@ -66,6 +66,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://village6k.co.kr/guide/tilta-cine-slider-setup</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://village6k.co.kr/location</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
