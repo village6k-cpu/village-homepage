@@ -1,6 +1,7 @@
 import { Link, useParams } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FieldGuideVideo from "@/components/FieldGuideVideo";
 import { fieldGuides } from "@/lib/fieldGuides";
 import { KAKAO_URL } from "@/lib/products";
 import NotFound from "@/pages/NotFound";
@@ -38,26 +39,7 @@ export default function FieldGuideDetail() {
             </ul>
           </section>
 
-          {guide.video && (
-            <section aria-labelledby="guide-video-heading" className="mt-8">
-              <h2 id="guide-video-heading" className="mb-3 text-lg font-bold">{guide.video.title}</h2>
-              <div className="aspect-video overflow-hidden rounded-2xl bg-black">
-                <iframe
-                  src={guide.video.embedUrl}
-                  title={guide.video.title}
-                  className="h-full w-full"
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allow="encrypted-media; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <div className="mt-2 flex flex-wrap items-center gap-x-3 text-xs text-text-secondary">
-                <span>{guide.video.credit}</span>
-                <a href={guide.video.watchUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-bold text-accent hover:underline">YouTube에서 보기 ↗</a>
-              </div>
-            </section>
-          )}
+          {guide.video && <FieldGuideVideo key={guide.video.embedUrl} video={guide.video} />}
 
           <section aria-labelledby="detail-heading" className="mt-10 border-t border-divider pt-8">
             <h2 id="detail-heading" className="text-xl font-bold">자세한 안내</h2>

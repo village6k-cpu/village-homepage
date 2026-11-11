@@ -20,7 +20,13 @@ export interface FieldGuide {
   keywords: string[];
   quickSummary: string[];
   quickWarning: string;
-  video?: { title: string; credit: string; watchUrl: string; embedUrl: string };
+  video?: {
+    title: string;
+    credit: string;
+    watchUrl: string;
+    embedUrl: string;
+    chapters?: { title: string; description: string; startSeconds: number; endSeconds: number }[];
+  };
   intro: string;
   sections: FieldGuideSection[];
   sources: { title: string; url: string }[];
@@ -583,6 +589,85 @@ export const fieldGuides: FieldGuide[] = [
     ],
     sources: [
       { title: "Tilta Japan · TSS-01 구성품", url: "https://tilta.shop/items/62eafdc31d6b10616066a5b3" },
+    ],
+  },
+  {
+    id: "hy-revoring-nd-setup",
+    equipmentLabel: "H&Y · REVORING ND + CPL",
+    imageUrl: "/images/products/160.png",
+    productId: 160,
+    title: "H&Y 리보링 ND 사용법",
+    summary: "장착 링 줄이기, 렌즈에 고정하기, ND 밝기 조절을 실물 영상으로 확인하세요.",
+    equipmentNames: ["H&Y REVORING", "H&Y 리보링", "H&Y 레보링", "에이치앤와이", "리보링 ND", "레보링 ND", "3-1000 ND + CPL 필터"],
+    keywords: ["사용법", "영상", "장착", "분리", "가변 ND", "필터", "CPL", "편광", "링", "핀", "밝기", "반사", "X자"],
+    quickSummary: [
+      "리보링은 렌즈 앞에 끼우는 지름 조절식 링입니다. 먼저 렌즈의 필터 지름(Ø)이 리보링에 적힌 범위 안에 드는지 확인하세요.",
+      "필터 앞쪽 테두리를 잡고 렌즈 쪽 장착 링을 화살표 방향으로 돌립니다. 안쪽 날개가 오므라든 상태를 유지하며 렌즈 앞에 끼웁니다.",
+      "장착 링을 천천히 놓으면 날개가 벌어져 렌즈 나사산에 걸립니다. 필터를 받친 채 가볍게 돌려 고정 상태를 확인합니다.",
+      "장착이 끝나면 앞쪽 작은 핀으로 ND 밝기를 조절합니다. 뺄 때는 필터를 받치고 장착 링을 다시 돌려 날개를 오므립니다.",
+    ],
+    quickWarning: "렌즈 쪽 장착 링을 돌리면 고정이 풀릴 수 있습니다. 장착·분리할 때는 필터를 손으로 받치세요. 끝없이 힘을 줘 조이면 필터나 렌즈 나사산이 손상될 수 있습니다.",
+    video: {
+      title: "실물 동작 보기",
+      credit: "H&Y Filters 공식 영상",
+      watchUrl: "https://www.youtube.com/watch?v=BIwpZTwVHvg&t=4s",
+      embedUrl: "https://www.youtube-nocookie.com/embed/BIwpZTwVHvg?rel=0&start=4&end=47",
+      chapters: [
+        {
+          title: "렌즈에 끼우기",
+          description: "장착 링을 돌려 날개를 오므린 채 끼우고, 천천히 놓아 고정합니다.",
+          startSeconds: 4,
+          endSeconds: 21,
+        },
+        {
+          title: "ND로 밝기 조절",
+          description: "앞쪽 ND 핀을 움직여 화면 밝기를 맞춥니다.",
+          startSeconds: 21,
+          endSeconds: 29,
+        },
+        {
+          title: "CPL로 반사 조절",
+          description: "CPL 핀을 돌려 물·유리의 반사를 조절합니다. 조절 후 밝기도 다시 확인하세요.",
+          startSeconds: 29,
+          endSeconds: 36,
+        },
+        {
+          title: "검은 X자가 생길 때",
+          description: "광각에서 ND를 많이 넣으면 생길 수 있습니다. ND를 MIN 쪽으로 되돌립니다.",
+          startSeconds: 36,
+          endSeconds: 47,
+        },
+      ],
+    },
+    intro: "ND는 렌즈로 들어오는 빛을 줄여 밝기를 맞추고, CPL은 물이나 유리의 반사를 조절합니다. 렌즈에 붙어 있는 장착 링과 앞쪽 ND·CPL 조절 핀을 각각 확인해 두세요.",
+    sections: [
+      {
+        title: "렌즈에 끼우기",
+        body: "렌즈 앞쪽에 적힌 Ø 뒤 숫자가 필터 지름입니다. 예를 들어 Ø77은 77mm입니다. 리보링 테두리에 적힌 지원 범위와 맞는지 확인한 뒤 장착하세요.",
+        steps: [
+          "유리를 누르지 않도록 필터 앞쪽 테두리를 잡습니다. 다른 손으로 렌즈 쪽 장착 링을 화살표 방향으로 돌려 안쪽 날개를 오므립니다.",
+          "그 상태를 유지하며 렌즈 앞 나사산 안쪽에 수평으로 끼웁니다. 한쪽만 비스듬히 걸리지 않게 맞추세요.",
+          "장착 링을 천천히 놓아 날개가 나사산을 잡게 합니다. 필터를 받치면서 앞에서 보아 시계 방향으로 살짝 돌리고, 기울거나 헐겁게 빠지지 않는지 확인합니다.",
+        ],
+      },
+      {
+        title: "ND와 CPL 조절하기",
+        body: "앞쪽 유리 테두리의 작은 핀 두 개로 조절합니다. ND 쪽은 MIN·MAX 표시가 있는 링이고, CPL 쪽은 렌즈에 더 가까운 필터 링입니다.",
+        steps: [
+          "밝기를 바꿀 때는 CPL 쪽 핀을 잡고 ND 핀을 MIN에서 MAX 쪽으로 조금씩 움직입니다. 카메라 화면을 보면서 필요한 만큼만 어둡게 맞추세요.",
+          "반사를 바꿀 때는 렌즈에 가까운 CPL 핀을 천천히 돌립니다. 물이나 유리에 비친 반사가 달라지는지 확인한 뒤 밝기도 다시 확인합니다.",
+          "화면에 검은 X자나 얼룩이 생기면 ND를 MIN 쪽으로 되돌립니다. 특히 광각에서는 MAX까지 돌리기 전에 화면 전체를 확인하세요.",
+        ],
+      },
+      {
+        title: "렌즈에서 빼기",
+        body: "필터 아래를 한 손으로 받칩니다. 렌즈 쪽 장착 링을 화살표 방향으로 돌려 날개를 오므린 상태에서 앞쪽으로 빼세요. 걸리면 당기는 힘을 빼고, 날개가 충분히 오므라들었는지 다시 확인합니다.",
+      },
+    ],
+    sources: [
+      { title: "H&Y · REVORING 구조와 장착 원리", url: "https://hy-filter.com/blogs/news/revoring-a-variable-step-ring-for-your-camera-lens-filters" },
+      { title: "H&Y · VND+CPL 장착과 X자 현상 안내", url: "https://hy-filter.com/blogs/news/h-y-revoring-vnd-cpl-filter-review-by-michael-topham" },
+      { title: "H&Y Filters · REVORING 공식 사용법 영상", url: "https://www.youtube.com/watch?v=BIwpZTwVHvg" },
     ],
   },
 ];
